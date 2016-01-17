@@ -1,0 +1,280 @@
+//
+//  InterFaceModels.h
+//  YouPlayNew
+//
+//  Created by Mr.Qiu on 14-8-4.
+//  Copyright (c) 2014年 邱新鹏. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "Mantle.h"
+#import "MTLModel.h"
+#import "MTLJSONAdapter.h"
+#import "ObjectBuilder.h"
+#import "PBUser.h"
+
+@interface InterFaceModels : NSObject
+
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  牵扯到分页信息的数据
+ */
+@interface RefreshListInfo:NSObject
+@property(nonatomic,strong)NSArray *list;
+@property(nonatomic, assign)int total;
++ (instancetype)RefreshListWithArr:(NSArray *)arr total:(NSString *)total;
+
+
+@end
+
+
+/**
+ *  @author 白旭涛
+ *
+ *  类别信息
+ */
+@interface J_PmClass_IDEntity : MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString *ID;
+@property (nonatomic,strong) NSString *ClassName;
+@property (nonatomic,strong) NSString *Memo;
+@end
+/**
+ *  @author 白旭涛
+ *
+ *  七日节目信息
+ */
+@interface WeekProgromOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString           *CountPlayNum;//播放数
+@property (nonatomic,strong) NSString           *IsUserCreate;//是否为用户创建(0-不是，1-是)
+@property (nonatomic,strong) NSString           *CountGoodNum;//节目赞总数
+@property (nonatomic,strong) NSString           *PmTag;//标签
+@property (nonatomic,strong) J_PmClass_IDEntity *J_PmClass_ID;//节目分类(具体见下方J_PmClass_ID块)
+@property (nonatomic,strong) NSArray            *tb_Program_host;//主播信息(详见下方tb_Program_host块)
+@property (nonatomic,strong) NSString           *PmCreateDT;//创建时间
+@property (nonatomic,strong) NSString           *ShieldDT;//屏蔽时间
+@property (nonatomic,strong) NSString           *PmType;//类型(0-音频，1-视频)
+@property (nonatomic,strong) NSString           *FileSize;//文件大小(B)
+@property (nonatomic,strong) NSString           *PmName;//节目名称
+@property (nonatomic,strong) NSString           *CountDownloadNum;//下载数
+@property (nonatomic,strong) NSString           *PmFlag;//状态(0-上传中，1-已上传，2-已屏蔽)
+@property (nonatomic,strong) NSString           *FilePath;//文件路径
+@property (nonatomic,strong) NSString           *PmUpdateUserID;
+@property (nonatomic,strong) NSString           *PmBackImage;//节目背景
+@property (nonatomic,strong) NSString           *IsUserUpdate;//是否为用户修改(0-不是，1-是)
+@property (nonatomic,strong) NSString           *ID;//节目ID
+@property (nonatomic,strong) NSString           *PmUpdateDT;
+@property (nonatomic,strong) NSString           *ShieldAdminID;
+@property (nonatomic,strong) NSString           *PmCreateAdminID;//发布者ID
+@property (nonatomic,strong) NSString           *PmCreateUserID;//创建节目的用户ID
+@property (nonatomic,strong) NSString           *PmUpdateAdminID;//创建节目的管理员ID
+@property (nonatomic,strong) NSString           *PublishDT;//发布时间
+@property (nonatomic,strong) NSString           *PublishAdminID;
+@property (nonatomic,strong) NSString           *LenDT;//时长(秒)
+@property (nonatomic,strong) NSString           *ispassE;//是否通过E
+@property (nonatomic,strong) NSString           *ispassN;//是否通过N
+@property (nonatomic,strong) NSString           *ispassH;//是否通过H
+
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  公告信息
+ */
+@interface SysNewsOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString      *ID;//信息ID
+@property (nonatomic,strong) NSString      *userID;//用户ID
+
+@property (nonatomic,strong) NSString      *NewsContent;//信息内容
+@property (nonatomic,strong) NSString      *EffectiveDT;//开始时间
+@property (nonatomic,strong) NSString      *ExpirationDT;//结束时间
+@property (nonatomic,strong) NSString      *CreateDT;//创建时间
+@property (nonatomic,strong) NSString      *CreateAdminID;//创建人ID
+@property (nonatomic,strong) NSString      *Available;//是否有效(0-无效，1-有效)
+
+/*
+ * 返回的请求时间
+ */
++ (void)setLasttime:(NSString *)lasttime;
++ (NSString *)getLasttime;
+/*
+ * 数量
+ */
++ (void)setNewCount:(NSString *)count;
++ (NSString *)getNewCount;
+
+
+//获取所有的数量
++ (int)itemCount;
+//根据ID获取对象
++ (id)OBJWithID:(NSString *)ID;
+//根据ID判断是否保存过
++ (BOOL)isSaveWihtID:(NSString *)ID;
+//所有的数据
++ (NSMutableArray *)allItems;
+//后几条数据
++ (NSMutableArray *)lastItems;
+//是否已经保存
+- (BOOL)isSave;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  意见反馈
+ */
+@interface UsergetFeedbackOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString      *ID;//反馈ID
+@property (nonatomic,strong) NSString      *J_User_ID;//关联用户ID
+@property (nonatomic,strong) NSString      *FeedBackContent;//内容
+@property (nonatomic,strong) NSString      *J_FeedBack_Type_ID;//反馈类型
+@property (nonatomic,strong) NSString      *IsReply;//是否为回复(0-否，1-是)
+@property (nonatomic,strong) NSString      *ReplyAdminID;//回复管理员ID
+@property (nonatomic,strong) NSString      *CreateDT;//创建时间
+@property (nonatomic,strong) NSString      *Flag;//状态
+@property (nonatomic,strong) NSString      *FatherID;//父ID
+
+/*
+ * 返回的请求时间
+ */
++ (void)setLasttime:(NSString *)lasttime;
++ (NSString *)getLasttime;
+/*
+ * 数量
+ */
++ (void)setNewCount:(NSString *)count;
++ (NSString *)getNewCount;
+
+
+
+//获取所有的数量
++ (NSInteger)itemCount;
+//根据ID获取对象
++ (id)OBJWithID:(NSString *)ID;
+//根据ID判断是否保存过
++ (BOOL)isSaveWihtID:(NSString *)ID;
+//所有的数据
++ (NSMutableArray *)allItems;
+//获取特定条数的数据
++ (NSMutableArray *)itemsWithCount:(NSInteger)count;
+//后几条数据
++ (NSMutableArray *)lastItems;
+//是否已经保存
+- (BOOL)isSave;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
+
+@end
+/**
+ *  @author 白旭涛
+ *
+ *  购买对象
+ */
+@interface BuyListOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic, strong) NSString * ID;
+@property (nonatomic, strong) NSString * ISVisual;//是否显示状态(0-隐藏，1-显示)
+@property (nonatomic, strong) NSString * Memo;//备注
+@property (nonatomic, strong) NSString * Operatione;
+@property (nonatomic, strong) NSString * PayName;//显示信息
+@property (nonatomic, strong) NSString * Price;//金额
+@property (nonatomic, strong) NSString * Operation;//操作信息
+@end;
+/**
+ *  @author 白旭涛
+ *
+ *  我的下载更新信息
+ */
+@interface MydownPMdataOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic, strong) NSString * CountDownloadNum;//节目下载总数
+@property (nonatomic, strong) NSString * CountGoodNum;//节目被赞次总数
+@property (nonatomic, strong) NSString * CountPlayNum;//节目播放总数
+@property (nonatomic, strong) NSString * ID;
+@property (nonatomic, strong) NSString * Star;//该用户在本节目的得星数
+@property (nonatomic, strong) NSString * ispassE;
+@property (nonatomic, strong) NSString * ispassH;
+@property (nonatomic, strong) NSString * ispassN;
+@property (nonatomic, strong) NSString * iszan;
+
+@end;
+/**
+ *  @author 白旭涛
+ *
+ *  用户常用信息读取
+ */
+@interface UserInfoxOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic, strong) NSString         * CountBeanNum;//吧豆总数
+@property (nonatomic, strong) NSString         * CountCoinNum;//吧币总数
+@property (nonatomic, strong) NSString         * CountUserEXP;//积分
+@property (nonatomic, strong) NSString         * ExpireDate;
+@property (nonatomic, strong) NSString         * Head;//头像
+@property (nonatomic, strong) NSString         * ID;
+@property (nonatomic, strong) NSString         * NickName;//昵称
+@property (nonatomic, strong) NSString         * UserLevel;//用户等级
+@property (nonatomic, strong) NSString         * UpgradeEXP;//下级经验
+
+@property (nonatomic, strong) NSString         * CountUserName;//用户等级昵称
+@end;
+
+
+
+/**
+ *  @author 白旭涛
+ *
+ *  论坛列表页详情
+ */
+@interface BBSListOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic, strong) NSString         * ID;//ID
+@property (nonatomic, strong) NSString         * J_Program_ID;//关联节目ID
+@property (nonatomic, strong) NSString         * J_tbUser_ID;//发帖人
+@property (nonatomic, strong) NSString         * BBsContent;//内容
+@property (nonatomic, strong) NSString         * J_tb_BBsContent_Type_ID;//内容类型
+@property (nonatomic, strong) NSString         * UPID;//上级ID
+@property (nonatomic, strong) NSString         * FatherID;//父id
+@property (nonatomic, strong) NSString         * RecordingID;//复读ID
+@property (nonatomic, strong) NSString         * RecordingTXT;//复读内容
+@property (nonatomic, strong) NSString         * CreateDT;//创建时间
+@property (nonatomic, strong) NSString         * DeleteDT;//删除时间
+@property (nonatomic, strong) NSString         * states;//状态(0-禁止回复，1-正常)
+@property (nonatomic, strong) NSString         * Available;//删除标志(0-删除，1-正常)
+@property (nonatomic, strong) NSString         * OperationID;//操作人ID
+@property (nonatomic, strong) NSString         * GoodNum;//被赞次数
+@property (nonatomic, strong) NSString         * SectionType;//帖子类型(1-节目)
+@property (nonatomic, strong) NSString         * timeLen;//时长(毫秒)
+@property (nonatomic, strong) NSString         * fileSize;//文件大小(KB)
+@property (nonatomic, strong) NSString         * repNum;//回复次数
+@property (nonatomic, strong) NSString         * IsReport;//是否被举报(0-无举报,1-被举报)
+@property (nonatomic, strong) NSString         * ReportNum;//举报次数
+@property (nonatomic, strong) NSString         * isgood;//是否已点赞(0-否，1-是)
+@property (nonatomic, strong) NSString         * NickName;//昵称
+@property (nonatomic, strong) NSString         * Head;//头像
+@property (nonatomic, strong) NSString         * isvip;//是否为VIP(0-否，1-是)
+
+@end;
+
+/**
+ *  @author 白旭涛
+ *
+ *  弹幕列表
+ */
+@interface BarrageListOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic, strong) NSString         * Barrage_Content;//
+@property (nonatomic, strong) NSString         * AppearTime;//
+@property (nonatomic, strong) NSString         * CreateDT;//
+@property (nonatomic, strong) NSString         * ID;//
+@property (nonatomic, strong) PBUser           * J_User_ID;//
+@property (nonatomic, assign)NSUInteger          idx;
+
+
+@end;
+
+
+

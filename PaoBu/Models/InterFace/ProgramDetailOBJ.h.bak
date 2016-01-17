@@ -1,0 +1,146 @@
+//
+//  ProgramDetailOBJ.h
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/1/9.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "Mantle.h"
+#import "MTLModel.h"
+#import "MTLJSONAdapter.h"
+#import "ObjectBuilder.h"
+
+@interface ProgramDetail : MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString *userID;
+@property (nonatomic,assign) DownLoadProgramType downLoadtype;
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  题目信息
+ */
+@interface Tb_program_Exam_dt_EEntity : ProgramDetail
+@property (nonatomic,strong) NSString  *Answer;//Answer
+@property (nonatomic,strong) NSString  *AnswerA;//AnswerA
+@property (nonatomic,strong) NSString  *AnswerB;//AnswerB
+@property (nonatomic,strong) NSString  *J_Program_ID;//节目关联ID
+@property (nonatomic,strong) NSString  *Difficulty;//难度(E,N,H)
+@property (nonatomic,strong) NSString  *Sorting;//排序
+@property (nonatomic,strong) NSString  *AnswerD;//AnswerD
+@property (nonatomic,strong) NSString  *AnswerC;//AnswerC
+@property (nonatomic,strong) NSString  *ID;//ID号
+@property (nonatomic,strong) NSString  *Topic;//Topic
+@property (nonatomic,strong) NSString  *AnswerChooseIndex;//选中的答案
+@end
+/**
+ *  @author 白旭涛
+ *
+ *  音频关联(见下方tb_Program_Repeat_Voce块)
+ */
+@interface Tb_Program_Repeat_VoceEntity : ProgramDetail
+@property (nonatomic,strong) NSString  *ID;//ID号
+@property (nonatomic,strong) NSString  *VoicePath;//音频路径
+@property (nonatomic,strong) NSString  *tempID;//tempID号
+@property (nonatomic,strong) NSString  *tempVoicePath;//temp音频路径
+@property (nonatomic,strong) NSString  *title;//
+@property (nonatomic,strong) NSString  *J_Program_repeat_ID;//关键字关联ID
+@property (nonatomic,strong) NSString  *J_Program_ID;//节目关联ID
+@property (nonatomic,strong) NSString  *VoiceType;//类型(0-美式，1-英式)
+@end
+
+
+/**
+ *  @author 白旭涛
+ *
+ *  文章关键词(详见下方tb_Program_Repeat_dt块) 短语
+ */
+@interface Tb_Program_Repeat_dtEntity :ProgramDetail
+@property (nonatomic,strong) NSString      *Initals;//解释
+@property (nonatomic,strong) NSString      *J_Program_ID;//关联节目ID
+@property (nonatomic,strong) NSArray       *tb_Program_Repeat_Voce;//Tb_Program_Repeat_VoceEntity 音频信息
+@property (nonatomic,strong) NSString      *Sorting;//排序
+@property (nonatomic,strong) NSString      *Word;//单词
+@property (nonatomic,strong) NSString      *ID;//ID号
+@property (nonatomic,strong) NSString      *Translation;//解释
+//@property(nonatomic, assign)ProgramPageKeyWordSaveType type;//是否保存
+
++ (int)itemCount;
++ (void)search:(NSString *)key callback:(void (^)(NSMutableArray *))block;
+
+//是否已经保存
+- (BOOL)isSave;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
+@end
+
+
+
+/**
+ *  @author 白旭涛
+ *
+ *  节目详情
+ */
+@interface ProgramDetailOBJ : ProgramDetail
+@property (nonatomic,strong) NSString *iszan;//是否已赞(0-否，1-是)
+@property (nonatomic,strong) NSString *PmUpdateUserID;
+@property (nonatomic,strong) NSString *PmBackImage;//节目背景
+@property (nonatomic,strong) NSString *PmTag;//标签
+@property (nonatomic,strong) NSString *PmType;//类型(0-音频，1-视频)
+@property (nonatomic,strong) NSString *LenDT;//时长(秒)
+@property (nonatomic,strong) NSString *PmCreateAdminID;
+@property (nonatomic,strong) NSArray  *tb_Program_host;//主播信息(详见下方tb_Program_host块)
+//@property (nonatomic,strong) NSArray  *tb_program_Exam_dt_E;//问题(简单，详见下方tb_program_Exam_dt_E块)
+//@property (nonatomic,strong) NSString *ispassN;//难度N问题是否通过(0-未通过，1-通过)
+//@property (nonatomic,strong) NSArray  *tb_program_Exam_dt_H;//问题(简单，详见下方tb_program_Exam_dt_H块)
+@property (nonatomic,strong) NSString *ShieldAdminID;
+@property (nonatomic,strong) NSString *isdown;//是否已下载
+@property (nonatomic,strong) NSString *IsUserCreate;//是否为用户创建(0-不是，1-是)
+@property (nonatomic,strong) NSString *PmUpdateDT;//最后修改时间
+//@property (nonatomic,strong) NSString *ispassH;//难度H问题是否通过(0-未通过，1-通过)
+//@property (nonatomic,strong) NSArray  *tb_program_Exam_dt_N;//问题(简单，详见下方tb_program_Exam_dt_H块)
+@property (nonatomic,strong) NSString *ShieldDT;
+@property (nonatomic,strong) NSString *CountPlayNum;
+@property (nonatomic,strong) NSString *IsUserUpdate;
+@property (nonatomic,strong) NSString *PmCreateUserID;//创建节目的用户ID
+@property (nonatomic,strong) NSString *FilePath;//文件路径
+@property (nonatomic,strong) NSString *PublishDT;//发布时间
+@property (nonatomic,strong) NSString *ID;//节目ID
+@property (nonatomic,strong) NSString *PmUpdateAdminID;//创建节目的管理员ID
+@property (nonatomic,strong) NSString *PmFlag;//状态(0-上传中，1-已上传，2-已屏蔽)
+@property (nonatomic,strong) NSString *PmCreateDT;//创建时间
+@property (nonatomic,strong) NSString *PmName;//节目名称
+@property (nonatomic,strong) NSArray  *tb_Program_Repeat_dt;//文章关键词(详见下方tb_Program_Repeat_dt块)
+@property (nonatomic,strong) J_PmClass_IDEntity *J_PmClass_ID;//节目分类(具体见下方J_PmClass_ID块)
+@property (nonatomic,strong) NSString *FileSize;//文件大小(B)
+//@property (nonatomic,strong) NSString *ispassE;//难度E问题是否通过(0-未通过，1-通过)
+@property (nonatomic,strong) NSString *PublishAdminID;//发布者ID
+@property (nonatomic,strong) NSString *CountDownloadNum;//下载数
+@property (nonatomic,strong) NSString *CountGoodNum;//节目赞总数
+@property (nonatomic,strong) NSString *DownloadPath;//节目下载地址
+@property (nonatomic,strong) NSString *ShareNum;//分享数
+@property (nonatomic,strong) NSString *BarrageNum;//弹幕数量
+
+
+
+
+@property (nonatomic,strong) NSString *userID;
+
+
+
+//根据ID获取缓存数据
++ (id)OBJWihtID:(NSString *)ID;
+//保存自己
+- (void)saveSelf:(void (^)(BOOL))block;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
+//更新
+- (BOOL)updataSelf;
+@end
+

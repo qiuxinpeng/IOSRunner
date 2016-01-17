@@ -1,0 +1,24 @@
+//
+//  ProgramKeyWordRecordCache.h
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/2/2.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import "ProgramDetailOBJ.h"
+
+@interface ProgramKeyWordRecordCache : Tb_Program_Repeat_VoceEntity
+
++ (instancetype)OBJWithRepeatOBJ:(Tb_Program_Repeat_VoceEntity *)OBJ;
+
+//是否已经保存
++ (BOOL)isSaveWihtID:(NSString *)ID;
+//是否已经保存
+- (BOOL)isSave;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
++ (BOOL)deleteWithID:(NSString *)ID;
+@end

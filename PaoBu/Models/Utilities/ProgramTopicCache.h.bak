@@ -1,0 +1,23 @@
+//
+//  ProgramTopic cache.h
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/1/30.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ProgramTopicCache : NSObject
+@property (nonatomic,strong) NSString *userID;
+@property (nonatomic,strong) NSString *chooseID;
+@property (nonatomic,strong) NSString *chooseIndex;
+@property (nonatomic,assign) ProgramTopicSelectButtonType type;
++ (id)OBJWihtTatisticID:(NSString *)ID;
+//是否已经保存
+- (BOOL)isSave;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
+@end

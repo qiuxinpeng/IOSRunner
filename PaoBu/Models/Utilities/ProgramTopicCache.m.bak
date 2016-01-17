@@ -1,0 +1,58 @@
+//
+//  ProgramTopic cache.m
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/1/30.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import "ProgramTopicCache.h"
+
+@implementation ProgramTopicCache
+
+- (instancetype)init{
+
+    if ((self=[super init])) {
+        
+        self.userID=[PBUser userID];
+        self.type=ProgramTopicSelectButtonNone;
+    }
+    return self;
+}
+- (NSString *)description{
+   
+    return [NSString stringWithFormat:@"chooseID:%@  chooseIndex:%@",self.chooseID,self.chooseIndex];
+
+}
+//在类 初始化的时候
++(void)initialize
+{
+    [super initialize];
+    [[self getUsingLKDBHelper] createTableWithModelClass:self];
+
+}
+//主键
++(NSArray *)getPrimaryKeyUnionArray
+{
+    return @[@"userID",@"chooseID"];
+}
+
++ (id)OBJWihtTatisticID:(NSString *)ID{
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"userID":[PBUser userID],@"chooseID":ID} orderBy:nil ];
+    return temp;
+}
+//是否已经保存
+- (BOOL)isSave{
+
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"userID":self.userID,@"chooseID":self.chooseID} orderBy:nil ];
+    return temp?YES:NO;
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
+@end

@@ -1,0 +1,110 @@
+//
+//  ProgramDetailDownloadCache.m
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/2/6.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import "ProgramDetailDownloadCache.h"
+
+@implementation ProgramDetailDownloadCache
+- (instancetype)init{
+    if ([super init]) {
+        self.userID=[PBUser userID];
+    }
+    return self;
+}
++(void)initialize
+{
+    [super initialize];
+    [[MainManager LKDBglobalHelper] createTableWithModelClass:self];
+
+}
++ (int)itemCount{
+
+    return [[MainManager LKDBglobalHelper] rowCount:[self class] where:@{@"userID": [PBUser userID]}];
+}
++ (NSArray*)allItems{
+
+    return  [[MainManager LKDBglobalHelper] search:[self class] where:@{@"userID": [PBUser userID]} orderBy:nil offset:0 count:0];
+}
++ (void)search:(NSString *)key callback:(void (^)(NSMutableArray *))block{
+    
+    if (!key) {
+    
+        [[MainManager LKDBglobalHelper] search:[self class] where:@{@"userID": [PBUser userID]} orderBy:@"downTime desc" offset:0 count:0 callback:^(NSMutableArray *array) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(array);
+            });
+        }];
+    
+    }else{
+    
+        NSString *sql=[NSString stringWithFormat:@"SELECT * FROM @t WHERE title LIKE '%%%@%%' and  userID = %@  order by downTime desc",key,[PBUser userID]];
+    
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *tempArr=[[MainManager LKDBglobalHelper] searchWithSQL:sql toClass:[self class]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(tempArr);
+            });
+        });
+    
+    }
+    
+    
+
+    
+
+}
+//根据ID获取对象
++ (id)OBJWithID:(NSString *)ID{
+    if (!ID) {
+        return nil;
+    }
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"userID":[PBUser userID]} orderBy:nil ];
+    return temp;
+}
+//是否已经保存
++ (BOOL)isSaveWihtID:(NSString *)ID{
+    if (!ID) {
+        return NO;
+    }
+    
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"userID":[PBUser userID]} orderBy:nil ];
+    return temp?YES:NO;
+}
+////主键
+//+(NSString *)getPrimaryKey
+//{
+//    return @"ID";
+//}
+//主键
++(NSArray *)getPrimaryKeyUnionArray
+{
+    return @[@"userID",@"ID"];
+}
+//是否已经保存
+- (BOOL)isSave{
+    return [[self class] isSaveWihtID:self.ID];
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
+//更新自己
+- (BOOL)updataSelf{
+    
+    [[MainManager LKDBglobalHelper] updateToDB:self where:@{@"ID":self.ID,@"userID":[PBUser userID]} callback:^(BOOL result) {
+        
+    }];
+    return YES;
+    return [[MainManager LKDBglobalHelper] updateToDB:self where:@{@"ID":self.ID,@"userID":[PBUser userID]}];
+}
+@end

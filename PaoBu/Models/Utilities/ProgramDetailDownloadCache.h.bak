@@ -1,0 +1,37 @@
+//
+//  ProgramDetailDownloadCache.h
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/2/6.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface ProgramDetailDownloadCache : NSObject
+@property(nonatomic, strong)NSString *ID;
+@property(nonatomic, strong)NSString *userID;
+
+@property(nonatomic, strong)NSString *title;
+@property(nonatomic, strong)NSString *downLoadURL;
+@property(nonatomic, strong)NSString *downTime;
+
+@property (nonatomic, strong)WeekProgromOBJ *progromOBJ;
+
+
++ (NSArray*)allItems;
++ (int)itemCount;
++ (void)search:(NSString *)key callback:(void (^)(NSMutableArray *))block;
+//是否已经保存
+//根据ID获取对象
++ (id)OBJWithID:(NSString *)ID;
++ (BOOL)isSaveWihtID:(NSString *)ID;
+//是否已经保存
+- (BOOL)isSave;
+//保存自己
+- (BOOL)saveSelf;
+//删除自己
+- (BOOL)delSelf;
+//更新自己
+- (BOOL)updataSelf;
+@end

@@ -1,0 +1,21 @@
+//
+//  ProgramDownloadManager.h
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/1/26.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "QXPDownLoadManager.h"
+@interface ProgramDownloadManager : QXPDownLoadManager
+
++ (void)startDownloadWithURL:(NSString *)url
+                    progress:(void (^)(float progress))progressBlock
+                    complete:(void (^)(BOOL downloadFinished, BOOL isError, NSString *fileName))completeBlock
+          zipArchiveFinished:(void (^)(BOOL archiveFinished, BOOL isError, NSString *fileName))zipBlock;
+
+//根据名字和详情ID获取本地地址
++ (NSString *)localURLStrWithName:(NSString *)name IDURLStr:(NSString *)ID;
++ (NSURL *)localURLWithName:(NSString *)name IDURLStr:(NSString *)ID;
+@end

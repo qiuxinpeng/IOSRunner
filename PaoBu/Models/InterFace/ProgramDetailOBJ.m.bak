@@ -1,0 +1,259 @@
+//
+//  ProgramDetailOBJ.m
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/1/9.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import "ProgramDetailOBJ.h"
+#import "ProgramDetailDownloadCache.h"
+#import "QXPDownLoadManager.h"
+#import "ProgramDownloadManager.h"
+#import "QXPSoundManager.h"
+#import "FCFileManager.h"
+@implementation ProgramDetail
+- (instancetype)init{
+    
+    if ((self=[super init])) {
+        
+        self.userID=[PBUser userID];
+        self.downLoadtype=DownLoadProgramTypeNoHave;
+    }
+    return self;
+}
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
+/**
+ *  @author 白旭涛
+ *
+ *  题目信息
+ */
+@implementation Tb_program_Exam_dt_EEntity
+@end
+/**
+ *  @author 白旭涛
+ *
+ *  音频关联(见下方tb_Program_Repeat_Voce块)
+ */
+@implementation Tb_Program_Repeat_VoceEntity
++(BOOL)isContainParent
+{
+    return YES;
+}
+- (NSString *)VoicePath{
+    
+    return _VoicePath;
+    
+    ProgramDetailDownloadCache *tempOBJ=[ProgramDetailDownloadCache OBJWithID:self.J_Program_ID];
+    
+    
+    return [ProgramDownloadManager localURLStrWithName:_VoicePath IDURLStr:tempOBJ.downLoadURL];
+    
+//    if (!tempOBJ) {
+//        return _VoicePath;
+//    }else{
+//        
+//        if ([_VoicePath rangeOfString:@"http"].length>0 || [_VoicePath rangeOfString:@"HTTP"].length>0) {
+//            
+//            return _VoicePath;
+//        }else{
+//            NSString *finderPath=downLoadfinderPathWithURL(tempOBJ.downLoadURL);
+//            return [finderPath stringByAppendingPathComponent:_VoicePath];
+//        }
+//    }
+//    return _VoicePath;
+}
+- (NSString *)tempID{
+
+    if (_ID) {
+        return [NSString stringWithFormat:@"%@_%@",_ID,_ID];
+    }
+    return nil;
+}
+- (NSString *)tempVoicePath{
+
+    NSString *filePath=RecorderFilePath(self.tempID);
+    
+    if ([FCFileManager existsItemAtPath:filePath]) {
+        return filePath;
+    }
+    return nil;
+}
+@end
+
+@implementation Tb_Program_Repeat_dtEntity
++ (NSValueTransformer *)tb_Program_Repeat_VoceJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Tb_Program_Repeat_VoceEntity.class];
+}
++(void)initialize
+{
+    [super initialize];
+    //remove unwant property
+    //比如 getTableMapping 返回nil 的时候   会取全部属性  这时候 就可以 用这个方法  移除掉 不要的属性
+    [self removePropertyWithColumnName:@"type"];
+    [[MainManager LKDBglobalHelper] createTableWithModelClass:self];
+
+
+}
++ (int)itemCount{
+    
+    return [[MainManager LKDBglobalHelper] rowCount:[self class] where:@{@"userID":[PBUser userID]}];
+}
+//主键
++(NSArray *)getPrimaryKeyUnionArray
+{
+    return @[@"userID",@"ID"];
+}
+
++ (void)search:(NSString *)key callback:(void (^)(NSMutableArray *))block{
+
+
+    if (!key) {
+        
+        [[MainManager LKDBglobalHelper] search:[self class] where:@{@"userID":[PBUser userID]} orderBy:nil offset:0 count:0 callback:^(NSMutableArray *array) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(array);
+            });
+        }];
+        
+    }else{
+        
+        NSString *sql=[NSString stringWithFormat:@"SELECT * FROM @t WHERE   userID = %@ AND Word LIKE '%%%@%%' or Translation LIKE '%%%@%%'",[PBUser userID],key,key];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *tempArr=[[MainManager LKDBglobalHelper] searchWithSQL:sql toClass:[self class]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(tempArr);
+            });
+        });
+        
+    }
+}
+//是否已经保存
+- (BOOL)isSave{
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"userID":self.userID,@"ID":self.ID} orderBy:nil ];
+    return temp?YES:NO;
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
++(BOOL)isContainParent
+{
+    return YES;
+}
+@end
+
+
+
+
+@implementation ProgramDetailOBJ
+
+- (instancetype)init{
+    
+    if ((self=[super init])) {
+        self.userID=[PBUser userID];
+    }
+    return self;
+}
++(BOOL)isContainParent
+{
+    return YES;
+}
+//在类 初始化的时候
++(void)initialize
+{
+    [super initialize];
+    [[self getUsingLKDBHelper] createTableWithModelClass:self];
+    
+}
++(NSArray*) getPrimaryKeyUnionArray{
+    
+    return @[@"ID",@"userID"];
+}
+- (NSString *)FilePath{
+
+//    ProgramDetailDownloadCache *tempOBJ=[ProgramDetailDownloadCache OBJWithID:self.ID];
+//    
+//    return [ProgramDownloadManager localURLStrWithName:_FilePath IDURLStr:tempOBJ.downLoadURL];
+
+//    if (!tempOBJ) {
+//        return _FilePath;
+//    }else{
+//        
+//      
+//        if ([_FilePath rangeOfString:@"http"].length>0 || [_FilePath rangeOfString:@"HTTP"].length>0) {
+//            
+//            return _FilePath;
+//        }else{
+//            NSString *finderPath=downLoadfinderPathWithURL(tempOBJ.downLoadURL);
+//            return [finderPath stringByAppendingPathComponent:_FilePath];
+//        }
+//        
+//        
+//    }
+//    return _FilePath;
+
+    return _FilePath;
+}
++ (NSValueTransformer *)tb_program_Exam_dt_EJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Tb_program_Exam_dt_EEntity.class];
+}
++ (NSValueTransformer *)tb_program_Exam_dt_NJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Tb_program_Exam_dt_EEntity.class];
+}
++ (NSValueTransformer *)tb_program_Exam_dt_HJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Tb_program_Exam_dt_EEntity.class];
+}
++ (NSValueTransformer *)tb_Program_Repeat_dtJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Tb_Program_Repeat_dtEntity.class];
+}
++ (NSValueTransformer *)tb_Program_hostJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:PBUser.class];
+}
+
++ (NSValueTransformer *)J_PmClass_IDJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:J_PmClass_IDEntity.class];
+}
+
+//根据ID获取缓存数据
++ (id)OBJWihtID:(NSString *)ID{
+
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"userID":[PBUser userID]} orderBy:nil ];
+    return temp;
+}
+//保存自己
+- (void)saveSelf:(void (^)(BOOL))block{
+    return [[MainManager LKDBglobalHelper] insertToDB:self callback:block];;
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
+//更新
+- (BOOL)updataSelf{
+    
+    
+    [[MainManager LKDBglobalHelper] updateToDB:self where:@{@"ID":self.ID,@"userID":[PBUser userID]} callback:^(BOOL result) {
+        
+    }];
+    
+    return YES;
+    
+    //return [[MainManager LKDBglobalHelper] updateToDB:self where:@{[self.class getPrimaryKey]:self.ID}];
+}
+@end
+
+

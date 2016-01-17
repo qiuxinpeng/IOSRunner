@@ -1,0 +1,73 @@
+//
+//  ProgramKeyWordRecordCache.m
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/2/2.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import "ProgramKeyWordRecordCache.h"
+#import "AFSoundManager.h"
+#import "FCFileManager.h"
+
+@implementation ProgramKeyWordRecordCache
+//在类 初始化的时候
++(void)initialize
+{
+    [super initialize];
+    [[self getUsingLKDBHelper] createTableWithModelClass:self];
+
+}
++ (instancetype)OBJWithRepeatOBJ:(Tb_Program_Repeat_VoceEntity *)OBJ{
+
+    ProgramKeyWordRecordCache *recordCacheOBJ=[[ProgramKeyWordRecordCache alloc] init];
+    recordCacheOBJ.ID=OBJ.ID;
+    recordCacheOBJ.VoicePath=OBJ.VoicePath;
+    recordCacheOBJ.title=OBJ.title;
+    recordCacheOBJ.J_Program_repeat_ID=OBJ.J_Program_repeat_ID;
+    recordCacheOBJ.title=OBJ.title;
+    recordCacheOBJ.J_Program_ID=OBJ.J_Program_ID;
+    recordCacheOBJ.VoiceType=OBJ.VoiceType;
+    return recordCacheOBJ;
+}
+//是否已经保存
++ (BOOL)isSaveWihtID:(NSString *)ID{
+
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"userID":[PBUser userID],@"ID":ID} orderBy:nil ];
+    return temp?YES:NO;
+}
+//主键
++(NSString *)getPrimaryKey
+{
+    return @"ID";
+}
+//是否已经保存
+- (BOOL)isSave{
+    return [[self class] isSaveWihtID:self.ID];
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    
+    NSString *filePath=RecorderFilePath(self.ID);
+    [FCFileManager removeItemAtPath:filePath];
+
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
++ (BOOL)deleteWithID:(NSString *)ID{
+
+    ProgramKeyWordRecordCache *temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"userID":[PBUser userID],@"ID":ID} orderBy:nil ];
+    if (temp) {
+        return [temp delSelf];
+    }
+    return NO;
+}
++(BOOL)isContainParent
+{
+    return YES;
+}
+
+@end

@@ -1,0 +1,294 @@
+//
+//  InterFaceModels.m
+//  YouPlayNew
+//
+//  Created by Mr.Qiu on 14-8-4.
+//  Copyright (c) 2014年 邱新鹏. All rights reserved.
+//
+
+#import "InterFaceModels.h"
+#import "QXPCacheForUser.h"
+
+@implementation InterFaceModels
+
+@end
+
+@implementation RefreshListInfo
++ (instancetype)RefreshListWithArr:(NSArray *)arr total:(NSString *)total{
+    
+    if (!arr || !total) {
+        return nil;
+    }
+    __autoreleasing RefreshListInfo *obj=[[RefreshListInfo alloc]init];
+    obj.list=arr;
+    obj.total=(int)[total integerValue];
+    return obj;
+}
+- (NSString *)description{
+    
+    return [NSString stringWithFormat:@"%@ list:%@ \n total:%d", [super description], _list, _total];
+}
+
+@end
+
+@implementation J_PmClass_IDEntity
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
+
+
+@implementation WeekProgromOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
++ (NSValueTransformer *)J_PmClass_IDJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:J_PmClass_IDEntity.class];
+}
++ (NSValueTransformer *)tb_Program_hostJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:PBUser.class];
+}
+@end
+
+
+@implementation SysNewsOBJ
+- (instancetype)init{
+    
+    if ((self=[super init])) {
+        self.userID=[PBUser userID];
+    }
+    return self;
+}
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+//主键
++(NSArray *)getPrimaryKeyUnionArray
+{
+    return @[@"ID",@"userID"];
+}
+
++(void)initialize
+{
+    [super initialize];
+    [[MainManager LKDBglobalHelper] createTableWithModelClass:self];
+    
+}
+/*
+ * 返回的请求时间
+ */
++ (void)setLasttime:(NSString *)lasttime {
+    [QXPCacheForUser sharedCacheUtilit].lasttime_SysNews = lasttime;
+    [[QXPCacheForUser sharedCacheUtilit] synchronize];
+}
++ (NSString *)getLasttime {
+    return [QXPCacheForUser sharedCacheUtilit].lasttime_SysNews;
+}
+
+/*
+ * 数量
+ */
++ (void)setNewCount:(NSString *)count {
+    [QXPCacheForUser sharedCacheUtilit].newsnum = count;
+    [[QXPCacheForUser sharedCacheUtilit] synchronize];
+}
++ (NSString *)getNewCount {
+    return [QXPCacheForUser sharedCacheUtilit].newsnum;
+}
+
+
++ (int)itemCount{
+    return [[MainManager LKDBglobalHelper] rowCount:[self class] where:nil];
+}
+//根据ID获取对象
++ (id)OBJWithID:(NSString *)ID{
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"userID":[PBUser userID]} orderBy:nil ];
+    return temp;
+}
+//是否已经保存
++ (BOOL)isSaveWihtID:(NSString *)ID{
+    
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"userID":[PBUser userID]} orderBy:nil ];
+    return temp?YES:NO;
+}
+//所有的数据
++ (NSMutableArray *)allItems{
+    return [[MainManager LKDBglobalHelper] search:[self class] where:@{@"Available":@"1",@"userID":[PBUser userID]} orderBy:@"CreateDT DESC" offset:0 count:0];
+}
+//后几条数据
++ (NSMutableArray *)lastItems{
+    
+    int nCount = [[MainManager LKDBglobalHelper] rowCount:[self class] where:nil];
+    
+    return [[MainManager LKDBglobalHelper] search:[self class ] where:nil orderBy:nil offset:nCount-4 count:4];
+}
+//是否已经保存
+- (BOOL)isSave{
+    return [[self class] isSaveWihtID:self.ID];
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
+@end
+
+
+
+@implementation UsergetFeedbackOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+////主键
+//+(NSString *)getPrimaryKey
+//{
+//    return @"ID"; J_User_ID
+//}
+//主键
++(NSArray *)getPrimaryKeyUnionArray
+{
+    return @[@"ID",@"J_User_ID"];
+}
++(void)initialize
+{
+    [super initialize];
+    [[MainManager LKDBglobalHelper] createTableWithModelClass:self];
+    
+}
+/*
+ * 返回的请求时间
+ */
++ (void)setLasttime:(NSString *)lasttime {
+    [QXPCacheForUser sharedCacheUtilit].lasttime_UsergetFeedback = lasttime;
+    [[QXPCacheForUser sharedCacheUtilit] synchronize];
+}
++ (NSString *)getLasttime {
+    return [QXPCacheForUser sharedCacheUtilit].lasttime_UsergetFeedback;
+}
+/*
+ * 数量
+ */
++ (void)setNewCount:(NSString *)count {
+    [QXPCacheForUser sharedCacheUtilit].feedbacknum = count;
+    [[QXPCacheForUser sharedCacheUtilit] synchronize];
+}
++ (NSString *)getNewCount {
+    return [QXPCacheForUser sharedCacheUtilit].feedbacknum;
+}
+
+
+
++ (NSInteger)itemCount{
+    return [[MainManager LKDBglobalHelper] rowCount:[self class] where:nil];
+}
+//根据ID获取对象
++ (id)OBJWithID:(NSString *)ID{
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"J_User_ID":[PBUser userID]} orderBy:nil ];
+    return temp;
+}
+//是否已经保存
++ (BOOL)isSaveWihtID:(NSString *)ID {
+    
+    id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID,@"J_User_ID":[PBUser userID]} orderBy:nil ];
+    return temp?YES:NO;
+}
+//所有的数据
++ (NSMutableArray *)allItems{
+    return [[MainManager LKDBglobalHelper] search:[self class ] where:@{@"J_User_ID":[PBUser userID]} orderBy:@"CreateDT " offset:0 count:0];
+}
+//获取特定条数的数据
++ (NSMutableArray *)itemsWithCount:(NSInteger)count{
+    return [[MainManager LKDBglobalHelper] search:[self class ] where:nil orderBy:nil offset:0 count:(int)count];
+}
+//后几条数据
++ (NSMutableArray *)lastItems{
+
+    NSInteger nCount = [[MainManager LKDBglobalHelper] rowCount:[self class] where:nil];
+    
+    return [[MainManager LKDBglobalHelper] search:[self class ] where:nil orderBy:nil offset:nCount-4 count:4];
+}
+//是否已经保存
+- (BOOL)isSave{
+    return [[self class] isSaveWihtID:self.ID];
+}
+//保存自己
+- (BOOL)saveSelf{
+    return [[MainManager LKDBglobalHelper] insertToDB:self];
+}
+//删除自己
+- (BOOL)delSelf{
+    return [[MainManager LKDBglobalHelper] deleteToDB:self];
+}
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  购买对象
+ */
+@implementation BuyListOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  我的下载更新信息
+ */
+@implementation MydownPMdataOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  用户常用信息读取
+ */
+@implementation UserInfoxOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
++ (NSValueTransformer *)IsPayJSONTransformer {
+    return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{
+                                                                           }];
+}
+@end
+/**
+ *  @author 白旭涛
+ *
+ *  论坛列表页详情
+ */
+@implementation BBSListOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
+
+/**
+ *  @author 白旭涛
+ *
+ *  弹幕列表
+ */
+@implementation BarrageListOBJ
+- (instancetype)init{
+
+    if (self=[super init]) {
+        self.idx=-1;
+    }
+    return self;
+}
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
++ (NSValueTransformer *)J_User_IDJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:PBUser.class];
+}
+
+@end

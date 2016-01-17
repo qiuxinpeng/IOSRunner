@@ -1,0 +1,103 @@
+//
+//  ProgramDownloadManager.m
+//  BaLaBaLa
+//
+//  Created by Mr.Qiu on 15/1/26.
+//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
+//
+
+#import "ProgramDownloadManager.h"
+#import "FCFileManager.h"
+//#import "ZipArchive.h"
+#define ProgramDownloadManagerQueueName "ProgramDownloadManager_Queue"
+
+@implementation ProgramDownloadManager
++ (void)startDownloadWithURL:(NSString *)url
+                    progress:(void (^)(float progress))progressBlock
+                    complete:(void (^)(BOOL downloadFinished, BOOL isError, NSString *fileName))completeBlock
+          zipArchiveFinished:(void (^)(BOOL archiveFinished, BOOL isError, NSString *fileName))zipBlock{
+
+    
+    NSString *key=keyForUrl(url);
+    NSString *fileName=fileNameWithKey(key, url);
+    //NSString *finderName=finderNameWithKey(key, url);
+    NSString *filePath=downLoadFilePathWithURL(url);
+    NSString *finderPath=downLoadfinderPathWithURL(url);
+    
+    
+    if ([FCFileManager existsItemAtPath:filePath]) {
+        [FCFileManager removeItemAtPath:filePath];
+    }
+
+    [self startDownloadWithURLOBJ:url customPath:nil progress:^(float progress) {
+        progressBlock(progress);
+    } complete:^(BOOL downloadFinished, BOOL isError) {
+        completeBlock(downloadFinished,isError,isError?nil:fileName);
+        if (!isError) {
+            
+            if ([FCFileManager existsItemAtPath:finderPath]) {
+                [FCFileManager removeItemAtPath:finderPath];
+            }
+            dispatch_queue_t queue =dispatch_queue_create(ProgramDownloadManagerQueueName, NULL);
+            dispatch_async(queue, ^{
+                /*
+                ZipArchive *za = [[ZipArchive alloc] init];
+                if ([za UnzipOpenFile: filePath]) {
+                    BOOL ret = [za UnzipFileTo: finderPath overWrite: YES];
+                    if (NO == ret){} [za UnzipCloseFile];
+                }
+                za=nil;
+                if ([FCFileManager existsItemAtPath:filePath]) {
+                    [FCFileManager removeItemAtPath:filePath];
+                }
+                */
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    zipBlock(YES,NO,finderPath);
+                });
+            });
+        }else{
+            zipBlock(YES,YES,nil);
+        }
+    }];
+
+}
+//根据名字和详情ID获取本地地址
++ (NSString *)localURLStrWithName:(NSString *)name IDURLStr:(NSString *)ID{
+
+    if (!name) {
+        return nil;
+    }
+    if ([name rangeOfString:@"http"].length>0 || [name rangeOfString:@"HTTP"].length>0) {
+        
+        return name;
+    }else if([name rangeOfString:@"/"].length>0){
+        return name;
+    }else if(!ID){
+        return name;
+    }else{
+        NSString *finderPath=downLoadfinderPathWithURL(ID);
+        //NSURL *fileURL=[NSURL fileURLWithPath:[finderPath stringByAppendingPathComponent:name]];
+        return [finderPath stringByAppendingPathComponent:name];
+    }
+
+}
+//根据名字和详情ID获取本地地址
++ (NSURL *)localURLWithName:(NSString *)name IDURLStr:(NSString *)ID{
+
+    if (!name) {
+        return nil;
+    }
+    if ([name rangeOfString:@"http"].length>0 || [name rangeOfString:@"HTTP"].length>0) {
+        
+        return [NSURL URLWithString:name];
+    }else if([name rangeOfString:@"/"].length>0){
+        return [NSURL fileURLWithPath:name];
+    }else{
+        NSString *finderPath=downLoadfinderPathWithURL(ID);
+        NSURL *fileURL=[NSURL fileURLWithPath:[finderPath stringByAppendingPathComponent:name]];
+        
+        return fileURL;
+    }
+
+}
+@end

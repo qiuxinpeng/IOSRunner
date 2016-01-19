@@ -122,7 +122,7 @@
 		1841D1451C4E89D000AA690D /* AKTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841D0641C4D514800AA690D /* AKTab.m */; };
 		1841D1461C4E89D000AA690D /* AKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841D0661C4D514800AA690D /* AKTabBar.m */; };
 		1841D1471C4E89D000AA690D /* AKTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841D06B1C4D514800AA690D /* AKTabBarView.m */; };
-		1841D14B1C4EB78100AA690D /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1841D14A1C4EB78100AA690D /* AMap.bundle */; };
+		1841D1521C4EB9C400AA690D /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 185D6D7A1C4B594D002E663C /* AMap.bundle */; };
 		185D6C731C4B2DD7002E663C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6C691C4B2DD7002E663C /* MainViewController.m */; };
 		185D6C741C4B2DD7002E663C /* ADFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6C6B1C4B2DD7002E663C /* ADFirstViewController.m */; };
 		185D6C751C4B2DD7002E663C /* ADFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185D6C6C1C4B2DD7002E663C /* ADFirstViewController.xib */; };
@@ -418,7 +418,6 @@
 		1841D0C51C4D514800AA690D /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		1841D1221C4D548000AA690D /* NSString+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Helpers.m"; path = "Libraries/Categories/NSString+Helpers.m"; sourceTree = "<group>"; };
 		1841D1251C4E748400AA690D /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
-		1841D14A1C4EB78100AA690D /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = PaoBu/Libraries/Vendor/GDMap3.2.0/AMap.bundle; sourceTree = "<group>"; };
 		185D6C681C4B2DD7002E663C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = "Delegate&MainBase/MainViewController.h"; sourceTree = "<group>"; };
 		185D6C691C4B2DD7002E663C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = "Delegate&MainBase/MainViewController.m"; sourceTree = "<group>"; };
 		185D6C6A1C4B2DD7002E663C /* ADFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADFirstViewController.h; path = "Delegate&MainBase/ADFirstViewController.h"; sourceTree = "<group>"; };
@@ -2207,7 +2206,6 @@
 		41EBBD9A1B70980A00BD6878 = {
 			isa = PBXGroup;
 			children = (
-				1841D14A1C4EB78100AA690D /* AMap.bundle */,
 				CD454A70397B0FC2C48C29C7 /* Frameworks */,
 				41EBBDA51B70980A00BD6878 /* PaoBu */,
 				A5AB252BD62D29E5BA160A9D /* Pods */,
@@ -2580,7 +2578,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1841D14B1C4EB78100AA690D /* AMap.bundle in Resources */,
 				DF52064F1B97DEE40065CA07 /* EditUserInfoDetailViewController.xib in Resources */,
 				DFE35B941B90A89A00F2A405 /* ActivityMainViewController.xib in Resources */,
 				1841D0E21C4D514800AA690D /* SVWebViewController.bundle in Resources */,
@@ -2642,6 +2639,7 @@
 				DFE35B8F1B90A87700F2A405 /* NavMainViewController.xib in Resources */,
 				41E786971B7882CC00153366 /* RegistViewController.xib in Resources */,
 				DF9083DB1BA5B0BF0097E7C0 /* XianLuDetailsCell.xib in Resources */,
+				1841D1521C4EB9C400AA690D /* AMap.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

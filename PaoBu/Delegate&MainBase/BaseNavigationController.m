@@ -47,7 +47,7 @@
     if (QXPSystemVersionGreaterOrEqualThan(7)) {
         //[self.navigationBar setTintColor:[UIColor colorWithRed:0.16 green:0.55 blue:0.86 alpha:1]];
         
-        [self.navigationBar setBarTintColor:[UIColor YPMainBlueColor]];
+        [self.navigationBar setBarTintColor:[UIColor colorWithRed:21.0/255.0 green:194.0/255.0 blue:179.0/255.0 alpha:0.5]];
         [self.navigationBar setTintColor:[UIColor whiteColor]];
 
          //[UIColor colorWithRed:0.16 green:0.55 blue:0.86 alpha:1]];

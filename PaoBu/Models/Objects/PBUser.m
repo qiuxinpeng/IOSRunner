@@ -69,7 +69,7 @@ static PBUser *_tempUser=nil;
 }
 //退出登陆
 - (void)exit{
-    [[NSNotificationCenter defaultCenter] postNotificationName:ZCUserExitNotificationName object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:ZCUserExitNotificationName object:nil];
     [[EGOCache globalCache] removeCacheForKey:getKey(keyStr)];
     [PBUser  changeWithUser:nil];
     [[PBUser sharedUser] synchronize];

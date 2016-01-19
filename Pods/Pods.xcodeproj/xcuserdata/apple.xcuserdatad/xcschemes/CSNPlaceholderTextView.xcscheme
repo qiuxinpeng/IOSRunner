@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A482394C193964CE4EB8382"
+               BlueprintIdentifier = "ED64531688F3E2E08D0F3BD4"
                BuildableName = "libCSNPlaceholderTextView.a"
                BlueprintName = "CSNPlaceholderTextView"
                ReferencedContainer = "container:Pods.xcodeproj">

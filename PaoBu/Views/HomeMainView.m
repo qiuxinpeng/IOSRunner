@@ -25,7 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
 
     if (self=[super initWithFrame:frame]) {
-        self.QimgV_image=[[UIImageView alloc]initWithFrame:self.bounds];
+        self.QimgV_image=[[QXPImageView alloc]initWithFrame:self.bounds];
         
         [self addSubview:self.QimgV_image];
     }

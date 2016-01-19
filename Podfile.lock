@@ -21,7 +21,6 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AKTabBarController (1.1.0)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -87,7 +86,6 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 1.3.12)
   - AFNetworking (~> 2.4.1)
-  - AKTabBarController
   - BlocksKit (~> 2.2.5)
   - CRNavigationController (~> 1.1)
   - CSNPlaceholderTextView (~> 0.0.4)
@@ -121,7 +119,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 9fd0713777fad3a3f3b89ea58c75d59ccdef28f4
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  AKTabBarController: 70920a3bd754ef34dd97743ee4661d653e243884
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   CRNavigationController: 49782af549884745f682107bcc06c2415ba3613a
   CSNPlaceholderTextView: aeea1ae8b82d53fd8af76a11307db2841536b044

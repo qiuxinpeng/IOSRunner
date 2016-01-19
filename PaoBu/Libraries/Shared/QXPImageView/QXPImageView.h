@@ -11,18 +11,18 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 
-//#if __has_feature(objc_arc)
-//
-//#define QXP_IMAGEVIEW_STRONG strong
-//
-//#define QXP_IMAGEVIEW_WEAK weak
-//#else
-//
-//#define QXP_IMAGEVIEW_STRONG retain
-//
-//#define QXP_IMAGEVIEW_WEAK assign
-//
-//#endif
+#if __has_feature(objc_arc)
+
+#define QXP_IMAGEVIEW_STRONG strong
+
+#define QXP_IMAGEVIEW_WEAK weak
+#else
+
+#define QXP_IMAGEVIEW_STRONG retain
+
+#define QXP_IMAGEVIEW_WEAK assign
+
+#endif
 
 
 typedef NS_ENUM(NSInteger, QXPImageViewQualityTpye) {

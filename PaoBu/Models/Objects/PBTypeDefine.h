@@ -76,12 +76,12 @@ typedef NS_ENUM(NSInteger, UserEditType) {
 //    RecordPlayTypeStop   = 2,//停止状态,将要播放
 //};
 //
-//typedef NS_ENUM(NSInteger, SoundManagerStyle) {
-//    SoundManagerStyleNone           = 0,//默认状态 结束之后不用继续播放
-//    SoundManagerStylePlayContinue   = 1,//切断之后需要继续播放
-//    SoundManagerStyleRecordContinue = 2,//切断之后录音还要继续
-//    
-//};
+typedef NS_ENUM(NSInteger, SoundManagerStyle) {
+    SoundManagerStyleNone           = 0,//默认状态 结束之后不用继续播放
+    SoundManagerStylePlayContinue   = 1,//切断之后需要继续播放
+    SoundManagerStyleRecordContinue = 2,//切断之后录音还要继续
+    
+};
 //
 //typedef NS_ENUM(NSInteger, ProgramPageEndViewStyle) {
 //    ProgramPageEndViewStyleCheck           = 0,//默认状态 已有128个同学闯关成功
@@ -196,12 +196,12 @@ typedef NS_ENUM(NSInteger, PayTypeID) {
 //    DanMuHeaderViewSelectedTypeJieMu    = 1,  // 节目
 //    DanMuHeaderViewSelectedTypeShengCi  = 2,  // 生词
 //};
-////播放类型
-//typedef NS_ENUM(NSInteger, playerPlayType) {
-//    playerPlayTypeDanMu   = 0,  // 弹幕播放
-//    playerPlayTypeCiJu   = 1  // 词句
-//    
-//};
+//播放类型
+typedef NS_ENUM(NSInteger, playerPlayType) {
+    playerPlayTypeDanMu   = 0,  // 弹幕播放
+    playerPlayTypeCiJu   = 1  // 词句
+    
+};
 //
 //
 //

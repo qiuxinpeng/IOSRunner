@@ -3,7 +3,6 @@
 
 platform :ios, '7.0'
 target 'PaoBu' do
-    pod 'AKTabBarController'
     pod 'Mantle', '~> 1.5.5'
     pod 'MBProgressHUD', '~> 0.9'
     pod 'SVPullToRefresh', '~> 0.4.1'

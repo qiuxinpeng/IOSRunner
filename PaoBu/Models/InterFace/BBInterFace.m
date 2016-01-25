@@ -305,6 +305,22 @@
     [self starLoadInformationWithParameters:muArr URLPath:@"interface&interface=trace&method=getCategory" connectType:QXPNetWorkTypePost];
 }
 
+#pragma   -mark  66-getMapTraceSystem - (获取平台轨迹)
+- (void) getMapTraceSystem:(NSString *)collectionID{
+    
+    [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
+        NSArray *arr=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] ;
+        
+        //NSArray *arr_r=[MTLJSONAdapter modelsOfClass:getMapTraceSystemOBJ.class fromJSONArray:arr_CommentRanking error:nil];
+        
+        return arr;
+    }];
+    NSMutableArray *muArr=[NSMutableArray new];
+    [muArr addParameter:@"collectionID" parameterValue:collectionID parameterType:QXPNetWorkParameterTypeDefault];
+    [self starLoadInformationWithParameters:muArr URLPath:@"interface&interface=trace&method=getMapTraceSystem" connectType:QXPNetWorkTypePost];
+    
+}
+
 
 
 

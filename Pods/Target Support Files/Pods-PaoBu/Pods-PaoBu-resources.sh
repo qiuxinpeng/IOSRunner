@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "AMap3DMap/MAMapKit.framework/AMap.bundle"
   install_resource "IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JGProgressHUD/JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
@@ -81,6 +82,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "WebViewJavascriptBridge/WebViewJavascriptBridge/WebViewJavascriptBridge.js.txt"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "AMap3DMap/MAMapKit.framework/AMap.bundle"
   install_resource "IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JGProgressHUD/JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"

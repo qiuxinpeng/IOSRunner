@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D3481FAEAE91A8D8443316A"
+               BlueprintIdentifier = "70D80CE8F8F3BEA4A4821034"
                BuildableName = "libINTUGroupedArray.a"
                BlueprintName = "INTUGroupedArray"
                ReferencedContainer = "container:Pods.xcodeproj">

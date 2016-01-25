@@ -162,3 +162,37 @@
 @property (nonatomic,strong) NSMutableArray *SubCategory;
 @end
 
+
+@interface PointOBJ: MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString *ID;
+@property (nonatomic,strong) NSString *GraphPathCollectID;
+@property (nonatomic,strong) NSString *Latitude;
+@property (nonatomic,strong) NSString *Longtitude;
+@property (nonatomic,strong) NSString *TraceID;
+@property (nonatomic,strong) NSString *SN;
+@property (nonatomic,strong) NSString *Weight;
+@property (nonatomic,strong) NSString *Color;
+@end
+
+@interface getMapTraceSystemOBJ: MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString *ID;
+@property (nonatomic,strong) NSString *MapParCategoryID;
+@property (nonatomic,strong) NSString *MapCategoryID;
+@property (nonatomic,strong) NSString *Name;
+@property (nonatomic,strong) NSString *OverallLength;
+@property (nonatomic,strong) NSString *ThumbnailUrl;
+@property (nonatomic,strong) NSString *ThumbnailSmallUrl;
+@property (nonatomic,strong) NSString *ThumbnailSimpleUrl;
+@property (nonatomic,strong) NSString *ThumbnailDetailUrl;
+@property (nonatomic,strong) NSString *LikeCount;
+@property (nonatomic,strong) NSString *UseCount;
+@property (nonatomic,strong) NSString *UnlikeCount;
+@property (nonatomic,strong) NSString *RecommendCount;
+@property (nonatomic,strong) NSString *CreateTime;
+//@property (nonatomic,strong) NSMutableArray *Points;
+@end
+
+//获取平台轨迹
+//@interface getMapTraceSystemOBJ : MTLModel<MTLJSONSerializing>
+//@property (nonatomic,strong) NSMutableArray *traceLines;
+//@end

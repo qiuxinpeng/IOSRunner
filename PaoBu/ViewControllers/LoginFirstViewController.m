@@ -76,7 +76,6 @@
     [self.textField_Code resignFirstResponder];
     
     [[BBInterFace interfaceWithFinshBlock:^(PBUser *responseObje) {
-        
         [responseObje synchronize];
         [PBUser changeWithUser:responseObje];
         [PBUser lginOK];

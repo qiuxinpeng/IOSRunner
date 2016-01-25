@@ -10,11 +10,13 @@
 #import "InterFaceModels.h"
 
 #define LUOJI_ERROR_CODE 40000
-#define SERVICE_URL @"http://interface.paoditu.com/index.php?format=json&source=ios&"
+//#define SERVICE_URL @"http://interface.paoditu.com/index.php?format=json&source=ios&"
+#define SERVICE_URL @"http://interf.minsubnb.com/index.php?format=json&source=ios&"
 #define mackURLString(path) [NSString stringWithFormat:@"%@%@",SERVICE_URL,path]
 
 
 @interface NSMutableArray(addParameter)
+
 - (void)addParameter:(NSString *)name
       parameterValue:(id)value
        parameterType:(QXPNetWorkParameterType)Type;
@@ -70,6 +72,11 @@ typedef id (^InterFaceModelBlock)(id object,NSError **err);
 - (void)getProvinceAndCity:(NSString *)timeStamp;
 #pragma   -mark  80-getCategory - (获取类别信息)
 - (void)getCategory:(NSString *)timeStamp;
+
+
+#pragma   -mark  66-getMapTraceSystem - (获取平台轨迹)
+- (void) getMapTraceSystem:(NSString *)collectionID;
+
 
 
 @end

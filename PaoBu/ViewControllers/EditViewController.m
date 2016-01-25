@@ -11,7 +11,7 @@
 #import "EditUserInfoTextTableViewCell.h"
 #import "EditUserInfoDetailViewController.h"
 #import "ActionSheetStringPicker.h"
-#import "PBTypeDefine.h"
+//#import "PBTypeDefine.h"
 
 @interface EditViewController ()
 

@@ -186,3 +186,36 @@
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:SubCategoryOBJ.class];
 }
 @end
+
+
+
+
+
+@implementation PointOBJ
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
+
+//@implementation TraceLineOBJ
+//
+//+ (NSDictionary *)JSONKeyPathsByPropertyKey {
+//    return nil;
+//}
+//
+//+ (NSValueTransformer *)PointJSONTransformer {
+//    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:PointOBJ.class];
+//}
+//@end
+//
+//获取平台轨迹
+@implementation getMapTraceSystemOBJ
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+//+ (NSValueTransformer *)TraceLineJSONTransformer {
+//    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:TraceLineOBJ.class];
+//}
+@end

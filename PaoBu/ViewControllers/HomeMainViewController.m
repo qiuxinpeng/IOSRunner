@@ -8,8 +8,9 @@
 
 #import "HomeMainViewController.h"
 #import "HomeMainView.h"
-#import "HomeDetelViewController.h"
+#import "HomeDetailViewController.h"
 #import "NavMainViewController.h"
+#import "BaseNavigationController.h"
 
 @interface HomeMainViewController ()
 @property(nonatomic, strong)HomeMainSmallView *selectView;
@@ -42,12 +43,10 @@
     //[self.webV_title loadHTMLString:@"最新版 IOS 已经上线了 <a href=\"http://www.ifeng.com\">点此下载</a>" baseURL:nil];
     
     [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
-        
         //NSLog(@"responseObje:%@",responseObje);
         self.arr_info = responseObje;
         [self.ICarousel1 reloadData];
         [self.ICarousel2 reloadData];
-
     } faildBlock:^(NSError *err) {
         //清除 getRecommendTraceInfoOBJ 缓存
         //[[MainManager LKDBglobalHelper] deleteWithClass:[getRecommendTraceInfoOBJ class] where:nil];
@@ -57,9 +56,7 @@
     } HUDBackgroundView:self.view tag:self.tagWithInterFace] getRecommendTraceInfo];
     
     [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
-        
         self.lab_title.text=responseObje;
-        
     } faildBlock:^(NSError *err) {
         self.lab_title.text=[QXPCacheUtilit sharedCacheUtilit].home_notice_title;
     } HUDBackgroundView:self.view tag:self.tagWithInterFace] getNotice];
@@ -68,7 +65,7 @@
 - (void)btn_show_click:(UIButton *)sender{
     getRecommendTraceInfoOBJ *OBJ=self.arr_info[sender.tag];
 
-    HomeDetelViewController *VC=[[HomeDetelViewController alloc]initWithNibName:@"HomeDetelViewController" bundle:nil];
+    HomeDetailViewController *VC=[[HomeDetailViewController alloc]initWithNibName:@"HomeDetailViewController" bundle:nil];
     VC.OBJ=OBJ;
     [self pushVC:VC animated:YES];
 
@@ -224,10 +221,13 @@
 - (void)pictureClick:(UITapGestureRecognizer *)gesture
 {
     //HomeMainView *view = [[HomeMainView alloc] initWithFrame:gesture.view.frame];
-    
-    NavMainViewController *VC=[[NavMainViewController alloc]initWithNibName:@"NavMainViewController" bundle:nil];
-    VC.collectionID = gesture.view.tag;
-    [self pushVC:VC animated:YES];
+    [MainManager manager].VCMain.selectedIndex = 2;
+    BaseNavigationController *baseNavigationController = (BaseNavigationController *)[MainManager manager].VCMain.selectedViewController;
+    NavMainViewController *VCNavMain = (NavMainViewController *)baseNavigationController.topViewController;
+    //NavMainViewController **VCNavMain=[[NavMainViewController alloc]initWithNibName:@"NavMainViewController" bundle:nil];
+
+    VCNavMain.collectionID = gesture.view.tag;
+//    [self pushVC:VC animated:YES];
 }
 
 /*

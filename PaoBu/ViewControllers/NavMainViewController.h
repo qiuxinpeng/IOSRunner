@@ -8,13 +8,17 @@
 
 #import "BaseViewController.h"
 #import <MAMapKit/MAMapKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
-
+#import <AMapSearchkit/AMapSearchKit.h>
+#import <MAMapKit/MALineDrawType.h>
+#import "PassValueDelegate.h"
 
 @interface NavMainViewController : BaseViewController<MAMapViewDelegate, AMapSearchDelegate>
 @property (weak, nonatomic) IBOutlet MAMapView *mapView;
 @property (strong, nonatomic) IBOutlet AMapSearchAPI *search;
 
+@property(nonatomic,strong)getMapTraceSystemOBJ *mapTraceSystem;
 @property int collectionID;
+
+//- (void)reloadWithOBJ:(getMapTraceSystemOBJ *)OBJ;
 
 @end

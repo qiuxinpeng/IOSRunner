@@ -42,7 +42,6 @@
     return self;
 }
 - (void)_init{
-
     [self applyTheme];
 }
 

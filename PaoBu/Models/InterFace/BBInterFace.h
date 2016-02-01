@@ -10,8 +10,8 @@
 #import "InterFaceModels.h"
 
 #define LUOJI_ERROR_CODE 40000
-//#define SERVICE_URL @"http://interface.paoditu.com/index.php?format=json&source=ios&"
-#define SERVICE_URL @"http://interf.minsubnb.com/index.php?format=json&source=ios&"
+#define SERVICE_URL @"http://interface.paoditu.com/index.php?format=json&source=ios&"
+//#define SERVICE_URL @"http://interf.minsubnb.com/index.php?format=json&source=ios&"
 #define mackURLString(path) [NSString stringWithFormat:@"%@%@",SERVICE_URL,path]
 
 

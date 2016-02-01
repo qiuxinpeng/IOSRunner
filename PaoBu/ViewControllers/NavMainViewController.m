@@ -1,11 +1,3 @@
-//
-//  NavMainViewController.m
-//  PaoBu
-//
-//  Created by 邱玲 on 15/8/28.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "NavMainViewController.h"
 
 @interface NavMainViewController ()
@@ -13,68 +5,31 @@
 
 @implementation NavMainViewController
 
+@synthesize commonPolyline;
 @synthesize collectionID;
 
-- (NSString *)tabImageName
-{
+- (NSString *)tabImageName{
     return @"cion3.png";
 }
-- (NSString *)tabTitle
-{
+- (NSString *)tabTitle{
     return @"导航";
 }
-- (NSString *)activeTabImageName
-{
+- (NSString *)activeTabImageName{
     return @"cion3.png";
-}
-- (void) showMapTrace{
-    NSLog(@"这里是 showMapTrace");
-    //构造折线数据对象
-    CLLocationCoordinate2D commonPolylineCoords[4];
-    commonPolylineCoords[0].latitude = 39.832136;
-    commonPolylineCoords[0].longitude = 116.34095;
-    
-    commonPolylineCoords[1].latitude = 39.832136;
-    commonPolylineCoords[1].longitude = 116.42095;
-    
-    commonPolylineCoords[2].latitude = 39.902136;
-    commonPolylineCoords[2].longitude = 116.42095;
-    
-    commonPolylineCoords[3].latitude = 39.902136;
-    commonPolylineCoords[3].longitude = 116.44095;
-    
-    //构造折线对象
-    MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:4];
-    
-    //在地图上添加折线对象
-    [_mapView addOverlay: commonPolyline];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.showTabBar = YES;
     self.title = @"导航";
     
-    //已有轨迹点 ID
-    if(self.collectionID != 0){
-        [[BBInterFace interfaceWithFinshBlock:^(getMapTraceSystemOBJ *responseObj) {
-            self.mapTraceSystem = responseObj;
-            //NSLog(@"yyyy");
-            NSLog(@"%@", self.mapTraceSystem);
-            [self showMapTrace];
-        } faildBlock:^(NSError *err) {
-            NSLog(@"%@", err);
-        } HUDBackgroundView:self.view tag:self.tagWithInterFace] getMapTraceSystem:[NSString stringWithFormat:@"%d", self.collectionID]];
-    }
-    
     self.mapView.mapType = MAMapTypeStandard;
     self.mapView.delegate = self;
-    self.search = [[AMapSearchAPI alloc] init];
-    self.search.delegate = self;
-    //self.mapView.centerCoordinate = CLLocationCoordinate2DMake(31.0632270000, 121.5270620000);
+//    self.search = [[AMapSearchAPI alloc] init];
+//    self.search.delegate = self;
     
     QXPDispatch_after(0.3, ^{
         //MAUserTrackingModeFollow 是否追踪用户定位，并在地图上显示（需要与showsUserLocation配合使用）
-        self.mapView.userTrackingMode = MAUserTrackingModeFollow; //MAUserTrackingModeNone;
+        self.mapView.userTrackingMode = MAUserTrackingModeNone;
         self.mapView.zoomEnabled = YES; //是否支持缩放地图，模拟器使用 option键模拟双指缩小，双击放大
         self.mapView.showsUserLocation = YES;   //是否显示用户定位
         
@@ -85,15 +40,26 @@
 //        AMapGeocodeSearchRequest *request = [[AMapGeocodeSearchRequest alloc] init];
 //        request.address = @"外滩";
 //        [self.search AMapGeocodeSearch:request];
-        
-        
     });
 }
-//- (void)passValue:(NSString *)value{
-//    self.collectionID = [value integerValue];
-//}
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    [self.mapView removeOverlay:commonPolyline];
+    
+    //已有轨迹点 ID
+    if(self.collectionID != 0){
+        [[BBInterFace interfaceWithFinshBlock:^(getMapTraceSystemObject *responseObj) {
+            self.mapTraceSystem = responseObj;
+            [self showMapTrace];
+            self.collectionID = 0;
+        } faildBlock:^(NSError *err) {
+            NSLog(@"%@", err);
+        } HUDBackgroundView:self.view tag:self.tagWithInterFace] getMapTraceSystem:[NSString stringWithFormat:@"%d", self.collectionID]];
+    }else{//MAUserTrackingModeFollow 是否追踪用户定位，并在地图上显示（需要与showsUserLocation配合使用）
+        self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+        //self.mapView.centerCoordinate = CLLocationCoordinate2DMake(31.0632270000, 121.5270620000);
+    }
     
     //大头针标注
 //    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
@@ -151,8 +117,6 @@
     return nil;
 }
 - (void)mapViewWillStartLocatingUser:(MAMapView *)mapView{
-
-
 }
 
 /*!
@@ -160,12 +124,40 @@
  @param mapView 地图View
  */
 - (void)mapViewDidStopLocatingUser:(MAMapView *)mapView{
-
-
 }
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+//    [self.mapView removeFromSuperview];
+//    [self.view addSubview:self.mapView];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void) showMapTrace{
+    //构造折线数据对象
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    int traceCount = self.mapTraceSystem.Points.count;
+    CLLocationCoordinate2D point;
+    for (int i=0; i<traceCount; i++) {
+        int count = [(NSArray *)self.mapTraceSystem.Points[i] count];
+        CLLocationCoordinate2D commonPolylineCoords[count];
+        for (int j=0; j<count; j++) {
+            PointOBJ *pointObj = self.mapTraceSystem.Points[i][j];
+            MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
+            point = CLLocationCoordinate2DMake([pointObj.Latitude doubleValue], [pointObj.Longtitude doubleValue]);
+            annotation.coordinate = point;
+            [annotations addObject:annotation];
+            commonPolylineCoords[j] = point;
+        }
+        //构造折线对象
+        commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:count];
+        
+        //在地图上添加折线对象
+        [_mapView addOverlay: commonPolyline];
+    }
+    [_mapView showAnnotations:annotations animated:YES];
 }
 
 /*

@@ -45,13 +45,12 @@
     }
     
 }
-
 @end
+
 @interface HomeDetailViewController ()
 @property(nonatomic,strong)chooseBtn *chooseTemp;
 @property(nonatomic,strong)getTraceLineInfoOBJ *traceLineInfoOBJ;
 @property(nonatomic, strong)UIView *tempView;
-
 @end
 
 @implementation HomeDetailViewController

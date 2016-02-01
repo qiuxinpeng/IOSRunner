@@ -29,8 +29,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    
     ADFirstViewController *VCFirst=[[ADFirstViewController alloc] initWithNibName:@"ADFirstViewController" bundle:nil];
+
     [self.window setRootViewController:VCFirst];
     [self.window makeKeyAndVisible];
 

@@ -82,12 +82,32 @@ NSString * const MTLBooleanValueTransformerName = @"MTLBooleanValueTransformerNa
 					continue;
 				}
 
-				NSAssert([JSONDictionary isKindOfClass:NSDictionary.class], @"Expected a dictionary or an NSNull, got: %@", JSONDictionary);
+                //albert add 为了处理多维数组
+                if (![JSONDictionary isKindOfClass:NSDictionary.class] && [JSONDictionary isKindOfClass:[NSArray class]]) {
+                    NSMutableArray *models_ = [NSMutableArray arrayWithCapacity:dictionaries.count];
+                    for (id JSONDict in JSONDictionary) {
+                        if (JSONDict == NSNull.null) {
+                            [models_ addObject:NSNull.null];
+                            continue;
+                        }
+                        
+                        NSAssert([JSONDict isKindOfClass:NSDictionary.class], @"Expected a dictionary or an NSNull, got: %@", JSONDict);
+                        
+                        id model = [dictionaryTransformer transformedValue:JSONDict];
+                        if (model == nil) continue;
+                        
+                        [models_ addObject:model];
+                    }
+                    [models addObject:models_];
+                    //return models_;
+                }else{
+                    NSAssert([JSONDictionary isKindOfClass:NSDictionary.class], @"Expected a dictionary or an NSNull, got: %@", JSONDictionary);
 
-				id model = [dictionaryTransformer transformedValue:JSONDictionary];
-				if (model == nil) continue;
+                    id model = [dictionaryTransformer transformedValue:JSONDictionary];
+                    if (model == nil) continue;
 
-				[models addObject:model];
+                    [models addObject:model];
+                }
 			}
 
 			return models;

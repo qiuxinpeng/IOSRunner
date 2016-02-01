@@ -58,18 +58,13 @@
     [muArr addParameter:@"userID" parameterValue:[PBUser userID] parameterType:QXPNetWorkParameterTypeDefault];
     [muArr addParameter:@"authonToken" parameterValue:[PBUser sharedUser].AuthonToken parameterType:QXPNetWorkParameterTypeDefault];
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=user&method=getUserInfo" connectType:QXPNetWorkTypePost];
-
-    
 }
 #pragma   -mark  62-uploadPhoto
 - (void)uploadPhoto:(UIImage *)photo{
     
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        
         NSDictionary *tempDict=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"];
-        
         return tempDict;
-        
     }];
     
     NSMutableArray *muArr=[NSMutableArray new];
@@ -79,7 +74,6 @@
         [muArr addParameter:@"photo" parameterValue:data fileName:@"file.jpg" contentType:@"image/jpg" parameterType:QXPNetWorkParameterTypeForm];
     }
     
-
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=user&method=uploadPhoto" connectType:QXPNetWorkTypePost];
 }
 #pragma   -mark  58-editPersonalInfo - (更新个人信息)
@@ -97,8 +91,6 @@
     [muArr addParameter:@"weight" parameterValue:weight parameterType:QXPNetWorkParameterTypeDefault];
 
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=user&method=editPersonalInfo" connectType:QXPNetWorkTypePost];
-
-
 }
 #pragma   -mark  57-getAgeGroup - (获取用户年龄组信息)
 - (void)getAgeGroup{
@@ -126,12 +118,12 @@
         return OBJArr;
     }];
     NSMutableArray *muArr=[NSMutableArray new];
-    [muArr addParameter:@"timeStamp" parameterValue:[QXPCacheUtilit sharedCacheUtilit].home_images_timestamp parameterType:QXPNetWorkParameterTypeDefault];
+    //验证缓存是否失效
+//    [muArr addParameter:@"timeStamp" parameterValue:[QXPCacheUtilit sharedCacheUtilit].home_images_timestamp parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"timeStamp" parameterValue:0 parameterType:QXPNetWorkParameterTypeDefault];
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=index&method=getRecommendTraceInfo" connectType:QXPNetWorkTypePost];
     self.isShowErrorHUDView=NO;
-
 }
-
 
 #pragma   -mark  51-getNotice - (获取首页通知内容)
 - (void)getNotice{
@@ -151,15 +143,12 @@
     [muArr addParameter:@"timeStamp" parameterValue:[QXPCacheUtilit sharedCacheUtilit].home_notice_timestamp parameterType:QXPNetWorkParameterTypeDefault];
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=index&method=getNotice" connectType:QXPNetWorkTypePost];
     self.isShowErrorHUDView=NO;
-
 }
 #pragma   -mark  75-getTraceLineInfo - 获取线路详情信息
 - (void)getTraceLineInfo:(NSString *)collectionID{
-
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
         NSDictionary *dict=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"];
         NSString *str=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"timeStamp"];
-        // getRecommendTraceInfoOBJ
         
         getTraceLineInfoOBJ *tempOBJ=[MTLJSONAdapter modelOfClass:getTraceLineInfoOBJ.class fromJSONDictionary:dict error:nil];
         tempOBJ.ID=collectionID;
@@ -170,7 +159,6 @@
             if ([tempOBJ.TraceLineInfo saveSelf]) {
                 NSLog(@"2222");
             }
-            
         }
         [QXPCacheUtilit sharedCacheUtilit].home_detel_timestamp=str;
         [[QXPCacheUtilit sharedCacheUtilit] synchronize];
@@ -181,16 +169,10 @@
     [muArr addParameter:@"timeStamp" parameterValue:[QXPCacheUtilit sharedCacheUtilit].home_detel_timestamp parameterType:QXPNetWorkParameterTypeDefault];
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=trace&method=getTraceLineInfo" connectType:QXPNetWorkTypePost];
     self.isShowErrorHUDView=NO;
-    
-    
 }
 #pragma   -mark  77-getNearbyInfo - (获取周边信息)
 - (void)getNearbyInfo:(NSString *)collectionID start:(NSString *)start pageNum:(NSString *)pageNum{
-
-
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        
-        
         NSArray *arr_NearbyRanking=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"NearbyRanking"];
         NSArray *arr_Nearby=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"Nearby"];
         NSString *count=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"Count"];
@@ -199,8 +181,6 @@
         NSArray *arr_n=[MTLJSONAdapter modelsOfClass:getNearbyInfoOBJ.class fromJSONArray:arr_Nearby error:nil];
 
         return @{@"NearbyRanking":arr_r?arr_r:@[],@"Nearby":arr_n?arr_n:@[],@"count":count};
-        
-    
         return nil;
     }];
     NSMutableArray *muArr=[NSMutableArray new];
@@ -210,17 +190,10 @@
 
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=trace&method=getNearbyInfo" connectType:QXPNetWorkTypePost];
     self.isShowErrorHUDView=NO;
-
-
-
 }
 #pragma   -mark  79-getCommentInfo - (获取评论信息)
 - (void)getCommentInfo:(NSString *)collectionID start:(NSString *)start pageNum:(NSString *)pageNum{
-
-
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        
-        
         NSArray *arr_CommentRanking=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"CommentRanking"];
         NSArray *arr_Comment=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"Comment"];
         
@@ -230,8 +203,6 @@
         NSArray *arr_n=[MTLJSONAdapter modelsOfClass:BestCommentOBJ.class fromJSONArray:arr_Comment error:nil];
         
         return @{@"CommentRanking":arr_r?arr_r:@[],@"Comment":arr_n?arr_n:@[],@"count":count};
-        
-        
         return nil;
     }];
     NSMutableArray *muArr=[NSMutableArray new];
@@ -241,25 +212,20 @@
     
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=trace&method=getCommentInfo" connectType:QXPNetWorkTypePost];
     self.isShowErrorHUDView=NO;
-
-
 }
+
 #pragma   -mark  78-getRecordInfo - (获取历史记录信息)
 - (void)getRecordInfo:(NSString *)collectionID start:(NSString *)start pageNum:(NSString *)pageNum{
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        
-        
-        NSArray *arr_CommentRanking=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"RecordRanking"];
-        NSArray *arr_Comment=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"Record"];
+        NSArray *arr_recordRanking=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"RecordRanking"];
+        NSArray *arr_record=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"Record"];
         
         NSString *count=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey:@"Count"];
         
-        NSArray *arr_r=[MTLJSONAdapter modelsOfClass:BestRecordOBJ.class fromJSONArray:arr_CommentRanking error:nil];
-        NSArray *arr_n=[MTLJSONAdapter modelsOfClass:BestRecordOBJ.class fromJSONArray:arr_Comment error:nil];
+        NSArray *arr_r=[MTLJSONAdapter modelsOfClass:BestRecordOBJ.class fromJSONArray:arr_recordRanking error:nil];
+        NSArray *arr_n=[MTLJSONAdapter modelsOfClass:BestRecordOBJ.class fromJSONArray:arr_record error:nil];
         
         return @{@"RecordRanking":arr_r?arr_r:@[],@"Record":arr_n?arr_n:@[],@"count":count};
-        
-        
         return nil;
     }];
     NSMutableArray *muArr=[NSMutableArray new];
@@ -269,17 +235,12 @@
     
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=trace&method=getRecordInfo" connectType:QXPNetWorkTypePost];
     self.isShowErrorHUDView=NO;
-
-
 }
 #pragma   -mark  82-getProvinceAndCity - (获取城市信息)
 - (void)getProvinceAndCity:(NSString *)timeStamp{
-    
-
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        NSArray *arr_CommentRanking=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] ;
-
-        NSArray *arr_r=[MTLJSONAdapter modelsOfClass:getProvinceAndCityOBJ.class fromJSONArray:arr_CommentRanking error:nil];
+        NSArray *arr_provinceAndCity=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] ;
+        NSArray *arr_r=[MTLJSONAdapter modelsOfClass:getProvinceAndCityOBJ.class fromJSONArray:arr_provinceAndCity error:nil];
 
         return arr_r;
     }];
@@ -290,14 +251,12 @@
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=common&method=getProvinceAndCity" connectType:QXPNetWorkTypePost];
     //self.isShowErrorHUDView=NO;
 }
+
 #pragma   -mark  80-getCategory - (获取类别信息)
 - (void)getCategory:(NSString *)timeStamp{
-
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        NSArray *arr_CommentRanking=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] ;
-        
-        NSArray *arr_r=[MTLJSONAdapter modelsOfClass:getCategoryOBJ.class fromJSONArray:arr_CommentRanking error:nil];
-
+        NSArray *arr_category=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] ;
+        NSArray *arr_r=[MTLJSONAdapter modelsOfClass:getCategoryOBJ.class fromJSONArray:arr_category error:nil];
         return arr_r;
     }];
     NSMutableArray *muArr=[NSMutableArray new];
@@ -307,13 +266,10 @@
 
 #pragma   -mark  66-getMapTraceSystem - (获取平台轨迹)
 - (void) getMapTraceSystem:(NSString *)collectionID{
-    
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        NSArray *arr=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] ;
-        
-        //NSArray *arr_r=[MTLJSONAdapter modelsOfClass:getMapTraceSystemOBJ.class fromJSONArray:arr_CommentRanking error:nil];
-        
-        return arr;
+        NSDictionary *dict = [[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"];
+        getMapTraceSystemObject *mapTraceSystemOBJ = [MTLJSONAdapter modelOfClass:getMapTraceSystemObject.class fromJSONDictionary:dict error:nil];
+        return mapTraceSystemOBJ;
     }];
     NSMutableArray *muArr=[NSMutableArray new];
     [muArr addParameter:@"collectionID" parameterValue:collectionID parameterType:QXPNetWorkParameterTypeDefault];

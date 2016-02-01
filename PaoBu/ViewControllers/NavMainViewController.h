@@ -1,11 +1,3 @@
-//
-//  NavMainViewController.h
-//  PaoBu
-//
-//  Created by 邱玲 on 15/8/28.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "BaseViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchkit/AMapSearchKit.h>
@@ -14,11 +6,10 @@
 
 @interface NavMainViewController : BaseViewController<MAMapViewDelegate, AMapSearchDelegate>
 @property (weak, nonatomic) IBOutlet MAMapView *mapView;
-@property (strong, nonatomic) IBOutlet AMapSearchAPI *search;
+//@property (strong, nonatomic) IBOutlet AMapSearchAPI *search;
 
-@property(nonatomic,strong)getMapTraceSystemOBJ *mapTraceSystem;
+@property (nonatomic, strong) MAPolyline *commonPolyline;   //导航页折线
+@property (nonatomic, weak) getMapTraceSystemObject *mapTraceSystem;   //导航页轨迹点信息
 @property int collectionID;
-
-//- (void)reloadWithOBJ:(getMapTraceSystemOBJ *)OBJ;
 
 @end

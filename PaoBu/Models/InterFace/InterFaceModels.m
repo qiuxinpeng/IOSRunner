@@ -32,21 +32,15 @@
     return nil;
 }
 + (void)initialize{
-    
     [super initialize];
-    
     [[MainManager LKDBglobalHelper] createTableWithModelClass:[self class]];
 }
 //所有的数据
 + (NSArray *)allOBJS{
-
    return [[MainManager LKDBglobalHelper] search:[self class] where:nil orderBy:nil offset:0 count:0];
-    
-
 }
 //根据ID获取缓存数据
 + (id)OBJWihtID:(NSString *)ID{
-    
     id temp =[[MainManager LKDBglobalHelper] searchSingle:[self class] where:@{@"ID":ID} orderBy:nil ];
     return temp;
 }
@@ -197,25 +191,48 @@
     return nil;
 }
 @end
-
-//@implementation TraceLineOBJ
+//@implementation PointsObject
 //
 //+ (NSDictionary *)JSONKeyPathsByPropertyKey {
 //    return nil;
 //}
-//
-//+ (NSValueTransformer *)PointJSONTransformer {
-//    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:PointOBJ.class];
+//+ (NSValueTransformer *)TraceJSONTransformer {
+//    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:TraceOBJ.class];
+////    return [MTLValueTransformer transformerWithBlock:^id(id value) {
+////        NSDictionary *dic = value;
+////        
+////        return [MTLJSONAdapter modelOfClass:[PointsObject class] fromJSONDictionary:dic error:nil];
+////        
+////    }];
 //}
 //@end
-//
-//获取平台轨迹
-@implementation getMapTraceSystemOBJ
+
+@implementation CollectionOBJ
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return nil;
 }
-//+ (NSValueTransformer *)TraceLineJSONTransformer {
-//    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:TraceLineOBJ.class];
-//}
 @end
+
+
+//获取平台轨迹
+@implementation getMapTraceSystemObject
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
++ (NSValueTransformer *)PointsJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:PointOBJ.class];
+//    return [MTLValueTransformer transformerWithBlock:^id(id value) {
+//        NSDictionary *dic = value;
+//        NSArray *array = [NSArray arrayWithObjects:[dic],nil];
+//        NSDictionary *points = [NSDictionary with]
+//        return [MTLJSONAdapter modelOfClass:[PointsObject class] fromJSONDictionary:dic error:nil];
+//        
+//    }];
+}
++ (NSValueTransformer *)CollectionJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:CollectionOBJ.class];
+}
+@end
+

@@ -1,11 +1,3 @@
-//
-//  PBUser.m
-//  PaoBu
-//
-//  Created by Apple on 16/1/17.
-//  Copyright © 2016年 LunSheng. All rights reserved.
-//
-
 #import "PBUser.h"
 #import "EGOCache.h"
 //#import "InterFaceModels.h"
@@ -13,12 +5,11 @@
 @implementation PBUser
 
 #define keyStr @"ZCUserUser-yser"
-#define getKey(member) [NSString stringWithFormat:@"ZCUserser-%u",member.hash]
+#define getKey(member) [NSString stringWithFormat:@"ZCUserser-%lu",member.hash]
 
 static PBUser *_tempUser=nil;
 
-+(BOOL)isContainParent
-{
++(BOOL)isContainParent{
     return YES;
 }
 + (instancetype)sharedUser{
@@ -89,6 +80,5 @@ static PBUser *_tempUser=nil;
     
     return [PBUser sharedUser];
 }
-
 
 @end

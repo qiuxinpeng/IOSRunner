@@ -1,11 +1,3 @@
-//
-//  EditUserInfoDetailViewController.m
-//  PaoBu
-//
-//  Created by 邱玲 on 15/9/3.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "EditUserInfoDetailViewController.h"
 
 @interface EditUserInfoDetailViewController ()
@@ -16,35 +8,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self addRightBar:@"确定" action:@selector(did_done)];
-
 }
 - (void)did_done{
-
-    
     if (self.type==UserEditTypeNikeName) {
-        
         if (self.textV_text.text.length>12) {
-            
             [UIAlertView say:@"昵称不能超过12个!"];
             return;
         }
-
         [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
-            
             [PBUser sharedUser].DisplayName=self.textV_text.text;
             [[PBUser sharedUser] synchronize];
             [PBUser lginOK];
             [UIAlertView say:@"修改昵称成功!"];
-            
         } faildBlock:^(NSError *err) {
             [UIAlertView say:err.domain];
-            
         } HUDBackgroundView:self.view tag:self.tagWithInterFace] editPersonalInfo:self.textV_text.text genderID:nil ageID:nil hobbies:nil hobbiesDetail:nil signature:nil height:nil weight:nil];
-        
-        
-        
     }else if (self.type==UserEditTypeSex){
         
     }else if (self.type==UserEditTypeAge){
@@ -52,28 +31,18 @@
     }else if (self.type==UserEditTypeHobbies){
         
     }else if (self.type==UserEditTypeSignature){
-        
-        
         if (self.textV_text.text.length>50) {
-            
             [UIAlertView say:@"简介不能超过50个!"];
             return;
         }
-        
         [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
-            
             [PBUser sharedUser].Signature =self.textV_text.text;
             [[PBUser sharedUser] synchronize];
             [PBUser lginOK];
             [UIAlertView say:@"修改简介成功!"];
-            
         } faildBlock:^(NSError *err) {
             [UIAlertView say:err.domain];
-            
         } HUDBackgroundView:self.view tag:self.tagWithInterFace] editPersonalInfo:nil genderID:nil ageID:nil hobbies:nil hobbiesDetail:nil signature:self.textV_text.text height:nil weight:nil];
-        
-
-        
     }else if (self.type==UserEditTypeHeight){
         
     }else if (self.type==UserEditTypeWeight){
@@ -139,8 +108,6 @@
         default:
             break;
     }
-
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

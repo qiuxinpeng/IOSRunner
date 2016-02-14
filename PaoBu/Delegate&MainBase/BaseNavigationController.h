@@ -1,11 +1,3 @@
-//
-//  BaseNavigationController.h
-//  YouPlay
-//
-//  Created by 小白 on 13-8-21.
-//  Copyright (c) 2013年 邱新鹏. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "CRNavigationController.h"
 

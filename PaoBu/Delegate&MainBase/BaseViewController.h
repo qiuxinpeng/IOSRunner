@@ -1,11 +1,3 @@
-//
-//  BaseViewController.h
-//  YouPlay
-//
-//  Created by 小白 on 13-8-21.
-//  Copyright (c) 2013年 邱新鹏. All rights reserved.
-//
-
 #import "UIViewController+AKTabBarController.h"
 
 @class LoginFirstViewController;
@@ -17,12 +9,11 @@ static NSString * const BaseViewControllerAnimationKey = @"BaseViewControllerAni
 //@property (nonatomic, strong)QXPNavgationBar  *navigationBar;
 @property (nonatomic) BOOL navigationBarHidden;
 @property (nonatomic, strong) UIImageView *backGroundView;
-@property (nonatomic)SEL popViewController;
+@property (nonatomic) SEL popViewController;
 
-@property (nonatomic, getter = isShowNavBar)BOOL showNavBar;
-@property (nonatomic, getter = isShowTabBar)BOOL showTabBar;
-
-@property (nonatomic, getter = isUseTouchDismissParentView)BOOL useTouchDismissParentView;
+@property (nonatomic, getter = isShowNavBar) BOOL showNavBar;
+@property (nonatomic, getter = isShowTabBar) BOOL showTabBar;
+@property (nonatomic, getter = isUseTouchDismissParentView) BOOL useTouchDismissParentView;
 
 //跳转到第几个tab
 - (void)setSelectedIndex:(int)index;

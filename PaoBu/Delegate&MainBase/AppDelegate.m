@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  NewBaLa
-//
-//  Created by Mr.Qiu on 15/8/4.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "AppDelegate.h"
 #import "ADFirstViewController.h"
 //#import "MainConfig.h"
@@ -25,11 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    ADFirstViewController *VCFirst=[[ADFirstViewController alloc] initWithNibName:@"ADFirstViewController" bundle:nil];
+    ADFirstViewController *VCFirst = [[ADFirstViewController alloc] initWithNibName:@"ADFirstViewController" bundle:nil];
 
     [self.window setRootViewController:VCFirst];
     [self.window makeKeyAndVisible];
@@ -56,8 +46,6 @@
 }
 
 //- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-//    
-//    
 //    return [RMTSNSBase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 //}
 //- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
@@ -67,7 +55,6 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -97,14 +84,12 @@
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
     [self becomeFirstResponder];
-    
     //[self startDurationTimer];
     
     //检查是否需要更新
     [CommonFn checkUpdate];
     
     //[UMSocialSnsService applicationDidBecomeActive];
-    
     //[[NSNotificationCenter defaultCenter] postNotificationName:APP_DidBecomeActive object:nil];
 }
 
@@ -112,9 +97,9 @@
     NSLog(@"\n ===> 程序意外暂行 !");
     
     //[self stopDurationTimer];
-    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 //- (void) remoteControlReceivedWithEvent: (UIEvent *) receivedEvent {
 //    if (receivedEvent.type == UIEventTypeRemoteControl) {
 //        switch (receivedEvent.subtype) {
@@ -172,31 +157,29 @@
 //}
 
 //#pragma mark----- NSTimer
-//- (void)startDurationTimer {
-//    if (self.durationTimer) {
-//        [self stopDurationTimer];
-//        self.durationTimer=nil;
-//    }
-//    NSLog(@"startDurationTimer+++");
-//    self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(monitorMoviePlayback) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:self.durationTimer forMode:NSDefaultRunLoopMode];
-//    //userTime=[UserTimeTool getLoginTime];
-//    
-//    // [UserTimeStatistics getNowOBJ];
-//    
-//    self.tongjiOBJ=[UserTimeStatistics getNowOBJ];
-//}
-//- (void)stopDurationTimer {
-//    NSLog(@"stopDurationTimer+++");
-//    [self.durationTimer invalidate];
-//    
-//    [self.tongjiOBJ synchronizeToday];
-//}
+- (void)startDurationTimer {
+    if (self.durationTimer) {
+        [self stopDurationTimer];
+        self.durationTimer=nil;
+    }
+    NSLog(@"startDurationTimer+++");
+    //self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(monitorMoviePlayback) userInfo:nil repeats:YES];
+    //[[NSRunLoop currentRunLoop] addTimer:self.durationTimer forMode:NSDefaultRunLoopMode];
+    //userTime=[UserTimeTool getLoginTime];
+    
+    // [UserTimeStatistics getNowOBJ];
+    //self.tongjiOBJ=[UserTimeStatistics getNowOBJ];
+}
+- (void)stopDurationTimer {
+    NSLog(@"stopDurationTimer+++");
+    [self.durationTimer invalidate];
+    
+    //[self.tongjiOBJ synchronizeToday];
+}
 
 //- (void)monitorMoviePlayback {
 //    // NSLog(@"app +++monitorMoviePlayback");
 //    [self.tongjiOBJ addTime:3];
 //}
-
 
 @end

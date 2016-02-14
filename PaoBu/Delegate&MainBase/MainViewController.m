@@ -1,11 +1,3 @@
-//
-//  MainViewController.m
-//  ZhongChou
-//
-//  Created by Mr.Qiu on 14-9-3.
-//  Copyright (c) 2014年 邱新鹏. All rights reserved.
-//
-
 #import "MainViewController.h"
 #import "BaseNavigationController.h"
 #import "MyMainViewController.h"
@@ -30,11 +22,10 @@
         // do nothing, only unregistering self from notifications
     }
 }
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.viewControllers=[self mainViewControllers];
+        self.viewControllers = [self mainViewControllers];
         // Custom initialization
         //[self hideTabBarAnimated:NO];
         [self _init];
@@ -50,18 +41,14 @@
 }
 
 - (void)applyTheme{
-    //[self setBackgroundImageName:[MainTool tableBarImage]];
-    //[self setSelectedBackgroundImageName:[MainTool tableBarImage]];
-    
-    self.textFont=[UIFont systemFontOfSize:14];
-    
+    self.textFont = [UIFont systemFontOfSize:14];
     [self setBackgroundImageName:@"20-20w1"];
     [self setSelectedBackgroundImageName:@"20-20w1"];
     
-    UIColor *color=[UIColor grayColor];
-    UIColor *selectColor=[UIColor YPMainBlueColor];
-  
-   // //设置未选中的Icon颜色
+    UIColor *color = [UIColor grayColor];
+    UIColor *selectColor = [UIColor YPMainBlueColor];
+
+    //设置未选中的Icon颜色
     [self setIconColors:@[color,color]]; // MAX 2 Colors
     //设置选中的Icon颜色
     [self setSelectedIconColors:@[selectColor,selectColor]]; // MAX 2 Colors
@@ -70,11 +57,11 @@
     //设置选中的文字颜色
     [self setSelectedTextColor:selectColor];
     
-    self.iconGlossyIsHidden=NO;
-    self.iconShadowColor=[UIColor clearColor];
-//    self.tabIconPreRendered=NO;
-//    self.isGradient=NO;
-    self.isFillBackgroundNoisePattern=YES;
+    self.iconGlossyIsHidden = NO;
+    self.iconShadowColor = [UIColor clearColor];
+//    self.tabIconPreRendered = NO;
+//    self.isGradient = NO;
+    self.isFillBackgroundNoisePattern = YES;
     
     [self setTabEdgeColor:[UIColor clearColor]];
     [self setTabInnerStrokeColor:[UIColor clearColor]];
@@ -82,31 +69,27 @@
     [self setTopEdgeColor:[UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1]];
     [self setTabColors:@[[UIColor clearColor],[UIColor clearColor]]]; // MAX 2 Colors
     [self setSelectedTabColors:@[[UIColor clearColor],[UIColor clearColor]]];
-   
-//    /[self loadTabs];
+//    [self loadTabs];
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (UIViewController *)childViewControllerForStatusBarStyle{
-    
     return self.selectedViewController;
 }
 - (NSMutableArray *)mainViewControllers{
-    HomeMainViewController   *VCHomeMain=[[HomeMainViewController alloc] initWithNibName:@"HomeMainViewController" bundle:nil];
-    NavMainViewController     *VCNavMain=[[NavMainViewController alloc] initWithNibName:@"NavMainViewController" bundle:nil];
-    PhotoMainViewController     *VCPhotoMain=[[PhotoMainViewController alloc] initWithNibName:@"PhotoMainViewController" bundle:nil];
-    ActivityMainViewController     *VCActivityMain=[[ActivityMainViewController alloc] initWithNibName:@"ActivityMainViewController" bundle:nil];
-    MyMainViewController     *VCMyMain=[[MyMainViewController alloc] initWithNibName:@"MyMainViewController" bundle:nil];
+    HomeMainViewController *VCHomeMain = [[HomeMainViewController alloc] initWithNibName:@"HomeMainViewController" bundle:nil];
+    NavMainViewController *VCNavMain = [[NavMainViewController alloc] initWithNibName:@"NavMainViewController" bundle:nil];
+    PhotoMainViewController *VCPhotoMain = [[PhotoMainViewController alloc] initWithNibName:@"PhotoMainViewController" bundle:nil];
+    ActivityMainViewController *VCActivityMain = [[ActivityMainViewController alloc] initWithNibName:@"ActivityMainViewController" bundle:nil];
+    MyMainViewController *VCMyMain = [[MyMainViewController alloc] initWithNibName:@"MyMainViewController" bundle:nil];
 
     NSMutableArray *viewControllers=[NSMutableArray arrayWithObjects:
                                      [self makeNavViewController:VCHomeMain],
@@ -118,9 +101,9 @@
     return viewControllers;
 }
 - (UINavigationController *)makeNavViewController:(UIViewController *)vc{
-    __autoreleasing BaseNavigationController  *nav=[[BaseNavigationController alloc]initWithRootViewController:vc];
-    nav.isShowTheme=YES; 
-    return  nav;
+    __autoreleasing BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+    nav.isShowTheme = YES;
+    return nav;
 }
 
 /*

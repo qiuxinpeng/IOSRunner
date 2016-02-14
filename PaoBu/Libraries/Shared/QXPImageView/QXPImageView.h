@@ -1,51 +1,30 @@
-//
-//  QXPImageView.h
-//  text
-//
-//  Created by mac on 13-1-7.
-//
-//
-
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 
 #if __has_feature(objc_arc)
-
 #define QXP_IMAGEVIEW_STRONG strong
-
 #define QXP_IMAGEVIEW_WEAK weak
 #else
-
 #define QXP_IMAGEVIEW_STRONG retain
-
 #define QXP_IMAGEVIEW_WEAK assign
-
 #endif
 
-
 typedef NS_ENUM(NSInteger, QXPImageViewQualityTpye) {
-   
     QXPImageViewQualityLow =15,       //较低质量
     QXPImageViewQualityNormal,    //默认质量
     QXPImageViewQualityModerate,  //中等质量
-    
 };
 typedef NS_ENUM(NSInteger, QXPImageViewProportionState) {
-    
     QXPImageViewProportionWidth =5,       //根据宽度等比绘制,图片不会变形
     QXPImageViewProportionNormal,         //默认绘制
     QXPImageViewProportionHeigh,          //根据高度等比绘制
     QXPImageViewProportionAuto          //根据高度等比绘制
-
-    
 };
 typedef NS_ENUM(NSInteger, QXPImageViewStyle) {
-    
     QXPImageViewStyleNone =1,       //默认imageView
     QXPImageViewStyleHighlighted =2        //Highlighted
-    
 };
 
 @interface QXPImageView : UIControl;
@@ -56,8 +35,6 @@ typedef NS_ENUM(NSInteger, QXPImageViewStyle) {
 @property(nonatomic) QXPImageViewStyle           style;
 
 @property(nonatomic, assign) BOOL  showLoadView;
-
-
 
 //点击事件
 @property(nonatomic, copy)void (^QXPClickBlock)(QXPImageView *view);

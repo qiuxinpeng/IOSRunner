@@ -1,11 +1,3 @@
-//
-//  NewInterFaceModels.m
-//  NewBaLa
-//
-//  Created by Mr.Qiu on 15/8/14.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "InterFaceModels.h"
 //#import "SysInfoOBJ.h"
 @implementation InterFaceModels
@@ -20,12 +12,10 @@
 
 @end
 @implementation getRecommendTraceInfoOBJ
-+(BOOL)isContainParent
-{
++(BOOL)isContainParent{
     return YES;
 }
-+(NSString *)getPrimaryKey
-{
++(NSString *)getPrimaryKey{
     return @"ID";
 }
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -58,19 +48,14 @@
 }
 //更新
 - (BOOL)updataSelf{
-    
-    
     [[MainManager LKDBglobalHelper] updateToDB:self where:@{@"ID":self.ID} callback:^(BOOL result) {
         
     }];
-    
     return YES;
-    
     //return [[MainManager LKDBglobalHelper] updateToDB:self where:@{[self.class getPrimaryKey]:self.ID}];
 }
 //删除所有
 + (void)removeAll{
-
     [[MainManager LKDBglobalHelper] deleteWithClass:[self class] where:nil];
 }
 
@@ -89,19 +74,15 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return nil;
 }
-+(NSString *)getPrimaryKey
-{
++(NSString *)getPrimaryKey{
     return @"DetelID";
 }
 + (void)initialize{
-
     [super initialize];
-    
     [[MainManager LKDBglobalHelper] createTableWithModelClass:[self class]];
 }
 //根据ID获取缓存数据
 + (id)OBJWihtID:(NSString *)ID{
-
 //    NSArray *arr=[[MainManager LKDBglobalHelper] search:[self class] where:@{@"DetelID":ID} orderBy:nil offset:0 count:0];
 //    if (arr.count>0) {
 //        return arr[0];
@@ -111,13 +92,11 @@
 }
 //删除自己
 + (BOOL)delWithID:(NSString *)ID{
-
    return [[MainManager LKDBglobalHelper] deleteWithClass:[self class] where:@{@"DetelID":ID}];
 }
 //保存自己
 - (BOOL)saveSelf{
     return [[MainManager LKDBglobalHelper] insertToDB:self];
-
 }
 @end
 @implementation BestRecordOBJ
@@ -129,7 +108,6 @@
 @end
 @implementation getTraceLineInfoOBJ
 - (TraceLineInfoOBJ *)TraceLineInfo{
-
     if (!_TraceLineInfo) {
         _TraceLineInfo=[TraceLineInfoOBJ OBJWihtID:self.ID];
     }
@@ -181,10 +159,6 @@
 }
 @end
 
-
-
-
-
 @implementation PointOBJ
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -213,7 +187,6 @@
     return nil;
 }
 @end
-
 
 //获取平台轨迹
 @implementation getMapTraceSystemObject

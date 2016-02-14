@@ -1,11 +1,3 @@
-//
-//  EditViewController.m
-//  PaoBu
-//
-//  Created by 邱玲 on 15/9/2.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "EditViewController.h"
 #import "EditHeadCell.h"
 #import "EditUserInfoTextTableViewCell.h"
@@ -38,15 +30,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
     return 10;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return 3;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-
     if (section==2) {
         return @"身体指标(非公开)";
     }
@@ -73,7 +62,6 @@
         return 150;
         
     }else{
-        
         return 44;
     }
 }

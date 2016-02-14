@@ -1,16 +1,8 @@
-//
-//  InterFaceModels.h
-//
-//  Created by Mr.Qiu on 15/8/14.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "Mantle.h"
 #import "MTLModel.h"
 #import "MTLJSONAdapter.h"
 #import "ObjectBuilder.h"
-
 
 @interface InterFaceModels : NSObject
 
@@ -162,7 +154,6 @@
 @property (nonatomic,strong) NSMutableArray *SubCategory;
 @end
 
-
 //平台轨迹对应不同的轨迹线路
 @interface PointOBJ: MTLModel<MTLJSONSerializing>
 @property (nonatomic,strong) NSString *ID;
@@ -197,5 +188,4 @@
 @property (nonatomic,strong) NSString *CollectionID;
 @property (nonatomic,strong) NSMutableArray *Points;
 @property (nonatomic,strong) CollectionOBJ *Collection;
-
 @end

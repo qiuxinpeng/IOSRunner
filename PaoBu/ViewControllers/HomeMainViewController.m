@@ -13,24 +13,16 @@
 
 @implementation HomeMainViewController
 
-- (NSString *)tabImageName{
-    return @"cion1.png";
-}
-- (NSString *)tabTitle{
-    return @"首页";
-}
-- (NSString *)activeTabImageName{
-    return @"cion1.png";
-}
+- (NSString *)tabImageName{ return @"home.png"; }
+- (NSString *)tabTitle{ return @"首页"; }
+- (NSString *)activeTabImageName{ return @"home1.png"; }
+
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
     self.showTabBar = YES;
     self.title = @"跑者地图";
-
     self.ICarousel1.type = iCarouselTypeLinear;
     self.ICarousel2.type = iCarouselTypeLinear;
- 
     //[self.webV_title loadHTMLString:@"最新版 IOS 已经上线了 <a href=\"http://www.ifeng.com\">点此下载</a>" baseURL:nil];
     
     [[BBInterFace interfaceWithFinshBlock:^(id responseObj) {
@@ -70,7 +62,7 @@
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
     getRecommendTraceInfoOBJ *OBJ = self.arr_info[index];
-    if (carousel==self.ICarousel1) {
+    if (carousel == self.ICarousel1) {
         if (!view) {
             view = [HomeMainView instancetWihtXIB];
             view.frame = CGRectMake(0, 0, 200, 280);
@@ -135,7 +127,7 @@
 }
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     if (carousel == self.ICarousel1) {  //首页大图片点击事件
-//        HomeMainView *tempView=(HomeMainView*)[self.ICarousel1 itemViewAtIndex:index];
+//        HomeMainView *tempView = (HomeMainView*)[self.ICarousel1 itemViewAtIndex:index];
         [MainManager manager].VCMain.selectedIndex = 2;
         getRecommendTraceInfoOBJ *OBJ = self.arr_info[index];
         BaseNavigationController *baseNavigationController = (BaseNavigationController *)[MainManager manager].VCMain.selectedViewController;

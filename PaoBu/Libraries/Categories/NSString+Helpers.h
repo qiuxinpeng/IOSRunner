@@ -28,7 +28,7 @@
 - (NSString*)TORC4:(NSString*)aKey;
 
 //将Int转成Str
-NSString* stringWithInt(int number);
+NSString* stringWithInt(NSInteger number);
 //将double转成Str
 NSString* stringWithDouble(double number);
 //将浮点转成Str

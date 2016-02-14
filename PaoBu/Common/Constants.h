@@ -1,11 +1,3 @@
-//
-//  Constants.h
-//  PaoBu
-//
-//  Created by Apple on 16/1/17.
-//  Copyright © 2016年 LunSheng. All rights reserved.
-//
-
 //判断当前版本大于指定版本
 #define QXPSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
 //判断是否是Iphone5

@@ -1,11 +1,3 @@
-//
-//  MyInfoHeadFirstCell.m
-//  PaoBu
-//
-//  Created by 邱玲 on 15/8/30.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "MyInfoHeadFirstCell.h"
 
 @implementation MyInfoHeadFirstCell
@@ -13,7 +5,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.ImgV_head addRoundWithRadius:self.ImgV_head.ui_width/2];
-    // Initialization code
 }
 - (void)reloadWithInfo:(PBUser *)user{
     [self.ImgV_head sd_setImageWithURL:[NSURL URLWithString:user.PhotoUrl]];
@@ -24,8 +15,6 @@
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

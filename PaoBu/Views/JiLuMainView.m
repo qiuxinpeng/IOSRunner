@@ -1,19 +1,15 @@
-//
-//  JiLuMainView.m
-//  PaoBu
-//
-//  Created by 邱玲 on 15/9/16.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "JiLuMainView.h"
 #import "XianLuJiaoTongCell.h"
+
 @interface JiLuMainView()
+
 @property(nonatomic,strong)NSArray *RecordRanking;
 @property(nonatomic,strong)NSArray *Record;
 @property(nonatomic,strong)NSString *count;
 @property(nonatomic,strong)NSMutableDictionary *dict_heigh;
+
 @end
+
 @implementation JiLuMainView
 
 /*
@@ -24,23 +20,16 @@
 }
 */
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    
     if (self =[super initWithCoder:aDecoder]) {
-        //
         [self loadView];
     }
     return self;
 }
 - (void)loadView{
-    
     UIView *view=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self.class) owner:self options:nil][0];
     [self addSubview:view];
-    
     self.dict_heigh=[NSMutableDictionary dictionary];
-    
-
     [self.tabV_list registerNib:[UINib nibWithNibName:@"XianLuJiaoTongCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"XianLuJiaoTongCell"];
-
 }
 /*
  // Only override drawRect: if you perform custom drawing.
@@ -51,35 +40,26 @@
  */
 - (void)willShow{
     if (!self.Record) {
-        
         [[BBInterFace interfaceWithFinshBlock:^(NSDictionary *responseObje) {
             self.RecordRanking=responseObje[@"RecordRanking"];
             self.Record=responseObje[@"Record"];
             self.count=responseObje[@"count"];
             [self reloadData];
-            
         } faildBlock:^(NSError *err) {
             
         } HUDBackgroundView:self tag:nil] getRecordInfo:self.OBJ.ID start:@"1" pageNum:@"100"];
     }
-    
 }
 - (void)reloadData{
-    
     [self.tabV_list reloadData];
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
     return 140;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
-    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    //return 0;
     if (section==0) {
         return self.RecordRanking.count;
     }else{
@@ -98,11 +78,9 @@
     return cell;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    
     if (section==0) {
         return @"周边补给";
     }else if (section==1){
-        
         return @"最新补给";
     }
     return nil;

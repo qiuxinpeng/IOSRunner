@@ -1,11 +1,3 @@
-//
-//  BaseViewController.m
-//  YouPlay
-//
-//  Created by 小白 on 13-8-21.
-//  Copyright (c) 2013年 邱新鹏. All rights reserved.
-//
-
 #import "BaseViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "BaseNavigationController.h"
@@ -19,10 +11,8 @@
 
 @property(nonatomic, strong)UIView *backView;
 @property(nonatomic, strong)UITapGestureRecognizer* singleRecognizer;
-
 @property(nonatomic, strong)void (^willRemoveBlock)();
 @property(nonatomic, assign)BOOL isRemove;
-
 @property(nonatomic, weak)UIView *parentView;
 @property (nonatomic, getter = isUseTouchDismissParentView)BOOL useTouchDismissParentView;
 
@@ -33,17 +23,17 @@
 
 - (id)initWithFrame:(CGRect)frame parentView:(UIView *)view{
     if ((self=[super initWithFrame:frame])) {
-        self.backgroundColor=[UIColor clearColor];
-        self.parentView=view;
-        self.backView=[[UIView alloc] initWithFrame:self.bounds];
-        self.backView.autoresizingMask=UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
-        self.backView.autoresizesSubviews=YES;
-        self.backView.backgroundColor=[UIColor blackColor];
-        self.backView.alpha=0.1;
+        self.backgroundColor = [UIColor clearColor];
+        self.parentView = view;
+        self.backView = [[UIView alloc] initWithFrame:self.bounds];
+        self.backView.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
+        self.backView.autoresizesSubviews = YES;
+        self.backView.backgroundColor = [UIColor blackColor];
+        self.backView.alpha = 0.1;
         [self addSubview:self.backView];
         [self addSubview:self.parentView];
-        self.parentView.center=self.center;
-        self.isRemove=NO;
+        self.parentView.center = self.center;
+        self.isRemove = NO;
         if (self.isUseTouchDismissParentView) {
             self.singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapFrom)];
             self.singleRecognizer.numberOfTapsRequired = 1; // 单击
@@ -59,7 +49,7 @@
 }
 
 - (void)setUseTouchDismissParentView:(BOOL)useTouchDismissParentView{
-    _useTouchDismissParentView=useTouchDismissParentView;
+    _useTouchDismissParentView = useTouchDismissParentView;
     [self.backView removeGestureRecognizer:self.singleRecognizer];
     
     if (_useTouchDismissParentView) {
@@ -92,8 +82,7 @@
 
 @implementation BaseViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -102,14 +91,13 @@
 }
 - (UIImageView*)backGroundView{
     if (!_backGroundView) {
-        _backGroundView=[[UIImageView alloc] initWithFrame:self.view.bounds];
+        _backGroundView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         [self.view insertSubview:_backGroundView atIndex:0];
     }
     return _backGroundView;
 }
 //添加消失Nav按钮
 -(void)addDismissNav{
-
     //[self addLeftBar:Localize(@"Back") action:@selector(dissMiss)];
 }
 ////添加9通logo
@@ -123,8 +111,6 @@
 /*
 //添加登陆按钮
 - (void)addLoginBtn:(void(^)(BOOL isLogin, LoginViewController *loginVC))loginBlock loginOKBlock:(void (^)())loginOKBlock{
-
-    
     __weak BaseViewController *wself=self;
     QXPLoginBtn *loginBtn=[[QXPLoginBtn alloc]initWithFrame:CGRectMake(0, 0, 70, 44)];
     loginBtn.backgroundColor=[UIColor clearColor];
@@ -152,18 +138,15 @@
 - (void)dissMiss{
     [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }
-/**/
 //登陆
 - (void)login:(void(^)(BOOL isLogin, LoginFirstViewController *loginVC))loginBlock{
-     
     QXPDispatch_after(0.1, ^{
-        LoginFirstViewController *loginVC=[[LoginFirstViewController alloc]initWithNibName:@"LoginFirstViewController" bundle:nil];
+        LoginFirstViewController *loginVC = [[LoginFirstViewController alloc]initWithNibName:@"LoginFirstViewController" bundle:nil];
         [loginVC setLoginCallBlock:loginBlock];
         //[loginVC addBackBtn];
-        BaseNavigationController *nav=[[BaseNavigationController alloc]initWithRootViewController:loginVC];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
         [self presentVC:nav animated:YES];
     });
-    
 }
 
 - (void)_init{
@@ -187,42 +170,38 @@
     //    } 
 }
 - (void)loadView{
-    
     [super loadView];
-    _showNavBar=!self.navigationController.navigationBarHidden;
-    _showTabBar=!self.akTabBarController.tabBar.hidden;
-    _popViewController=@selector(popViewControllers);
-    //self.showTabBar=YES;
+    _showNavBar = !self.navigationController.navigationBarHidden;
+    _showTabBar = !self.akTabBarController.tabBar.hidden;
+    _popViewController = @selector(popViewControllers);
 
     [self _init];
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.showNavBar=YES;
-    self.showTabBar=NO;
-    self.useTouchDismissParentView=NO;
+    self.showNavBar = YES;
+    self.showTabBar = YES;
+    self.useTouchDismissParentView = NO;
     //self.view.backgroundColor=[UIColor whiteColor];
     
-    self.view.backgroundColor=[UIColor colorWithRed:0.93 green:0.97 blue:0.99 alpha:1];
-    
+    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.97 blue:0.99 alpha:1];
 }
 - (void)setNavigationBarHidden:(BOOL)navigationBarHidden{
-    _navigationBarHidden=navigationBarHidden;
-    self.navigationController.navigationBar.hidden=_navigationBarHidden;
+    _navigationBarHidden = navigationBarHidden;
+    self.navigationController.navigationBar.hidden = _navigationBarHidden;
 }
 - (void)setTitle:(NSString *)title{
     [super setTitle:title];
     //[_navigationBar setTitle:title textColor:[UIColor whiteColor]];
 }
 - (void)setShowNavBar:(BOOL)showNavBar{
-    _showNavBar=showNavBar;
-    if (self.navigationController.navigationBarHidden==_showNavBar) {
-        self.navigationController.navigationBarHidden=!_showNavBar;
+    _showNavBar = showNavBar;
+    if (self.navigationController.navigationBarHidden == _showNavBar) {
+        self.navigationController.navigationBarHidden = !_showNavBar;
     }
-    
 }
 - (void)setShowTabBar:(BOOL)showTabBar{
-    _showTabBar=showTabBar;
+    _showTabBar = showTabBar;
     if (_showTabBar ) {
         [self.akTabBarController showTabBarAnimated:NO];
     }else{
@@ -245,7 +224,6 @@
         self.navigationController.navigationBarHidden=NO;
     }else{
         self.navigationController.navigationBarHidden=YES;
-        
     }
     if (_showTabBar ) {
         [self.akTabBarController showTabBarAnimated:NO];
@@ -259,32 +237,29 @@
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
 }
 //添加背景图片
 - (void)addBackGroundImage:(NSString  *)iamgeName{
-    self.backGroundView.image=[UIImage imageNamed:iamgeName];
+    self.backGroundView.image = [UIImage imageNamed:iamgeName];
 }
 //添加背景图片
 - (void)addBackGroundImageWithImage:(UIImage *)iamgeName{
-    self.backGroundView.image=iamgeName;
+    self.backGroundView.image = iamgeName;
 }
 //跳转到第几个tab
 - (void)setSelectedIndex:(int)index{
     [MainManager manager].VCMain.selectedIndex=index;
-
 }
 //添加返回按钮
 - (void)addPopVCBarWithBtn{
     if (IS_IOS7_AND_UP) {
-        UIImage *imageLeft=[CommonFn imageViaColor:[UIColor clearColor]];
-        UIButton* aButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *imageLeft = [CommonFn imageViaColor:[UIColor clearColor]];
+        UIButton* aButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [aButton setBackgroundImage:imageLeft forState:UIControlStateNormal];
-        aButton.frame=CGRectMake(0, 0 , 68, 30);//zhy 2014.1.20 Bizbook显示的按钮太小了，所以放大了一些。
+        aButton.frame = CGRectMake(0, 0 , 68, 30);//zhy 2014.1.20 Bizbook显示的按钮太小了，所以放大了一些。
         
         [aButton setTitle:@"返回" forState:UIControlStateNormal];
         [aButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
@@ -319,7 +294,6 @@
         
        self.navigationItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     }
-    
     //[self setLeftBarWithBtn:nil imageName:@"main_nav_back_new.png" action:self.popViewController];
 }
 //添加左边按钮
@@ -333,8 +307,8 @@
 
 - (void)showWithView:(UIView *)parentView{
     __weak __typeof(self) wself = self;
-    self.parentView=[[BackParentView alloc] initWithFrame:self.view.bounds parentView:parentView];
-    self.parentView.useTouchDismissParentView=self.useTouchDismissParentView;
+    self.parentView = [[BackParentView alloc] initWithFrame:self.view.bounds parentView:parentView];
+    self.parentView.useTouchDismissParentView=  self.useTouchDismissParentView;
    // self.parentView.center=CGPointMake(self.view.width/2, self.view.height/2);
     [self.parentView setWillRemoveBlock:^{
         [wself dismissParentView];
@@ -376,16 +350,15 @@
     double delayInSeconds = 0.4;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
 //        if ([wself.parentView respondsToSelector:@selector(WillDismiss)]) {
 //            [wself.parentView performSelector:@selector(WillDismiss)];
 //        }
         [wself.parentView WillDismiss];
-        wself.parentView.hidden=YES;
+        wself.parentView.hidden = YES;
         [wself.parentView removed];
         [wself.parentView.layer removeAnimationForKey:BaseViewControllerAnimationKey];
         [wself.parentView removeFromSuperview];
-        wself.parentView=nil;
+        wself.parentView = nil;
     });
 }
 
@@ -399,9 +372,9 @@
      */
     
     if (inmageName) {
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:inmageName] style:UIBarButtonItemStylePlain target:self action:action];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:inmageName] style:UIBarButtonItemStylePlain target:self action:action];
     }else{
-        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:action];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:action];
     }
 }
 -(void)setRightBarWithBtn:(NSString *)title imageName:(NSString *)inmageName action:(SEL)action isRoand:(BOOL)roand{
@@ -421,8 +394,7 @@
     }
     
 }
--(void)setRightBarWithBtn:(NSString *)title imageName:(NSString *)inmageName action:(SEL)action
-{
+-(void)setRightBarWithBtn:(NSString *)title imageName:(NSString *)inmageName action:(SEL)action{
     [self setRightBarWithBtn:title imageName:inmageName action:action isRoand:NO];
 }
 
@@ -457,7 +429,6 @@
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
 }
 - (void)showNavBatBottomLine{
-
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
 }
@@ -483,7 +454,6 @@
     [self.navigationController popToRootViewControllerAnimated:animated];;
 }
 - (void)popToInderx:(int)index animated:(BOOL)animated{
-
     UIViewController *tempVC=[self.navigationController.viewControllers objectAtIndex:index];
     [self.navigationController popToViewController:tempVC animated:animated];
     tempVC=nil;
@@ -493,19 +463,15 @@
 //}
 
 -(NSUInteger)supportedInterfaceOrientations{
-    
     return UIInterfaceOrientationMaskPortrait;  // 可以修改为任何方向
 }
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
-
     return  UIInterfaceOrientationPortrait;
 }
 -(BOOL)shouldAutorotate{
-    
     return YES;
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    
     return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 

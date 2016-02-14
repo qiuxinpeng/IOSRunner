@@ -1,11 +1,3 @@
-//
-//  PBTypedefine.h
-//  PaoBu
-//
-//  Created by Apple on 16/1/17.
-//  Copyright © 2016年 LunSheng. All rights reserved.
-//
-
 #ifndef PBTypedefine_h
 #define PBTypedefine_h
 

@@ -1,11 +1,3 @@
-//
-//  HomeDetailViewController.h
-//  PaoBu
-//
-//  Created by 邱玲 on 15/9/10.
-//  Copyright (c) 2015年 Mr.Qiu. All rights reserved.
-//
-
 #import "BaseViewController.h"
 #import "XianLuMainView.h"
 #import "ZhouBianMainView.h"

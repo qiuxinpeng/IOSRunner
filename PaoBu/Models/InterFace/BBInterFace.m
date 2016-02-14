@@ -1,11 +1,3 @@
-//
-//  RMTInterFace.m
-//  RMT_iphone
-//
-//  Created by Mr.Qiu on 14-7-8.
-//  Copyright (c) 2014年 邱新鹏. All rights reserved.
-//
-
 #import "BBInterFace.h"
 #import "QXPNetWorkTools.h"
 #import "EGOCache.h"
@@ -16,14 +8,12 @@
 //#import "SysInfoOBJ.h"
 #import "QXPCacheUtilit.h"
 #import "QXPCacheForUser.h"
-
-
 //#import "GTMBase64.h"
+#import "PBSaveMapTrace.h"
 
 @implementation BBInterFace
 
 - (instancetype)init{
-    
     if ((self=[super init])) {
         self.isShowErrorHUDView=YES;
     }
@@ -33,25 +23,19 @@
 #pragma   -mark 1 UserLogin
 -(void)UserLogin:(NSString *)userID password:(NSString *)password{
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-      
         NSDictionary *tempDict=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"];
-        
         return [MTLJSONAdapter modelOfClass:PBUser.class fromJSONDictionary:tempDict error:nil];
-        
     }];
     NSMutableArray *muArr=[NSMutableArray new];
     [muArr addParameter:@"account" parameterValue:userID parameterType:QXPNetWorkParameterTypeDefault];
     [muArr addParameter:@"password" parameterValue:password parameterType:QXPNetWorkParameterTypeDefault];
-
     [self starLoadInformationWithParameters:muArr URLPath:@"interface=user&method=login" connectType:QXPNetWorkTypePost];
 }
 
 #pragma   -mark 37 UserLogin
 - (void)UserGetUserInfo{
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
-        
         NSDictionary *tempDict=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"];
-        
         return [MTLJSONAdapter modelOfClass:PBUser.class fromJSONDictionary:tempDict error:nil];
     }];
     NSMutableArray *muArr=[NSMutableArray new];
@@ -61,14 +45,12 @@
 }
 #pragma   -mark  62-uploadPhoto
 - (void)uploadPhoto:(UIImage *)photo{
-    
     [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
         NSDictionary *tempDict=[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"];
         return tempDict;
     }];
     
     NSMutableArray *muArr=[NSMutableArray new];
-
     if (photo) {
         NSData *data=UIImageJPEGRepresentation(photo, 0.5);
         [muArr addParameter:@"photo" parameterValue:data fileName:@"file.jpg" contentType:@"image/jpg" parameterType:QXPNetWorkParameterTypeForm];
@@ -274,7 +256,26 @@
     NSMutableArray *muArr=[NSMutableArray new];
     [muArr addParameter:@"collectionID" parameterValue:collectionID parameterType:QXPNetWorkParameterTypeDefault];
     [self starLoadInformationWithParameters:muArr URLPath:@"interface&interface=trace&method=getMapTraceSystem" connectType:QXPNetWorkTypePost];
+}
+
+#pragma   -mark  40-UserSaveCustomMapTrace - (保存用户跑步轨迹)
+- (void) saveCustomMapTrace:(PBSaveMapTrace *)pbSaveMapTrace{
+    [self setModelBlock:^id(id object, NSError *__autoreleasing *err) {
+        //int ret = [[object objectForKey:@"ret"] intValue];
+        return [object objectForKey:@"ret"];
+    }];
+    NSMutableArray *muArr=[NSMutableArray new];
+    [muArr addParameter:@"startTime" parameterValue:pbSaveMapTrace.startTime parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"finishTime" parameterValue:pbSaveMapTrace.finishTime parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"totalTimeSecond" parameterValue:pbSaveMapTrace.totalTimeSecond parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"overallLength" parameterValue:pbSaveMapTrace.overallLength parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"countryID" parameterValue:pbSaveMapTrace.countryID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"areaID" parameterValue:pbSaveMapTrace.areaID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"cityID" parameterValue:pbSaveMapTrace.cityID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"provinceID" parameterValue:pbSaveMapTrace.provinceID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"collections" parameterValue:pbSaveMapTrace.collections parameterType:QXPNetWorkParameterTypeDefault];
     
+    [self starLoadInformationWithParameters:muArr URLPath:@"interface&interface=user&method=saveCustomMapTrace" connectType:QXPNetWorkTypePost];
 }
 
 
@@ -327,22 +328,17 @@
         tempBlock=nil;
     }];
     [super starLoadInformationWithParameters:arr URLString:string connectType:type];
-
 }
 
 #pragma -mack DataSource
 - (id)QXPNetWorkManager:(QXPNetWorkManager *)manager serializeWithData:(NSData *)data error:(NSError **)error{
-    
     NSString *tempStr2 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (!tempStr2) {
         *error=[NSError errorWithDomain:@"ERROR" code:LUOJI_ERROR_CODE userInfo:nil];
         return nil;
     }
-    
     NSString *tempStr=[YPPwdTool deCode:tempStr2];
     tempStr2=nil;
-    
-    
     if (!tempStr) {
         *error=[NSError errorWithDomain:@"ERROR" code:LUOJI_ERROR_CODE userInfo:nil];
         return nil;
@@ -368,9 +364,7 @@
             __block NSString *tempStr=[[tempObject objectForKey:@"result"] objectForKey:@"errorMsg"];
             *error=[NSError errorWithDomain:tempStr?tempStr:@"ERROR" code:LUOJI_ERROR_CODE userInfo:nil];
             tempObject=nil;
-        
         }
-        
     }else{
         *error = [NSError errorWithDomain:@"解析错误" code:LUOJI_ERROR_CODE userInfo:nil];
         tempObject = nil;
@@ -381,7 +375,6 @@
     return nil;
 }
 - (void)addVersinInfo:(NSMutableArray *)dict{
-   
     [self addVersinInfo:dict userid:nil];
 }
 - (void)addVersinInfo:(NSMutableArray *)dict userid:(NSString *)userid{
@@ -393,8 +386,6 @@
     [dict addParameter:@"userID" parameterValue:userid?userid:[PBUser sharedUser].UserID parameterType:QXPNetWorkParameterTypeDefault];
     [dict addParameter:@"authonToken" parameterValue:[PBUser sharedUser].AuthonToken parameterType:QXPNetWorkParameterTypeDefault];
 }
-
-
 @end
 
 
@@ -402,7 +393,6 @@
 - (void)addParameter:(NSString *)name
       parameterValue:(id)value
        parameterType:(QXPNetWorkParameterType)type{
-    
     NSString *tempValue=nil;
     if(type==QXPNetWorkParameterTypeDefault){
         tempValue=[YPPwdTool code:(NSString *)value];
@@ -426,14 +416,12 @@
       parameterValue:(id)value
             fileName:(NSString *)fileName
        parameterType:(QXPNetWorkParameterType)type{
-    
     NSString *tempValue=nil;
     if(type==QXPNetWorkParameterTypeDefault){
         tempValue=[YPPwdTool code:(NSString *)value];
     }else{
         tempValue=value;
     }
-    
     if (tempValue && name) {
         QXPNetWorkParameter *par=[[QXPNetWorkParameter alloc] init];
         par.parameterName=name;
@@ -446,7 +434,6 @@
             par.parameterType=QXPNetWorkParameterTypeDefault;
         [self addObject:par];
         par=nil;
-        
     }
 }
 - (void)addParameter:(NSString *)name
@@ -454,9 +441,6 @@
             fileName:(NSString *)fileName
          contentType:(NSString *)contentType
        parameterType:(QXPNetWorkParameterType)type{
-    
-    
-    
     NSString *tempValue=nil;
     if(type==QXPNetWorkParameterTypeDefault){
         tempValue=[YPPwdTool code:(NSString *)value];
@@ -477,7 +461,6 @@
             par.parameterType=QXPNetWorkParameterTypeDefault;
         [self addObject:par];
         par=nil;
-        
     }
 }
 

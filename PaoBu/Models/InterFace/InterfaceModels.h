@@ -4,7 +4,7 @@
 #import "MTLJSONAdapter.h"
 #import "ObjectBuilder.h"
 
-@interface InterFaceModels : NSObject
+@interface InterfaceModels : NSObject
 
 @end
 

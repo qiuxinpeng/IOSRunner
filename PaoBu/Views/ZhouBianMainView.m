@@ -32,7 +32,7 @@
 */
 - (void)willShow{
     if (!self.Nearby) {
-        [[BBInterFace interfaceWithFinshBlock:^(NSDictionary *responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(NSDictionary *responseObje) {
             self.NearbyRanking=responseObje[@"NearbyRanking"];
             self.Nearby=responseObje[@"Nearby"];
             self.count=responseObje[@"count"];

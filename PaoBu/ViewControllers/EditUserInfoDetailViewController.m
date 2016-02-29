@@ -16,14 +16,14 @@
             [UIAlertView say:@"昵称不能超过12个!"];
             return;
         }
-        [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(id responseObje) {
             [PBUser sharedUser].DisplayName=self.textV_text.text;
             [[PBUser sharedUser] synchronize];
             [PBUser lginOK];
             [UIAlertView say:@"修改昵称成功!"];
         } faildBlock:^(NSError *err) {
             [UIAlertView say:err.domain];
-        } HUDBackgroundView:self.view tag:self.tagWithInterFace] editPersonalInfo:self.textV_text.text genderID:nil ageID:nil hobbies:nil hobbiesDetail:nil signature:nil height:nil weight:nil];
+        } HUDBackgroundView:self.view tag:self.tagWithInterface] editPersonalInfo:self.textV_text.text genderID:nil ageID:nil hobbies:nil hobbiesDetail:nil signature:nil height:nil weight:nil];
     }else if (self.type==UserEditTypeSex){
         
     }else if (self.type==UserEditTypeAge){
@@ -35,14 +35,14 @@
             [UIAlertView say:@"简介不能超过50个!"];
             return;
         }
-        [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(id responseObje) {
             [PBUser sharedUser].Signature =self.textV_text.text;
             [[PBUser sharedUser] synchronize];
             [PBUser lginOK];
             [UIAlertView say:@"修改简介成功!"];
         } faildBlock:^(NSError *err) {
             [UIAlertView say:err.domain];
-        } HUDBackgroundView:self.view tag:self.tagWithInterFace] editPersonalInfo:nil genderID:nil ageID:nil hobbies:nil hobbiesDetail:nil signature:self.textV_text.text height:nil weight:nil];
+        } HUDBackgroundView:self.view tag:self.tagWithInterface] editPersonalInfo:nil genderID:nil ageID:nil hobbies:nil hobbiesDetail:nil signature:self.textV_text.text height:nil weight:nil];
     }else if (self.type==UserEditTypeHeight){
         
     }else if (self.type==UserEditTypeWeight){

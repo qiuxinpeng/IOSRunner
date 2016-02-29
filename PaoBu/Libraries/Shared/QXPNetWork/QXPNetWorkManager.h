@@ -1,12 +1,3 @@
-//
-//  QXPNetWorkManager.h
-//  QXPNetWork
-//
-//  Created by 小白 on 13-2-22.
-//  Copyright (c) 2013年 小白. All rights reserved.
-//
-
-
 #import <Foundation/Foundation.h>
 #import "QXPNetWorkConfig.h"
 #import "QXPNetWorkDelegate.h"
@@ -29,7 +20,6 @@
  全局的networkQueue,注意这个并非是当前对象初始化的,所以你可以不用管它的生命周期,这个由其他对象来控制
  */
 @property (nonatomic, strong) AFHTTPRequestOperationManager *operationManager;
-
 
 /**
  URLString是连接的地址

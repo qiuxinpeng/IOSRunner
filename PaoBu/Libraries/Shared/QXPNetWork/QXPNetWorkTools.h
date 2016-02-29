@@ -1,16 +1,6 @@
-//
-//  QXPNetWorkTools.h
-//  QXPNetWork
-//
-//  Created by 小白 on 13-2-27.
-//  Copyright (c) 2013年 小白. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "QXPNetWorkEntityClass.h"
 #import "QXPNetWorkDelegate.h"
-
-
 
 /*
  *删除NSString两边空格
@@ -47,7 +37,6 @@
 @end
 @implementation NSString(JSONString)
 - (BOOL)isJSONString{
-    
     NSString *tempStr=[self removeWhitespaceAndNewline];
     NSString *a=[tempStr substringToIndex:1];
     NSString *b=[tempStr substringFromIndex:(tempStr.length-1)];    
@@ -83,7 +72,6 @@
 @end
 @implementation NSString(addXMLHeader)
 - (NSString *)addXMLHeader{
-
     return [NSString stringWithFormat:@"%@%@",@"<?xml version=\"1.0\" encoding=\"utf-8\"?>",self];
 }
 @end

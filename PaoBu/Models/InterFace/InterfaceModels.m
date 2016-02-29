@@ -1,6 +1,6 @@
-#import "InterFaceModels.h"
+#import "InterfaceModels.h"
 //#import "SysInfoOBJ.h"
-@implementation InterFaceModels
+@implementation InterfaceModels
 
 @end
 

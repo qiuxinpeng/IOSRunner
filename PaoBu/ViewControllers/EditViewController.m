@@ -118,7 +118,7 @@
         }else if (cell.type==UserEditTypeSex){
             [ActionSheetStringPicker showPickerWithTitle:@"请选择" rows:@[@"保密",@"男",@"女"] initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                 
-                [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
+                [[BBInterface interfaceWithFinshBlock:^(id responseObje) {
                     if (selectedIndex==0) {
                         [PBUser sharedUser].Gender =@"保密";
                     }else if (selectedIndex==1){
@@ -134,7 +134,7 @@
                 } faildBlock:^(NSError *err) {
                     [UIAlertView say:err.domain];
                     
-                } HUDBackgroundView:self.view tag:self.tagWithInterFace] editPersonalInfo:nil genderID:stringWithInt(selectedIndex) ageID:nil hobbies:nil hobbiesDetail:nil signature:nil height:nil weight:nil];
+                } HUDBackgroundView:self.view tag:self.tagWithInterface] editPersonalInfo:nil genderID:stringWithInt(selectedIndex) ageID:nil hobbies:nil hobbiesDetail:nil signature:nil height:nil weight:nil];
                 
             } cancelBlock:nil origin:self.view];
         

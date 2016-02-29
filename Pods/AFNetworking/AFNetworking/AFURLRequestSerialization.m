@@ -390,9 +390,7 @@ forHTTPHeaderField:(NSString *)field
 {
     NSParameterAssert(method);
     NSParameterAssert(URLString);
-
     NSURL *url = [NSURL URLWithString:URLString];
-
     NSParameterAssert(url);
 
     NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -405,7 +403,6 @@ forHTTPHeaderField:(NSString *)field
     }
 
     mutableRequest = [[self requestBySerializingRequest:mutableRequest withParameters:parameters error:error] mutableCopy];
-
 	return mutableRequest;
 }
 
@@ -798,9 +795,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     bodyPart.headers = mutableHeaders;
     bodyPart.boundary = self.boundary;
     bodyPart.body = inputStream;
-
     bodyPart.bodyContentLength = (unsigned long long)length;
-
     [self.bodyStream appendHTTPBodyPart:bodyPart];
 }
 
@@ -816,7 +811,6 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
     [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"; filename=\"%@\"", name, fileName] forKey:@"Content-Disposition"];
     [mutableHeaders setValue:mimeType forKey:@"Content-Type"];
-
     [self appendPartWithHeaders:mutableHeaders body:data];
 }
 

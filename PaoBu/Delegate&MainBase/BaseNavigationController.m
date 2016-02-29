@@ -76,7 +76,7 @@
     return self.topViewController;
 }
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated{
-    //[BBInterFace cancelForTag:self.visibleViewController.tagWithInterFace];
+    //[BBInterface cancelForTag:self.visibleViewController.tagWithInterface];
     return [super popViewControllerAnimated:animated];
 }
 - (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated{

@@ -29,7 +29,7 @@
 
 @implementation MainManager
 
-//@synthesize cacheUtitlit=_cacheUtitlit;
+//@synthesize cacheUtitlity=_cacheUtitlity;
 static FMDatabaseQueue * _instanceUserDB;
 static FMDatabaseQueue * _instanceSystemDB;
 + (MainManager *)manager{
@@ -43,27 +43,27 @@ static FMDatabaseQueue * _instanceSystemDB;
 //void QXPDispatch_after(double time, dispatch_block_t block){
 //    QXPMainAfterBlock_define(time, block);
 //}
-//- (void)setCacheUtitlit:(QXPCacheUtilit *)cacheUtitlit{
-//    [self setCacheUtitlit:cacheUtitlit save:YES];
+//- (void)setCacheUtitlity:(QXPCacheUtility *)cacheUtitlity{
+//    [self setCacheUtitlity:cacheUtitlity save:YES];
 //}
-//- (void)setCacheUtitlit:(QXPCacheUtilit *)cacheUtitlit save:(BOOL)save{
-//    _cacheUtitlit=cacheUtitlit;
-//    if (save && _cacheUtitlit) {
-//        [[EGOCache globalCache] setObject:(id<NSCoding>)_cacheUtitlit forKey:CACHEUTITLIT_KEY withTimeoutInterval:NSTimeIntervalSince1970];
+//- (void)setCacheUtitlity:(QXPCacheUtility *)cacheUtitlity save:(BOOL)save{
+//    _cacheUtitlit=cacheUtitlity;
+//    if (save && _cacheUtitlity) {
+//        [[EGOCache globalCache] setObject:(id<NSCoding>)_cacheUtitlity forKey:CACHEUTITLIT_KEY withTimeoutInterval:NSTimeIntervalSince1970];
 //    }
 //}
-//- (QXPCacheUtilit *)cacheUtitlit{
+//- (QXPCacheUtility *)cacheUtitlity{
 //
-//    if (!_cacheUtitlit) {
-//        QXPCacheUtilit *utilit=(QXPCacheUtilit *)[[EGOCache globalCache] objectForKey:CACHEUTITLIT_KEY];
-//        if ([utilit isKindOfClass:[QXPCacheUtilit class]]) {
-//            [self setCacheUtitlit:utilit save:NO];
-//            utilit=nil;
+//    if (!_cacheUtitlity) {
+//        QXPCacheUtility *utility=(QXPCacheUtility *)[[EGOCache globalCache] objectForKey:CACHEUTITLIT_KEY];
+//        if ([utility isKindOfClass:[QXPCacheUtility class]]) {
+//            [self setCacheUtitlity:utility save:NO];
+//            utility=nil;
 //        }else{
-//            _cacheUtitlit=[[QXPCacheUtilit alloc] init];
+//            _cacheUtitlity=[[QXPCacheUtility alloc] init];
 //        }
 //    }
-//    return _cacheUtitlit;
+//    return _cacheUtitlity;
 //}
 ////同步
 //- (void)synchronize{

@@ -57,7 +57,10 @@
 //下载节目使用的空间
 //+ (NSString *)DownLoadDiskSpaceInBytes;
 //单个文件大小
-+ (long long) fileSizeAtPath:(NSString*) filePath;
++ (long long) fileSizeAtPath:(NSString *) filePath;
+
++ (NSString *) encryptDES:(NSString *) text;
++ (NSString *) decryptDES:(NSString *) encodeText;
 
 void QXPDispatch_after(double time, dispatch_block_t block);
 

@@ -40,7 +40,7 @@
  */
 - (void)willShow{
     if (!self.Record) {
-        [[BBInterFace interfaceWithFinshBlock:^(NSDictionary *responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(NSDictionary *responseObje) {
             self.RecordRanking=responseObje[@"RecordRanking"];
             self.Record=responseObje[@"Record"];
             self.count=responseObje[@"count"];

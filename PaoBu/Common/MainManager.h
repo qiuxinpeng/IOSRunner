@@ -6,7 +6,7 @@
 #import "LKDBHelper.h"
 #import "MainViewController.h"
 ////#import "BaseNavigationController.h"
-//#import "QXPCacheUtilit.h"
+//#import "QXPCacheUtility.h"
 #import "AKTabBarController.h"
 
 
@@ -30,7 +30,7 @@
 @property(nonatomic, strong)MainViewController *VCMain;
 
 ///**缓存*/
-//@property (nonatomic, strong)QXPCacheUtilit *cacheUtitlit;
+//@property (nonatomic, strong)QXPCacheUtility *cacheUtitlity;
 
 ////下载完成显示信息
 //+ (void)showWithMessage_downLoad:(NSString *)message subtitle:(NSString *)subtitle completionBlock:(void (^)(void))completion;

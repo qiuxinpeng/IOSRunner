@@ -14,7 +14,7 @@
 		181598081C5501080051BDCB /* LoginFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41EBC0061B785E4A00BD6878 /* LoginFirstViewController.m */; };
 		1815980A1C5501080051BDCB /* BaseNavigationController.h in Sources */ = {isa = PBXBuildFile; fileRef = 185D6C6F1C4B2DD7002E663C /* BaseNavigationController.h */; };
 		1815980B1C5501080051BDCB /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6C721C4B2DD7002E663C /* BaseViewController.m */; };
-		1815980C1C5501510051BDCB /* BBInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 41EBBE181B7855A100BD6878 /* BBInterface.m */; };
+		1815980C1C5501510051BDCB /* BBInterFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 41EBBE181B7855A100BD6878 /* BBInterFace.m */; };
 		1815980D1C5501680051BDCB /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6C701C4B2DD7002E663C /* BaseNavigationController.m */; };
 		1815980E1C5501720051BDCB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6C691C4B2DD7002E663C /* MainViewController.m */; };
 		181598101C5501ED0051BDCB /* AKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6CB61C4B5935002E663C /* AKTabBarController.m */; };
@@ -22,7 +22,7 @@
 		181598121C5501F60051BDCB /* AKTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6CB31C4B5935002E663C /* AKTabBar.m */; };
 		181598131C5502200051BDCB /* AKTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6CB81C4B5935002E663C /* AKTabBarView.m */; };
 		181598141C5502660051BDCB /* ActivityMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE35B911B90A89A00F2A405 /* ActivityMainViewController.m */; };
-		181598151C5503160051BDCB /* InterfaceModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CCAB81B7DD5F00045FC30 /* InterfaceModels.m */; };
+		181598151C5503160051BDCB /* InterFaceModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CCAB81B7DD5F00045FC30 /* InterFaceModels.m */; };
 		181598161C5503240051BDCB /* HomeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE35B821B90A84E00F2A405 /* HomeMainViewController.m */; };
 		181598171C55032C0051BDCB /* MyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 412DDC401B79DCF800BE427D /* MyMainViewController.m */; };
 		181598181C5503330051BDCB /* NavMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE35B8C1B90A87700F2A405 /* NavMainViewController.m */; };
@@ -95,12 +95,11 @@
 		1894A4071C69C1E000F2CB5E /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A4061C69C1E000F2CB5E /* MZTimerLabel.m */; };
 		1894A40A1C6EB73A00F2CB5E /* MutableArrayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A4091C6EB73A00F2CB5E /* MutableArrayManager.m */; };
 		1894A40F1C70644800F2CB5E /* QXPCacheForUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A40C1C70644800F2CB5E /* QXPCacheForUser.m */; };
-		1894A4101C70644800F2CB5E /* QXPCacheUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A40E1C70644800F2CB5E /* QXPCacheUtility.m */; };
+		1894A4101C70644800F2CB5E /* QXPCacheUtilit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A40E1C70644800F2CB5E /* QXPCacheUtilit.m */; };
 		1894A4131C70656200F2CB5E /* QXPActionSheetPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A4121C70656200F2CB5E /* QXPActionSheetPickerDelegate.m */; };
+		1894A4161C70666600F2CB5E /* YPPwdTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A4151C70666600F2CB5E /* YPPwdTool.m */; };
 		1894A4191C706C1F00F2CB5E /* PBSaveMapTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A4181C706C1F00F2CB5E /* PBSaveMapTrace.m */; };
 		1894A41A1C70ACE800F2CB5E /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6DB81C4B6290002E663C /* NSDate+Helpers.m */; };
-		1894A41D1C82DEA900F2CB5E /* DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894A41C1C82DEA800F2CB5E /* DES.m */; };
-		1894A41E1C82E97700F2CB5E /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 185D6CE81C4B5935002E663C /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4117DB761B78A0010073BCC4 /* LevelInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4117DB731B78A0010073BCC4 /* LevelInfo.plist */; };
 		4117DB771B78A0010073BCC4 /* systeminfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4117DB741B78A0010073BCC4 /* systeminfo.txt */; };
 		412DDC431B79DCF800BE427D /* MyMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 412DDC411B79DCF800BE427D /* MyMainViewController.xib */; };
@@ -545,14 +544,14 @@
 		1894A4091C6EB73A00F2CB5E /* MutableArrayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutableArrayManager.m; path = Common/MutableArrayManager.m; sourceTree = "<group>"; };
 		1894A40B1C70644800F2CB5E /* QXPCacheForUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QXPCacheForUser.h; path = Common/QXPCacheForUser.h; sourceTree = "<group>"; };
 		1894A40C1C70644800F2CB5E /* QXPCacheForUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QXPCacheForUser.m; path = Common/QXPCacheForUser.m; sourceTree = "<group>"; };
-		1894A40D1C70644800F2CB5E /* QXPCacheUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QXPCacheUtility.h; path = Common/QXPCacheUtility.h; sourceTree = "<group>"; };
-		1894A40E1C70644800F2CB5E /* QXPCacheUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QXPCacheUtility.m; path = Common/QXPCacheUtility.m; sourceTree = "<group>"; };
+		1894A40D1C70644800F2CB5E /* QXPCacheUtilit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QXPCacheUtilit.h; path = Common/QXPCacheUtilit.h; sourceTree = "<group>"; };
+		1894A40E1C70644800F2CB5E /* QXPCacheUtilit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QXPCacheUtilit.m; path = Common/QXPCacheUtilit.m; sourceTree = "<group>"; };
 		1894A4111C70656200F2CB5E /* QXPActionSheetPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QXPActionSheetPickerDelegate.h; path = Common/QXPActionSheetPickerDelegate.h; sourceTree = "<group>"; };
 		1894A4121C70656200F2CB5E /* QXPActionSheetPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QXPActionSheetPickerDelegate.m; path = Common/QXPActionSheetPickerDelegate.m; sourceTree = "<group>"; };
+		1894A4141C70666600F2CB5E /* YPPwdTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YPPwdTool.h; path = Common/YPPwdTool.h; sourceTree = "<group>"; };
+		1894A4151C70666600F2CB5E /* YPPwdTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YPPwdTool.m; path = Common/YPPwdTool.m; sourceTree = "<group>"; };
 		1894A4171C706C1F00F2CB5E /* PBSaveMapTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PBSaveMapTrace.h; path = Objects/PBSaveMapTrace.h; sourceTree = "<group>"; };
 		1894A4181C706C1F00F2CB5E /* PBSaveMapTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PBSaveMapTrace.m; path = Objects/PBSaveMapTrace.m; sourceTree = "<group>"; };
-		1894A41B1C82DEA800F2CB5E /* DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DES.h; path = Common/DES.h; sourceTree = "<group>"; };
-		1894A41C1C82DEA800F2CB5E /* DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DES.m; path = Common/DES.m; sourceTree = "<group>"; };
 		4117DB731B78A0010073BCC4 /* LevelInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelInfo.plist; sourceTree = "<group>"; };
 		4117DB741B78A0010073BCC4 /* systeminfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = systeminfo.txt; sourceTree = "<group>"; };
 		412DDC3F1B79DCF800BE427D /* MyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMainViewController.h; sourceTree = "<group>"; };
@@ -563,8 +562,8 @@
 		412DDC491B79DDF700BE427D /* topicclick_f60_40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topicclick_f60_40.png; sourceTree = "<group>"; };
 		412DDC4A1B79DDF700BE427D /* topicclick_f60_40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topicclick_f60_40@2x.png"; sourceTree = "<group>"; };
 		412DDC4B1B79DDF700BE427D /* topicclick_f60_40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topicclick_f60_40@3x.png"; sourceTree = "<group>"; };
-		415CCAB71B7DD5F00045FC30 /* InterfaceModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterfaceModels.h; sourceTree = "<group>"; };
-		415CCAB81B7DD5F00045FC30 /* InterfaceModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterfaceModels.m; sourceTree = "<group>"; };
+		415CCAB71B7DD5F00045FC30 /* InterFaceModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterFaceModels.h; sourceTree = "<group>"; };
+		415CCAB81B7DD5F00045FC30 /* InterFaceModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterFaceModels.m; sourceTree = "<group>"; };
 		41DD9FC01B9D79B6005C33F5 /* HomeMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainView.h; sourceTree = "<group>"; };
 		41DD9FC11B9D79B6005C33F5 /* HomeMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainView.m; sourceTree = "<group>"; };
 		41DD9FC31B9D79C0005C33F5 /* HomeMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeMainView.xib; sourceTree = "<group>"; };
@@ -580,8 +579,8 @@
 		41EBBDA71B70980A00BD6878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41EBBDA81B70980A00BD6878 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		41EBBDB61B70980A00BD6878 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		41EBBE171B7855A100BD6878 /* BBInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBInterface.h; sourceTree = "<group>"; };
-		41EBBE181B7855A100BD6878 /* BBInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBInterface.m; sourceTree = "<group>"; };
+		41EBBE171B7855A100BD6878 /* BBInterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBInterFace.h; sourceTree = "<group>"; };
+		41EBBE181B7855A100BD6878 /* BBInterFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBInterFace.m; sourceTree = "<group>"; };
 		41EBBFF41B7855E500BD6878 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		41EBBFF61B7855EB00BD6878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		41EBBFF81B7855F200BD6878 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -960,22 +959,22 @@
 		185D6C7F1C4B3BC9002E663C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1894A4141C70666600F2CB5E /* YPPwdTool.h */,
+				1894A4151C70666600F2CB5E /* YPPwdTool.m */,
+				1894A4111C70656200F2CB5E /* QXPActionSheetPickerDelegate.h */,
+				1894A4121C70656200F2CB5E /* QXPActionSheetPickerDelegate.m */,
 				185D6C801C4B3C3A002E663C /* CommonFn.h */,
 				185D6C811C4B3C3A002E663C /* CommonFn.m */,
 				185D6C831C4B4550002E663C /* Constants.h */,
-				1894A41B1C82DEA800F2CB5E /* DES.h */,
-				1894A41C1C82DEA800F2CB5E /* DES.m */,
 				181598721C5534E40051BDCB /* EnumType.h */,
 				185D6C871C4B4BE6002E663C /* MainManager.h */,
 				185D6C881C4B4BE6002E663C /* MainManager.m */,
 				1894A4081C6EB73900F2CB5E /* MutableArrayManager.h */,
 				1894A4091C6EB73A00F2CB5E /* MutableArrayManager.m */,
-				1894A4111C70656200F2CB5E /* QXPActionSheetPickerDelegate.h */,
-				1894A4121C70656200F2CB5E /* QXPActionSheetPickerDelegate.m */,
 				1894A40B1C70644800F2CB5E /* QXPCacheForUser.h */,
 				1894A40C1C70644800F2CB5E /* QXPCacheForUser.m */,
-				1894A40D1C70644800F2CB5E /* QXPCacheUtility.h */,
-				1894A40E1C70644800F2CB5E /* QXPCacheUtility.m */,
+				1894A40D1C70644800F2CB5E /* QXPCacheUtilit.h */,
+				1894A40E1C70644800F2CB5E /* QXPCacheUtilit.m */,
 				1815981A1C5503B50051BDCB /* Utilities */,
 			);
 			name = Common;
@@ -1767,21 +1766,20 @@
 		41EBBDDB1B7855A100BD6878 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				41EBBE161B7855A100BD6878 /* Interface */,
+				41EBBE161B7855A100BD6878 /* InterFace */,
 				185D6DAA1C4B59EC002E663C /* Objects */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		41EBBE161B7855A100BD6878 /* Interface */ = {
+		41EBBE161B7855A100BD6878 /* InterFace */ = {
 			isa = PBXGroup;
 			children = (
-				41EBBE171B7855A100BD6878 /* BBInterface.h */,
-				41EBBE181B7855A100BD6878 /* BBInterface.m */,
-				415CCAB71B7DD5F00045FC30 /* InterfaceModels.h */,
-				415CCAB81B7DD5F00045FC30 /* InterfaceModels.m */,
+				41EBBE171B7855A100BD6878 /* BBInterFace.h */,
+				41EBBE181B7855A100BD6878 /* BBInterFace.m */,
+				415CCAB71B7DD5F00045FC30 /* InterFaceModels.h */,
+				415CCAB81B7DD5F00045FC30 /* InterFaceModels.m */,
 			);
-			name = Interface;
 			path = InterFace;
 			sourceTree = "<group>";
 		};
@@ -2138,10 +2136,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1894A41E1C82E97700F2CB5E /* GTMBase64.m in Sources */,
 				1894A41A1C70ACE800F2CB5E /* NSDate+Helpers.m in Sources */,
 				1894A3BF1C5DBCC500F2CB5E /* MKMapView+Helper.m in Sources */,
-				1894A4101C70644800F2CB5E /* QXPCacheUtility.m in Sources */,
+				1894A4101C70644800F2CB5E /* QXPCacheUtilit.m in Sources */,
 				1894A4131C70656200F2CB5E /* QXPActionSheetPickerDelegate.m in Sources */,
 				1894A4071C69C1E000F2CB5E /* MZTimerLabel.m in Sources */,
 				181598A41C5A1B550051BDCB /* XianLuBuJiCell.m in Sources */,
@@ -2167,6 +2164,7 @@
 				181598841C566D0D0051BDCB /* UIViewController+units.m in Sources */,
 				1894A3FF1C660FD900F2CB5E /* CompleteUploadView.m in Sources */,
 				181598831C566C4E0051BDCB /* iCarousel.m in Sources */,
+				1894A4161C70666600F2CB5E /* YPPwdTool.m in Sources */,
 				181598801C565F8F0051BDCB /* UIColor+Helpers.m in Sources */,
 				1815987F1C565CE70051BDCB /* UIViewController+AKTabBarController.m in Sources */,
 				1815987E1C553C170051BDCB /* NSString+Helpers.m in Sources */,
@@ -2190,7 +2188,7 @@
 				1894A3F21C6316F300F2CB5E /* BlankMap.m in Sources */,
 				181598171C55032C0051BDCB /* MyMainViewController.m in Sources */,
 				181598161C5503240051BDCB /* HomeMainViewController.m in Sources */,
-				181598151C5503160051BDCB /* InterfaceModels.m in Sources */,
+				181598151C5503160051BDCB /* InterFaceModels.m in Sources */,
 				181598131C5502200051BDCB /* AKTabBarView.m in Sources */,
 				181598121C5501F60051BDCB /* AKTabBar.m in Sources */,
 				181598111C5501F10051BDCB /* AKTab.m in Sources */,
@@ -2198,8 +2196,7 @@
 				1815980E1C5501720051BDCB /* MainViewController.m in Sources */,
 				1894A40A1C6EB73A00F2CB5E /* MutableArrayManager.m in Sources */,
 				1815980D1C5501680051BDCB /* BaseNavigationController.m in Sources */,
-				1894A41D1C82DEA900F2CB5E /* DES.m in Sources */,
-				1815980C1C5501510051BDCB /* BBInterface.m in Sources */,
+				1815980C1C5501510051BDCB /* BBInterFace.m in Sources */,
 				181598071C5501080051BDCB /* MainManager.m in Sources */,
 				1894A3FA1C636D9C00F2CB5E /* TimeDistanceView.m in Sources */,
 				181598081C5501080051BDCB /* LoginFirstViewController.m in Sources */,
@@ -2269,6 +2266,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "e5e9d3be-fe5e-4710-b09a-c9d7d88f10c4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2307,6 +2305,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "e5e9d3be-fe5e-4710-b09a-c9d7d88f10c4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2336,6 +2335,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = PaoBu;
+				PROVISIONING_PROFILE = "e5e9d3be-fe5e-4710-b09a-c9d7d88f10c4";
 			};
 			name = Debug;
 		};
@@ -2363,6 +2363,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = PaoBu;
+				PROVISIONING_PROFILE = "e5e9d3be-fe5e-4710-b09a-c9d7d88f10c4";
 			};
 			name = Release;
 		};

@@ -5,7 +5,7 @@
 //向数组中添加坐标点
 +(void)addMutableArray:(NSMutableArray *)array Lat:(double)lat Lng:(double)lng{
     NSArray *point = [NSArray arrayWithObjects:[NSNumber numberWithDouble:lat], [NSNumber numberWithDouble:lng], nil];
-    if(array.count == 0){
+    if(array == nil){
         array = [NSMutableArray arrayWithObjects:point, nil];
     }else{
         [array addObject:point];
@@ -19,8 +19,8 @@
 
 //获取两点间距离
 +(double)getDistanceLat1:(double)lat1 Lng1:(double)lng1 Lat2:(double)lat2 Lng2:(double)lng2 {
-    MAMapPoint point1 = {lat1, lng1};
-    MAMapPoint point2 = {lat2, lng2};
+    MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(lat1, lng1));
+    MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(lat2, lng2));
     
     return MAMetersBetweenMapPoints(point1, point2);
 }

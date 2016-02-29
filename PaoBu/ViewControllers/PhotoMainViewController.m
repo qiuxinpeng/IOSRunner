@@ -27,14 +27,14 @@
 }
 - (void)getData{
     if (!self.arr_citys) {
-        [[BBInterFace interfaceWithFinshBlock:^(NSArray *responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(NSArray *responseObje) {
             self.arr_citys=responseObje;
         } faildBlock:^(NSError *err) {
             
         } HUDBackgroundView:self.view tag:nil] getProvinceAndCity:nil];
     }
     if (!self.arr_category) {
-        [[BBInterFace interfaceWithFinshBlock:^(NSArray *responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(NSArray *responseObje) {
             self.arr_category=responseObje;
         } faildBlock:^(NSError *err) {
             

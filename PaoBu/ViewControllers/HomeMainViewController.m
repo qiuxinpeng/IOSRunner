@@ -25,7 +25,7 @@
     self.ICarousel2.type = iCarouselTypeLinear;
     //[self.webV_title loadHTMLString:@"最新版 IOS 已经上线了 <a href=\"http://www.ifeng.com\">点此下载</a>" baseURL:nil];
     
-    [[BBInterFace interfaceWithFinshBlock:^(id responseObj) {
+    [[BBInterface interfaceWithFinshBlock:^(id responseObj) {
         self.arr_info = responseObj;
         [self.ICarousel1 reloadData];
         [self.ICarousel2 reloadData];
@@ -35,13 +35,13 @@
         self.arr_info = [getRecommendTraceInfoOBJ allOBJS];
         [self.ICarousel1 reloadData];
         [self.ICarousel2 reloadData];
-    } HUDBackgroundView:self.view tag:self.tagWithInterFace] getRecommendTraceInfo];
+    } HUDBackgroundView:self.view tag:self.tagWithInterface] getRecommendTraceInfo];
     
-    [[BBInterFace interfaceWithFinshBlock:^(id responseObj) {
+    [[BBInterface interfaceWithFinshBlock:^(id responseObj) {
         self.lab_title.text = responseObj;
     } faildBlock:^(NSError *err) {
-        self.lab_title.text = [QXPCacheUtilit sharedCacheUtilit].home_notice_title;
-    } HUDBackgroundView:self.view tag:self.tagWithInterFace] getNotice];
+        self.lab_title.text = [QXPCacheUtility sharedCacheUtility].home_notice_title;
+    } HUDBackgroundView:self.view tag:self.tagWithInterface] getNotice];
 }
 - (void)btn_show_click:(UIButton *)sender{
     getRecommendTraceInfoOBJ *OBJ = self.arr_info[sender.tag];

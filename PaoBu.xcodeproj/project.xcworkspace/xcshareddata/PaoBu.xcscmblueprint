@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "97F909D5FF68ED40229C081A1C2E47A7DB447810",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3529488F137B9D56CC248645FA842087D3321659" : 0,
+    "97F909D5FF68ED40229C081A1C2E47A7DB447810" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D7B192ED-A081-4CFE-AB5A-363766137C5B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3529488F137B9D56CC248645FA842087D3321659" : "",
+    "97F909D5FF68ED40229C081A1C2E47A7DB447810" : "PaoBu\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PaoBu",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PaoBu.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/114.215.176.242:29418\/PaoBu.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3529488F137B9D56CC248645FA842087D3321659"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:51tuanyou\/IOSRunner.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "97F909D5FF68ED40229C081A1C2E47A7DB447810"
+    }
+  ]
+}

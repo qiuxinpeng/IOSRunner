@@ -433,7 +433,7 @@
     [self.navigationController.navigationBar setShadowImage:nil];
 }
 - (void)popViewControllers{
-    //[BBInterFace cancelForTag:self.tagWithInterFace];
+    //[BBInterface cancelForTag:self.tagWithInterface];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

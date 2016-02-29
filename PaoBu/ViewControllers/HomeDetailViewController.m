@@ -45,12 +45,12 @@
     [self choose_click:self.btn_1];
     self.title = @"线路信息";
 
-    [[BBInterFace interfaceWithFinshBlock:^(getTraceLineInfoOBJ *responseObje) {
+    [[BBInterface interfaceWithFinshBlock:^(getTraceLineInfoOBJ *responseObje) {
         self.traceLineInfoOBJ=responseObje;
         [self reloadData];
     } faildBlock:^(NSError *err) {
         
-    } HUDBackgroundView:self.view tag:self.tagWithInterFace] getTraceLineInfo:self.OBJ.ID];
+    } HUDBackgroundView:self.view tag:self.tagWithInterface] getTraceLineInfo:self.OBJ.ID];
 
     self.V_zhoubian.OBJ = self.OBJ;
     self.V_pinglun.OBJ = self.OBJ;

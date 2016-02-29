@@ -67,13 +67,13 @@
     //已有轨迹点 ID
     if(self.collectionID != 0){
         self.map = [[TraceMap alloc] init];
-        [[BBInterFace interfaceWithFinshBlock:^(getMapTraceSystemObject *responseObj) {
+        [[BBInterface interfaceWithFinshBlock:^(getMapTraceSystemObject *responseObj) {
             self.mapTraceSystem = responseObj;
             [self showMapTrace];
             //self.collectionID = 0;
         } faildBlock:^(NSError *err) {
             NSLog(@"%@", err);
-        } HUDBackgroundView:self.view tag:self.tagWithInterFace] getMapTraceSystem:[NSString stringWithFormat:@"%d", self.collectionID]];
+        } HUDBackgroundView:self.view tag:self.tagWithInterface] getMapTraceSystem:[NSString stringWithFormat:@"%d", self.collectionID]];
     }else{//MAUserTrackingModeFollow 是否追踪用户定位，并在地图上显示（需要与showsUserLocation配合使用）
         self.map = [[BlankMap alloc] init];
         self.mapView.userTrackingMode = MAUserTrackingModeFollow;
@@ -89,14 +89,20 @@
             point1 = [MutableArrayManager getLastItem:self.map.arrLatLngs];
         }else{
             point1 = [NSArray arrayWithObjects:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude], [NSNumber numberWithDouble:userLocation.location.coordinate.longitude], nil];
-            [MutableArrayManager addMutableArray:self.map.arrLatLngs Lat:userLocation.location.coordinate.latitude Lng:userLocation.location.coordinate.longitude];
+            self.map.arrLatLngs = [NSMutableArray arrayWithObjects:point1, nil];
         }
         
-        double distance = [MutableArrayManager getDistanceLat1:[point1[0] doubleValue] Lng1:[point1[1] doubleValue] Lat2:userLocation.coordinate.latitude Lng2:userLocation.coordinate.longitude];
-        //NSLog(@"两点间距离：%f", distance);
-        if(distance > twoPointsDistance){   //认为位置有移动
+//        double distance = [MutableArrayManager getDistanceLat1:[point1[0] doubleValue] Lng1:[point1[1] doubleValue] Lat2:userLocation.coordinate.latitude Lng2:userLocation.coordinate.longitude];
+        
+        MAMapPoint point11 = MAMapPointForCoordinate(CLLocationCoordinate2DMake([point1[0] doubleValue], [point1[1] doubleValue]));
+        MAMapPoint point21 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude));
+        
+        double distance = MAMetersBetweenMapPoints(point11, point21);
+        NSLog(@"两点间距离：%f", distance);
+        if(distance > TwoPointsDistance){   //认为位置有移动
             //将最新位置坐标加入数组
-            [MutableArrayManager addMutableArray:self.map.arrLatLngs Lat:userLocation.coordinate.latitude Lng:userLocation.coordinate.longitude];
+            NSArray *point2 = [NSArray arrayWithObjects:[NSNumber numberWithDouble:userLocation.coordinate.latitude], [NSNumber numberWithDouble:userLocation.coordinate.longitude], nil];
+            [self.map.arrLatLngs addObject: point2];
             //绘画轨迹
             CLLocationCoordinate2D commonPolylineCoords[2];
             commonPolylineCoords[0] = CLLocationCoordinate2DMake([point1[0] doubleValue], [point1[1] doubleValue]);
@@ -216,7 +222,7 @@
     NSArray *arr = [MutableArrayManager getCollections:[NSMutableArray arrayWithObjects:self.map.arrLatLngs, nil]];
     //NSArray *arr = [NSArray arrayWithObjects:@"12.3333,145.6674|12.6664,123.5644|13.3333,144.6674|15.6664,127.5644", nil];
     pbSaveMapTrace.collections = arr;
-    [[BBInterFace interfaceWithFinshBlock:^(NSNumber *responseObj) {
+    [[BBInterface interfaceWithFinshBlock:^(NSNumber *responseObj) {
         if ([responseObj intValue] == 0) {
             [MBProgressHUD hideHUD];
             [MBProgressHUD showMessage:@"上传成功"];
@@ -232,7 +238,7 @@
     } faildBlock:^(NSError *err) {
         NSLog(@"%@", err);
         [MBProgressHUD hideHUD];
-    } HUDBackgroundView:self.view tag:self.tagWithInterFace] saveCustomMapTrace:pbSaveMapTrace];
+    } HUDBackgroundView:self.view tag:self.tagWithInterface] saveCustomMapTrace:pbSaveMapTrace];
     
 }
 //下拉暂停 - 完成、继续按钮选择事件 

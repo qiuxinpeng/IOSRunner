@@ -95,14 +95,14 @@
 
 - (void)reloadMyProfileView {
     if ([PBUser isLogin]) {
-        [[BBInterFace interfaceWithFinshBlock:^(PBUser *responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(PBUser *responseObje) {
             [responseObje synchronize];
             [PBUser changeWithUser:responseObje];
             [PBUser lginOK];
             [self.tableV_list reloadData];
         }faildBlock:^(NSError *err) {
             
-        }tag:self.tagWithInterFace] UserGetUserInfo];
+        }tag:self.tagWithInterface] UserGetUserInfo];
     }
 }
 - (void)LoginOK{

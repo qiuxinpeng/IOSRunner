@@ -1,16 +1,6 @@
-//
-//  QXPNetWorkConfig.h
-//  QXPNetWorkNew
-//
-//  Created by Mr.Qiu on 14-7-14.
-//  Copyright (c) 2014年 邱新鹏. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #define REQUST_TIMEOUT 60  //默认超时时间
-
-
 
 #ifdef DEBUG
 #ifndef NETWORK_DEBUG_LOG
@@ -30,8 +20,6 @@
 #ifndef NETWORK_DEBUG_PROXY
 #define NETWORK_DEBUG_PROXY 0
 #endif
-
-
 
 /*
  *是否开启调试netWork运行信息
@@ -70,7 +58,6 @@
 #define NETWORK_DEBUG_RESPONSE_STRING 1
 #endif
 
-
 /*
  *是否开启调试缓存相关信息
  0->off
@@ -88,7 +75,6 @@
 #ifndef NETWORK_DEBUG_SERIALIZE
 #define NETWORK_DEBUG_SERIALIZE 1
 #endif
-
 
 /*
  *是否开启调试取消连接相关信息

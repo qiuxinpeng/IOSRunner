@@ -1,11 +1,3 @@
-//
-//  QXPNetWorkManager.m
-//  QXPNetWork
-//
-//  Created by 小白 on 13-2-22.
-//  Copyright (c) 2013年 小白. All rights reserved.
-//
-
 #import "QXPNetWorkManager.h"
 #import "QXPNetWorkLoadDefault.h"
 #import "QXPNetWorkLoadPUT.h"
@@ -18,7 +10,6 @@
 
 Class object_getClass(id object);
 @interface QXPNetWorkManager(){
-    
     dispatch_queue_t workQueue;
 }
 - (void)performBlockOnMainThread:(QXPBasicBlock)block;
@@ -26,7 +17,6 @@ Class object_getClass(id object);
 + (void)releaseBlocks:(NSArray *)blocks;
 - (void)callBlock:(QXPBasicBlock)block;
 - (void)ASIHTTPRequestCancel;
-
 - (void )connectTypeWithASIRequest:(QXPNetWorkType)type;
 
 @property (nonatomic, assign) Class                  SerializedelegateClass;
@@ -41,11 +31,7 @@ Class object_getClass(id object);
 - (void)cancelAndclear;
 @end
 
-
-
 @implementation QXPNetWorkManager
-
-
 
 inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
 	if(data) {
@@ -56,7 +42,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
 }
 
 - (NSString *)getCacheKey{
-    
     NSMutableString *str=[NSMutableString stringWithFormat:@"%@",self.URLString];
     for (QXPNetWorkParameter *parameter in self.parameters) {
         if ([parameter isKindOfClass:[QXPNetWorkParameter class]])
@@ -67,18 +52,14 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     return cacheKeyForURL(str, nil);
 }
 
-
 - (void)setSerializeDataSource:(id<QXPNetWorkSerializeDataSource>)SerializeDataSource{
-    
     _SerializeDataSource=SerializeDataSource;
     self.SerializedelegateClass=object_getClass(SerializeDataSource);
 #if NETWORK_DEBUG_Serialize
     if (SerializeDataSource) NETWORK_DEBUG_LOG(@"解析--->设置自定义解析DataSource:%@",self.SerializeDataSource);
-    
 #endif
 }
 - (void)setCacheDataSource:(id<QXPNetWorkCacheDataSource>)cacheDataSource{
-    
     _cacheDataSource=cacheDataSource;
     self.cachedelegateClass=object_getClass(cacheDataSource);
     
@@ -89,10 +70,8 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
 
 - (void)dealloc{
     [self cancelAndclear];
-    
 }
 - (void)releaseBlocksOnMainThread{
-    
     NSMutableArray *blocks = [NSMutableArray array];
     if (_progressBlocks) {
         [blocks addObject:_progressBlocks];
@@ -112,8 +91,7 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     }
     [[self class] performSelectorOnMainThread:@selector(releaseBlocks:) withObject:blocks waitUntilDone:[NSThread isMainThread]];
 }
-- (void)performBlockOnMainThread:(QXPBasicBlock)block
-{
+- (void)performBlockOnMainThread:(QXPBasicBlock)block{
 	[self performSelectorOnMainThread:@selector(callBlock:) withObject:block waitUntilDone:[NSThread isMainThread]];
 }
 - (void)releaseSelf{
@@ -123,22 +101,17 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     [[self class] performSelectorOnMainThread:@selector(releaseBlocks:) withObject:blocks waitUntilDone:[NSThread isMainThread]];
 }
 
-- (void)callBlock:(QXPBasicBlock)block
-{
+- (void)callBlock:(QXPBasicBlock)block{
 	block();
 }
 // 始终在主线程执行
-+ (void)releaseBlocks:(NSArray *)blocks
-{
++ (void)releaseBlocks:(NSArray *)blocks{
 	// 该方法退出时blocks将被释放时，
 }
 - (void)ASIHTTPRequestCancel{
-    
     [self.requestOperation cancel];
-    
 }
 - (void)cancelConnect{
-    
     if (self.requestOperation && ![self.requestOperation isFinished]) {
 #if NETWORK_DEBUG_CANCEL
         NETWORK_DEBUG_LOG(@"连接方式:%d--连接地%@\n--->取消连接",(int)_workType,_URLString);
@@ -154,7 +127,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     }
 }
 - (void)cancelAndclear{
-    
     self.dataSourceObject=nil;
     self.operationManager=nil;
     self.SerializeDataSource=nil;
@@ -163,8 +135,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     
     //[self ASIHTTPRequestCancel];
     [self releaseBlocksOnMainThread];
-    
-    
 }
 - (instancetype)init{
     if ((self=[super init])){
@@ -179,7 +149,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     return self;
 }
 - (instancetype)initWithAFHTTPRequestOperationManager:(AFHTTPRequestOperationManager *)manager{
-    
     if ((self=[self init])) {
         self.operationManager=manager;
         self.requestOperation=nil;
@@ -196,7 +165,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
              soapXmlnsXsi:(NSString *)xsi
                  bodyName:(NSString *)bodyName
                 bodyXmlns:(NSString *)bodyXmlns{
-    
     QXPNetWorkSOPAEntityClass *soap=[[QXPNetWorkSOPAEntityClass alloc]init];
     soap.soapName=soapName;
     soap.soapXmlns=xmlns;
@@ -208,16 +176,12 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     self.soapConfig=soap;
 }
 - (void)setTimeoutInterval:(NSTimeInterval)timeoutInterval{
-    
     [self.operationManager.requestSerializer setTimeoutInterval:timeoutInterval];
-    
 }
 - (void )connectWithNetWorkType:(QXPNetWorkType)type{
-    
     self.workType=type;
     //__weak __typeof(self)wself = self;
     if (self.cacheType==QXPNetWorkCacheTypeCompel){
-        
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
             // __strong __typeof(wself)strongSelf = wself;
             //网络不通
@@ -239,7 +203,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
 #endif
                     }
                 });
-                
             }else{
                 [self connectTypeWithASIRequest:type];
             }
@@ -262,15 +225,12 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     }else{
         [self connectTypeWithASIRequest:type];
     }
-    
 }
 
 - (void )connectTypeWithASIRequest:(QXPNetWorkType)type{
-    
-    
-    if (self.requestOperation)
-        [self ASIHTTPRequestCancel];
+    if (self.requestOperation) [self ASIHTTPRequestCancel];
     _dataSourceObject=nil;
+    
     switch (type) {
         case QXPNetWorkTypeGet:
             self.dataSourceObject=[[QXPNetWorkLoadDefault alloc]init];
@@ -287,7 +247,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
             }
             self.dataSourceObject=[[QXPNetWorkLoadSOAP alloc]init];
             break;
-            
         default:
             [NSException raise:@"设置错误" format:@"不确定的连接类型,请明确设置"];
             break;
@@ -298,23 +257,17 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
         //__strong QXPNetWorkManager *strongSelf = wself;
         
 #if NETWORK_DEBUG_RESPONSE_STRING
-        
         NETWORK_DEBUG_LOG(@"连接方式:%d--连接地址:%@\n--->获取的数据:\n%@\n<---\n\n\n",(int)strongSelf.workType,op.request.URL,op.responseString);
-        
 #endif
         if(strongSelf.finishBlocks){
             [strongSelf serializeWithData:op.responseObject];
             strongSelf.requestOperation=nil;
             strongSelf=nil;
-            
         }else{
             [strongSelf releaseSelf];
             strongSelf.requestOperation=nil;
             strongSelf=nil;
         }
-        
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //__strong __typeof(wself)strongSelf = wself;
         
@@ -324,24 +277,19 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
 #endif
         if (error.code==NSURLErrorCancelled && strongSelf.cancelBlocks){
             //[self performBlockOnMainThread:^{ if(self.cancelBlocks) self.cancelBlocks();}];
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 if(strongSelf.cancelBlocks) strongSelf.cancelBlocks();
-                
                 strongSelf.requestOperation=nil;
                 [strongSelf releaseSelf];
                 strongSelf=nil;
             });
-            
         }else if(strongSelf.failedBlocks){
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 if(strongSelf.failedBlocks)strongSelf.failedBlocks(error);
                 strongSelf.requestOperation=nil;
                 [strongSelf releaseSelf];
                 strongSelf=nil;
             });
-            
         }
     }];
     
@@ -356,7 +304,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
     }
     
     if (self.cacheType!=QXPNetWorkCacheTypeCompel && self.cacheType!=QXPNetWorkCacheTypeCustom) {
-        
         [self.requestOperation setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
             return cachedResponse;
         }];
@@ -366,7 +313,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
 }
 
 - (void)serializeWithData:(NSData *)data{
-    
     __block  id object=nil;
     __block  NSError *err=nil;
     //NSData *responseData=[[NSData alloc]initWithData:data];
@@ -393,7 +339,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
         }else if(self.SerializeType==QXPNetWorkSerializeTypeString){
             strongObject=[[NSString alloc] initWithData:strongResponseData encoding:self.requestOperation.responseStringEncoding];
         }
-        
         
         if (self.cacheType==QXPNetWorkCacheTypeCustom && self.cachedelegateClass==object_getClass(self.cacheDataSource) && self.cacheDataSource &&[ self.cacheDataSource respondsToSelector:@selector(QXPNetWorkManager:responseData:)]) {
             [self.cacheDataSource QXPNetWorkManager:self responseData:strongObject];
@@ -424,7 +369,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
                     //[self performBlockOnMainThread:^{ if(self.finishBlocks)self.finishBlocks(strongObject);}];
                     //[self releaseSelf];
                 }
-                
             }
         });
         
@@ -437,9 +381,6 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
         
         [self releaseSelf];
     });
-    
 }
-
-
 
 @end

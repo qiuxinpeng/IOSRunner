@@ -75,7 +75,7 @@
     [self.textField_Mobile resignFirstResponder];
     [self.textField_Code resignFirstResponder];
     
-    [[BBInterFace interfaceWithFinshBlock:^(PBUser *responseObje) {
+    [[BBInterface interfaceWithFinshBlock:^(PBUser *responseObje) {
         [responseObje synchronize];
         [PBUser changeWithUser:responseObje];
         [PBUser lginOK];
@@ -88,7 +88,7 @@
         
     } faildBlock:^(NSError *err) {
         
-    } HUDBackgroundView:self.view tag:self.tagWithInterFace] UserLogin:self.textField_Mobile.text password:self.textField_Code.text];
+    } HUDBackgroundView:self.view tag:self.tagWithInterface] UserLogin:self.textField_Mobile.text password:self.textField_Code.text];
 }
 
 //账号登陆

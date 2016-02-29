@@ -61,7 +61,7 @@
             self.chooseImg=chosenImage;
             chosenImage=nil;
             self.img_head.image=self.chooseImg;
-            [[BBInterFace interfaceWithFinshBlock:^(id responseObje) {
+            [[BBInterface interfaceWithFinshBlock:^(id responseObje) {
                 NSString *path=[responseObje objectForKey:@"path"];
                 [PBUser sharedUser].PhotoUrl=path;
                 [[PBUser sharedUser] synchronize];

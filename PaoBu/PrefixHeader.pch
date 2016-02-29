@@ -17,7 +17,7 @@
 #import "UIView+draw.h"
 #import "QXPBlockUI.h"
 #import "QXPImageView.h"
-#import "QXPCacheUtilit.h"
+#import "QXPCacheUtility.h"
 #import "SVProgressHUD.h"
 #import "NSString+Helpers.h"
 #import "HexColor.h"
@@ -48,8 +48,9 @@
 #import "CommonFn.h"
 #import "MainManager.h"
 #import "PBUser.h"
-#import "BBInterFace.h"
+#import "BBInterface.h"
 #import "EnumType.h"
+#import "DES.h"
 
 #endif
 

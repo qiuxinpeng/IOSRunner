@@ -92,7 +92,7 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)),
 #define ICLogC(frmt, ...) [iConsole crash:(@"%s [第%d行]:" frmt), __PRETTY_FUNCTION__, __LINE__,       ##__VA_ARGS__];
 
 #else
-static const int ddLogLevel = LOG_LEVEL_OFF;
+//static const int ddLogLevel = LOG_LEVEL_OFF;
 #define QLog(frmt, ...)
 #define QLogE(frmt, ...)
 #define QLogW(frmt, ...)

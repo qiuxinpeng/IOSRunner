@@ -40,7 +40,7 @@
  */
 - (void)willShow{
     if (!self.Comment) {
-        [[BBInterFace interfaceWithFinshBlock:^(NSDictionary *responseObje) {
+        [[BBInterface interfaceWithFinshBlock:^(NSDictionary *responseObje) {
             self.CommentRanking=responseObje[@"CommentRanking"];
             self.Comment=responseObje[@"Comment"];
             self.count=responseObje[@"count"];

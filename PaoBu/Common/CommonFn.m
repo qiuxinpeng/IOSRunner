@@ -21,8 +21,8 @@
 
 //添加高德地图
 +(void)addGDMap{
-    [MAMapServices sharedServices].apiKey = (NSString *)APIKey;
-    [AMapSearchServices sharedServices].apiKey = (NSString *)APIKey;
+    [MAMapServices sharedServices].apiKey = (NSString *)GaodeAPIKey;
+    [AMapSearchServices sharedServices].apiKey = (NSString *)GaodeAPIKey;
 }
 
 //检查是否需要更新
@@ -68,9 +68,7 @@
 }
 #pragma mark - IDFA
 + (NSString*)getIDFA{
-    
     //NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    
     return @"";
     //return idfa ? idfa : @"";
 }
@@ -188,7 +186,6 @@
 }
 //获取iOS设备型号
 +(NSString *)UIDeviceModel{
-    
     return  [UIDevice currentDevice].model;
 }
 //获取iOS系统名称
@@ -350,6 +347,15 @@
 //    //return folderSize/(1024.0*1024.0);
 //    return [NSString stringWithFormat:@"%.1f" ,folderSize/1024.0/1024.0];
 //}
+
++ (NSString *) encryptDES:(NSString *) text{
+//    return text;
+    return [[[DES alloc] init] encryptUseDES:text key:[AppSecretKey copy]];
+}
++ (NSString *) decryptDES:(NSString *) encodeText{
+//    return encodeText;
+    return [[[DES alloc] init] decryptUseDES:encodeText key:[AppSecretKey copy]];
+}
 
 
 void QXPDispatch_after(double time, dispatch_block_t block){

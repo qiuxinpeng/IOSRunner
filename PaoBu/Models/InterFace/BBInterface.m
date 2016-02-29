@@ -449,7 +449,7 @@
         else
             par.parameterType = QXPNetWorkParameterTypeDefault;
         [self addObject:par];
-        par = nil;
+        par =nil;
     }
 }
 //合并参数统一加密

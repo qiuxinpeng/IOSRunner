@@ -327,6 +327,7 @@
     [super startLoadInformationWithParameters:arr URLString:string connectType:type];
 }
 
+//Albert - 这里处理响应数据
 #pragma -mack DataSource
 - (id)QXPNetWorkManager:(QXPNetWorkManager *)manager serializeWithData:(NSData *)data error:(NSError **)error{
     NSString *tempStr2 = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -334,7 +335,7 @@
         *error = [NSError errorWithDomain:@"ERROR" code:LUOJI_ERROR_CODE userInfo:nil];
         return nil;
     }
-    NSString *tempStr=[CommonFn decryptDES:tempStr2];
+    NSString *tempStr= [CommonFn decryptDES:tempStr2];
     tempStr2 = nil;
     if (!tempStr) {
         *error = [NSError errorWithDomain:@"ERROR" code:LUOJI_ERROR_CODE userInfo:nil];

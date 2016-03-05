@@ -257,7 +257,13 @@ inline static NSString* cacheKeyForURL(NSString* url, NSString* data) {
         //__strong QXPNetWorkManager *strongSelf = wself;
         
 #if NETWORK_DEBUG_RESPONSE_STRING
-        NETWORK_DEBUG_LOG(@"连接方式:%d--连接地址:%@\n--->获取的数据:\n%@\n<---\n\n\n",(int)strongSelf.workType,op.request.URL,op.responseString);
+        NETWORK_DEBUG_LOG(@"连接方式:%d--连接地址:%@\n--->获取的数据:\n%@",(int)strongSelf.workType,op.request.URL,op.responseString);
+        
+        NSMutableString *decryptData = [[NSMutableString alloc] init];
+        [decryptData appendFormat:@"%@", [CommonFn decryptDES: op.responseString ]];
+        NETWORK_DEBUG_LOG(@"\n--->获取的解密后的数据:\n%@\n<---\n\n\n", decryptData);
+        decryptData = nil;
+
 #endif
         if(strongSelf.finishBlocks){
             [strongSelf serializeWithData:op.responseObject];

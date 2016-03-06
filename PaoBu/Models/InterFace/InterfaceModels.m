@@ -208,4 +208,9 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:CollectionOBJ.class];
 }
 @end
+@implementation getGalleryMapTraceOBJ
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return nil;
+}
+@end
 

@@ -269,6 +269,19 @@
 
 #pragma   -mark  84-getGalleryMapTrace - (获取图库图形轨迹信息)
 - (void) getGalleryMapTrace:(NSString *)timeStamp categoryID:(NSString *)categoryID cityID:(NSString *)cityID provinceID:(NSString *)provinceID startPage:(NSString *)startPage pageNum:(NSString *)pageNum{
+   
+    [self setModelBlock:^id(NSDictionary *object, NSError *__autoreleasing *err) {
+        
+        NSString *Count=[[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey4JsonForKey:@"Count"];
+        NSArray *GalleryMapTrace = [[[object objectForKey4JsonForKey:@"result"] objectForKey4JsonForKey:@"data"] objectForKey4JsonForKey:@"GalleryMapTrace"];
+        
+        NSArray *arr_r = [MTLJSONAdapter modelsOfClass:getGalleryMapTraceOBJ.class fromJSONArray:GalleryMapTrace error:nil];
+        
+        return @{@"count":Count,@"data":arr_r};
+
+
+    }];
+    
     NSMutableArray *muArr = [NSMutableArray new];
     [muArr addParameter:@"timeStamp" parameterValue:timeStamp parameterType:QXPNetWorkParameterTypeDefault];
     [muArr addParameter:@"categoryID" parameterValue:categoryID parameterType:QXPNetWorkParameterTypeDefault];

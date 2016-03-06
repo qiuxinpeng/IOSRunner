@@ -189,3 +189,17 @@
 @property (nonatomic,strong) NSMutableArray *Points;
 @property (nonatomic,strong) CollectionOBJ *Collection;
 @end
+
+@interface getGalleryMapTraceOBJ : MTLModel<MTLJSONSerializing>
+@property (nonatomic,strong) NSString *UseCount;
+@property (nonatomic,strong) NSString *LikeCount;
+@property (nonatomic,strong) NSString *ProvinceID;
+@property (nonatomic,strong) NSString *CityID;
+@property (nonatomic,strong) NSString *UseCompleteCount;
+@property (nonatomic,strong) NSString *ThumbnailDetailUrl;
+@property (nonatomic,strong) NSString *Name;
+@property (nonatomic,strong) NSString *MapCategoryID;
+@property (nonatomic,strong) NSString *ID;
+@property (nonatomic,strong) NSString *OverallLength;
+@property (nonatomic,strong) NSString *distance;
+@end

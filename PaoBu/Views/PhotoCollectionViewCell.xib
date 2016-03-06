@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="145" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="145" height="100"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytm-9e-eiw">
+                        <rect key="frame" x="0.0" y="0.0" width="145" height="100"/>
+                        <animations/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="距离" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-VH-dS5">
+                        <rect key="frame" x="99" y="8" width="38" height="14"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.67450980390000004" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="类列" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5g3-4m-34l">
+                        <rect key="frame" x="8" y="78" width="38" height="14"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.67450980390000004" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mhp-cT-ePO">
+                        <rect key="frame" x="99" y="79" width="38" height="13"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="agree1" translatesAutoresizingMaskIntoConstraints="NO" id="ekX-9Y-PrO">
+                                <rect key="frame" x="25" y="1" width="11" height="11"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZv-tW-g1n">
+                                <rect key="frame" x="-7" y="0.0" width="30" height="14"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.67450980390000004" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="免费" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrv-n1-KQd">
+                        <rect key="frame" x="-6" y="9" width="38" height="14"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.67450980390000004" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <color key="backgroundColor" red="0.77547684039999998" green="0.77547684039999998" blue="0.77547684039999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="ytm-9e-eiw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LT7-83-9fk"/>
+                <constraint firstAttribute="bottom" secondItem="ytm-9e-eiw" secondAttribute="bottom" id="Tsa-ab-08D"/>
+                <constraint firstItem="ytm-9e-eiw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UJJ-4p-z5X"/>
+                <constraint firstAttribute="trailing" secondItem="ytm-9e-eiw" secondAttribute="trailing" id="fGQ-3N-CBd"/>
+            </constraints>
+            <size key="customSize" width="192" height="77"/>
+            <connections>
+                <outlet property="imgV_back" destination="ytm-9e-eiw" id="Ard-YV-RNI"/>
+                <outlet property="lab_feiyong" destination="xrv-n1-KQd" id="uKT-xE-zuU"/>
+                <outlet property="lab_juli" destination="Zx4-VH-dS5" id="GvX-xY-xIN"/>
+                <outlet property="lab_liebie" destination="5g3-4m-34l" id="DnM-Bn-kN2"/>
+                <outlet property="lab_zan" destination="BZv-tW-g1n" id="Efh-FH-y5S"/>
+            </connections>
+            <point key="canvasLocation" x="525.5" y="406"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="agree1" width="30" height="30"/>
+    </resources>
+</document>

@@ -140,6 +140,8 @@
 		DF9083DB1BA5B0BF0097E7C0 /* XianLuDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF9083D91BA5B0BF0097E7C0 /* XianLuDetailsCell.xib */; };
 		DF90841A1BA5CE0A0097E7C0 /* XianLuDetailsWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF9084181BA5CE0A0097E7C0 /* XianLuDetailsWebCell.xib */; };
 		DFA783841B934EFA006128E6 /* MyInfoHeadFirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA783821B934EFA006128E6 /* MyInfoHeadFirstCell.xib */; };
+		DFA9FC331C8C1F040020AD8B /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA9FC311C8C1F040020AD8B /* PhotoCollectionViewCell.m */; };
+		DFA9FC341C8C1F040020AD8B /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA9FC321C8C1F040020AD8B /* PhotoCollectionViewCell.xib */; };
 		DFBB99A91B95EA6D0023D15B /* MyInfoSecondTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFBB99A71B95EA6D0023D15B /* MyInfoSecondTextCell.xib */; };
 		DFBB99AF1B95EEED0023D15B /* MyInfoSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFBB99AD1B95EEED0023D15B /* MyInfoSecondViewController.xib */; };
 		DFE35B851B90A84E00F2A405 /* HomeMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFE35B831B90A84E00F2A405 /* HomeMainViewController.xib */; };
@@ -652,6 +654,9 @@
 		DFA783801B934EFA006128E6 /* MyInfoHeadFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoHeadFirstCell.h; sourceTree = "<group>"; };
 		DFA783811B934EFA006128E6 /* MyInfoHeadFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoHeadFirstCell.m; sourceTree = "<group>"; };
 		DFA783821B934EFA006128E6 /* MyInfoHeadFirstCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyInfoHeadFirstCell.xib; sourceTree = "<group>"; };
+		DFA9FC301C8C1F040020AD8B /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		DFA9FC311C8C1F040020AD8B /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		DFA9FC321C8C1F040020AD8B /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		DFBB99A51B95EA6D0023D15B /* MyInfoSecondTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoSecondTextCell.h; sourceTree = "<group>"; };
 		DFBB99A61B95EA6D0023D15B /* MyInfoSecondTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoSecondTextCell.m; sourceTree = "<group>"; };
 		DFBB99A71B95EA6D0023D15B /* MyInfoSecondTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyInfoSecondTextCell.xib; sourceTree = "<group>"; };
@@ -1703,10 +1708,11 @@
 		41EBBD9A1B70980A00BD6878 = {
 			isa = PBXGroup;
 			children = (
-				CD454A70397B0FC2C48C29C7 /* Frameworks */,
 				41EBBDA51B70980A00BD6878 /* PaoBu */,
+				41EBBDA61B70980A00BD6878 /* Supporting Files */,
 				A5AB252BD62D29E5BA160A9D /* Pods */,
 				41EBBDA41B70980A00BD6878 /* Products */,
+				CD454A70397B0FC2C48C29C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1727,7 +1733,6 @@
 				1894A3DE1C630EC100F2CB5E /* Handler */,
 				185D6C891C4B56E7002E663C /* Libraries */,
 				41EBBDDB1B7855A100BD6878 /* Models */,
-				41EBBDA61B70980A00BD6878 /* Supporting Files */,
 				41EBBFFE1B78564800BD6878 /* ViewControllers */,
 				DFA7837E1B934EB4006128E6 /* Views */,
 			);
@@ -1744,6 +1749,7 @@
 				41EBC0011B78579E00BD6878 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			path = PaoBu;
 			sourceTree = "<group>";
 		};
 		41EBBDCF1B78428E00BD6878 /* Delegate&MainBase */ = {
@@ -1925,6 +1931,7 @@
 		DFA7837E1B934EB4006128E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DFA9FC2F1C8C1EE00020AD8B /* photo */,
 				1894A3F61C636C8300F2CB5E /* Map */,
 				41DD9FBF1B9D798C005C33F5 /* Home */,
 				DFA7837F1B934EBA006128E6 /* My */,
@@ -1952,6 +1959,16 @@
 				DF536C161B97553000BF2438 /* EditUserInfoTextTableViewCell.xib */,
 			);
 			name = My;
+			sourceTree = "<group>";
+		};
+		DFA9FC2F1C8C1EE00020AD8B /* photo */ = {
+			isa = PBXGroup;
+			children = (
+				DFA9FC301C8C1F040020AD8B /* PhotoCollectionViewCell.h */,
+				DFA9FC311C8C1F040020AD8B /* PhotoCollectionViewCell.m */,
+				DFA9FC321C8C1F040020AD8B /* PhotoCollectionViewCell.xib */,
+			);
+			name = photo;
 			sourceTree = "<group>";
 		};
 		DFBB99AA1B95EED40023D15B /* MY */ = {
@@ -2057,6 +2074,7 @@
 				41DD9FC41B9D79C0005C33F5 /* HomeMainView.xib in Resources */,
 				DFE35B8A1B90A85D00F2A405 /* PhotoMainViewController.xib in Resources */,
 				DFA783841B934EFA006128E6 /* MyInfoHeadFirstCell.xib in Resources */,
+				DFA9FC341C8C1F040020AD8B /* PhotoCollectionViewCell.xib in Resources */,
 				1841D0E41C4D514800AA690D /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				DF21CF641BA330AF00EEDC1A /* XianLuPhotoCell.xib in Resources */,
 				1894A3D81C62E51B00F2CB5E /* home1.png in Resources */,
@@ -2187,6 +2205,7 @@
 				1815986A1C550CC30051BDCB /* HomeDetailViewController.m in Sources */,
 				181598191C55033C0051BDCB /* PhotoMainViewController.m in Sources */,
 				181598181C5503330051BDCB /* NavMainViewController.m in Sources */,
+				DFA9FC331C8C1F040020AD8B /* PhotoCollectionViewCell.m in Sources */,
 				1894A3F21C6316F300F2CB5E /* BlankMap.m in Sources */,
 				181598171C55032C0051BDCB /* MyMainViewController.m in Sources */,
 				181598161C5503240051BDCB /* HomeMainViewController.m in Sources */,

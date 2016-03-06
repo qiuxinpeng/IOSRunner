@@ -111,8 +111,8 @@
     return result;
 }
 //将Int转成Str
-NSString* stringWithInt(NSInteger number){
-    return [NSString stringWithFormat:@"%ld",(long)number];
+NSString* stringWithInt(int number){
+    return [NSString stringWithFormat:@"%d",number];
 }
 //将double转成Str
 NSString* stringWithDouble(double number){

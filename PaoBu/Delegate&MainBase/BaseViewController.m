@@ -182,7 +182,8 @@
     self.showNavBar = YES;
     self.showTabBar = YES;
     self.useTouchDismissParentView = NO;
-    //self.view.backgroundColor=[UIColor whiteColor];
+    self.view.backgroundColor=[UIColor colorWithRed:0.94 green:0.98 blue:0.98 alpha:1];
+    //[UIColor whiteColor];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.97 blue:0.99 alpha:1];
 }

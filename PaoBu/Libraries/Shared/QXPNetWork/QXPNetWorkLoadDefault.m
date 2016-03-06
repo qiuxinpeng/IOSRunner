@@ -101,7 +101,7 @@
         [decryptParams appendFormat:@"%@", [CommonFn decryptDES: parameter.parameterValue ]];
     }
     NETWORK_DEBUG_LOG(@"连接方式:%@--发送加密后的参数:%@", method, logInfoStr);
-    NETWORK_DEBUG_LOG(@"连接方式:%@--解密后的请求信息:%@%@", method, URLString, decryptParams);
+    NETWORK_DEBUG_LOG(@"连接方式:%@--解密后的请求信息:%@&%@", method, URLString, decryptParams);
     NSArray *params = [decryptParams componentsSeparatedByString:@"&"];
     
     [logInfoStr setString:@""];

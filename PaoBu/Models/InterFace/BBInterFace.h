@@ -2,8 +2,8 @@
 #import "InterfaceModels.h"
 
 #define LUOJI_ERROR_CODE 40000
-//#define SERVICE_URL @"http://interface.paoditu.com/index.php?format=json&source=ios&encrypt=1&"
-#define SERVICE_URL @"http://interf.minsubnb.com/index.php?format=json&source=ios&encrypt=1&"
+#define SERVICE_URL @"http://interface.paoditu.com/index.php?format=json&source=ios&encrypt=1&"
+//#define SERVICE_URL @"http://interf.minsubnb.com/index.php?format=json&source=ios&encrypt=1&"
 #define makeURLString(path) [NSString stringWithFormat:@"%@%@", SERVICE_URL, path]
 
 @class PBSaveMapTrace;

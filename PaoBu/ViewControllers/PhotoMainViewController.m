@@ -5,6 +5,7 @@
 @interface PhotoMainViewController ()
 @property(nonatomic,strong)NSArray *arr_citys;
 @property(nonatomic,strong)NSArray *arr_category;
+@property(nonatomic,strong)NSArray *arr_galleryMapTrace;
 
 @property(nonatomic,strong)getProvinceAndCityOBJ *ProvinceOBJ;
 @property(nonatomic,strong)CitiesOBJ *cityOBJ;
@@ -28,17 +29,31 @@
 - (void)getData{
     if (!self.arr_citys) {
         [[BBInterface interfaceWithFinshBlock:^(NSArray *responseObje) {
-            self.arr_citys=responseObje;
+            self.arr_citys = responseObje;
         } faildBlock:^(NSError *err) {
             
         } HUDBackgroundView:self.view tag:nil] getProvinceAndCity:nil];
     }
     if (!self.arr_category) {
         [[BBInterface interfaceWithFinshBlock:^(NSArray *responseObje) {
-            self.arr_category=responseObje;
+            self.arr_category = responseObje;
         } faildBlock:^(NSError *err) {
             
         } HUDBackgroundView:self.view tag:nil] getCategory:nil];
+    }
+    if (!self.arr_galleryMapTrace) {
+        NSString *timeStamp = @"0";
+        NSString *categoryID = @"-1";
+        NSString *cityID = @"-1";
+        NSString *provinceID = @"-1";
+        NSString *startPage = @"1";
+        NSString *pageNum = @"10";
+        
+        [[BBInterface interfaceWithFinshBlock:^(NSArray *responseObje) {
+            self.arr_category = responseObje;
+        } faildBlock:^(NSError *err) {
+            
+        } HUDBackgroundView:self.view tag:nil] getGalleryMapTrace:timeStamp categoryID:categoryID cityID:cityID provinceID:provinceID startPage:startPage pageNum:pageNum];
     }
 }
 - (void)didReceiveMemoryWarning {

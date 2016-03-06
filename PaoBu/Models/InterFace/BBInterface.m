@@ -267,8 +267,18 @@
     [self startLoadInformationWithParameters:muArr URLPath:@"interface&interface=user&method=saveCustomMapTrace" connectType:QXPNetWorkTypePost];
 }
 
-
-
+#pragma   -mark  84-getGalleryMapTrace - (获取图库图形轨迹信息)
+- (void) getGalleryMapTrace:(NSString *)timeStamp categoryID:(NSString *)categoryID cityID:(NSString *)cityID provinceID:(NSString *)provinceID startPage:(NSString *)startPage pageNum:(NSString *)pageNum{
+    NSMutableArray *muArr = [NSMutableArray new];
+    [muArr addParameter:@"timeStamp" parameterValue:timeStamp parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"categoryID" parameterValue:categoryID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"cityID" parameterValue:cityID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"provinceID" parameterValue:provinceID parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"startPage" parameterValue:startPage parameterType:QXPNetWorkParameterTypeDefault];
+    [muArr addParameter:@"pageNum" parameterValue:pageNum parameterType:QXPNetWorkParameterTypeDefault];
+    
+    [self startLoadInformationWithParameters:muArr URLPath:@"interface=trace&method=getGalleryMapTrace" connectType:QXPNetWorkTypePost];
+}
 
 
 

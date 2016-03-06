@@ -53,4 +53,6 @@ typedef id (^InterfaceModelBlock)(id object,NSError **err);
 - (void) getMapTraceSystem:(NSString *)collectionID;
 #pragma   -mark  40-UserSaveCustomMapTrace - (保存用户跑步轨迹)
 - (void) saveCustomMapTrace:(PBSaveMapTrace *)pbSaveMapTrace;
+#pragma   -mark  84-getGalleryMapTrace - (获取图库图形轨迹信息)
+- (void) getGalleryMapTrace:(NSString *)timeStamp categoryID:(NSString *)categoryID cityID:(NSString *)cityID provinceID:(NSString *)provinceID startPage:(NSString *)startPage pageNum:(NSString *)pageNum;
 @end
